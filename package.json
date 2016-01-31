@@ -1,0 +1,36 @@
+{
+  "name": "is-ipfs",
+  "version": "0.0.1",
+  "description": "A set of utilities to help identify IPFS resources",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js",
+    "lint": "standard"
+  },
+  "pre-commit": [
+    "test",
+    "lint"
+  ],
+  "keywords": [
+    "ipfs"
+  ],
+  "author": "Francisco Dias <francisco@baiodias.com> (http://franciscodias.net/)",
+  "license": "MIT",
+  "dependencies": {
+    "bs58": "^3.0.0",
+    "multihashes": "^0.2.0"
+  },
+  "devDependencies": {
+    "pre-commit": "^1.1.2",
+    "standard": "^5.4.1",
+    "tape": "^4.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xicombd/is-ipfs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xicombd/is-ipfs/issues"
+  },
+  "homepage": "https://github.com/xicombd/is-ipfs"
+}
