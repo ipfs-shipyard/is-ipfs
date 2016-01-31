@@ -4,7 +4,7 @@ is-ipfs
 [![build status](https://secure.travis-ci.org/xicombd/is-ipfs.png)](http://travis-ci.org/xicombd/is-ipfs)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
 
-A set of utilities to help identify IPFS resources.
+A set of utilities to help identify [IPFS](https://ipfs.io/) resources.
 
 
 ## Install
