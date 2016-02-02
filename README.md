@@ -19,9 +19,16 @@ const isIPFS = require('is-ipfs')
 isIPFS.multihash('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
 isIPFS.multihash('noop') // false
 
-isIPFS.url('http://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
+isIPFS.url('https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
+isIPFS.url('https://ipfs.io/ipfs/github.com') // true
 isIPFS.url('https://github.com/ipfs/js-ipfs/blob/master/README.md') // false
 isIPFS.url('https://google.com') // false
+
+isIPFS.ipfsUrl('https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
+isIPFS.ipfsUrl('https://ipfs.io/ipfs/github.com') // false
+
+isIPFS.ipnsUrl('https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // false
+isIPFS.ipnsUrl('https://ipfs.io/ipfs/github.com') // true
 ```
 
 ## API
@@ -30,11 +37,20 @@ isIPFS.url('https://google.com') // false
 
 Returns `true` if the provided string is a valid `multihash` or `false` otherwise.
 
-### `isIPFS.url(hash)`
+### `isIPFS.url(url)`
+
+Returns `true` if the provided string is a valid IPFS or IPNS url or `false` otherwise.
+
+### `isIPFS.ipfsUrl(url)`
 
 Returns `true` if the provided string is a valid IPFS url or `false` otherwise.
 
-**Note:** the regex used for this check is also exported as `isIPFS.urlPattern`
+### `isIPFS.ipnsUrl(url)`
+
+Returns `true` if the provided string is a valid IPNS url or `false` otherwise.
+
+
+**Note:** the regex used for these checks is also exported as `isIPFS.urlPattern`
 
 ## License
 
