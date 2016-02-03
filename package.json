@@ -1,6 +1,6 @@
 {
   "name": "is-ipfs",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "A set of utilities to help identify IPFS resources",
   "main": "index.js",
   "scripts": {
