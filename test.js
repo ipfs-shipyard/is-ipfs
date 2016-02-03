@@ -22,6 +22,13 @@ test('isIPFS.ipfsUrl should match an ipfs url', function (t) {
   t.end()
 })
 
+test('isIPFS.ipfsUrl should match a complex ipfs url', function (t) {
+  const actual = isIPFS.ipfsUrl('http://ipfs.alexandria.media/ipfs/QmeWz9YZEeNFXQhHg4PnR5ZiNr5isttgi5n1tc1eD5EfGU/content/index.html')
+  const expected = true
+  t.is(actual, expected)
+  t.end()
+})
+
 test('isIPFS.ipfsUrl should not match an ipns url', function (t) {
   const actual = isIPFS.ipfsUrl('http://ipfs.io/ipns/github.com/')
   const expected = false

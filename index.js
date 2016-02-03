@@ -1,7 +1,7 @@
 const base58 = require('bs58')
 const multihash = require('multihashes')
 
-const urlPattern = /^https?:\/\/[^\/]+\/(ip(f|n)s)\/(\w+)/
+const urlPattern = /^https?:\/\/[^\/]+\/(ip(f|n)s)\/((\w+).*)/
 
 function isMultihash (hash) {
   try {
@@ -23,7 +23,7 @@ function isIpfsUrl (url) {
     return false
   }
 
-  const hash = match[3]
+  const hash = match[4]
   return isMultihash(hash)
 }
 
