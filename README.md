@@ -28,7 +28,7 @@ isIPFS.ipfsUrl('https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofr
 isIPFS.ipfsUrl('https://ipfs.io/ipfs/github.com') // false
 
 isIPFS.ipnsUrl('https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // false
-isIPFS.ipnsUrl('https://ipfs.io/ipfs/github.com') // true
+isIPFS.ipnsUrl('https://ipfs.io/ipns/github.com') // true
 ```
 
 ## API
