@@ -20,12 +20,12 @@ isIPFS.multihash('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
 isIPFS.multihash('noop') // false
 
 isIPFS.url('https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
-isIPFS.url('https://ipfs.io/ipfs/github.com') // true
+isIPFS.url('https://ipfs.io/ipns/github.com') // true
 isIPFS.url('https://github.com/ipfs/js-ipfs/blob/master/README.md') // false
 isIPFS.url('https://google.com') // false
 
 isIPFS.ipfsUrl('https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
-isIPFS.ipfsUrl('https://ipfs.io/ipfs/github.com') // false
+isIPFS.ipfsUrl('https://ipfs.io/ipfs/invalid-hash') // false
 
 isIPFS.ipnsUrl('https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // false
 isIPFS.ipnsUrl('https://ipfs.io/ipns/github.com') // true
