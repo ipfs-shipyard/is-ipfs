@@ -15,7 +15,7 @@ test('isIPFS.ipfsPath should match a complex ipfs path', function (t) {
   t.end()
 })
 
-test('isIPFS.ipfsPath should not match an ipns url', function (t) {
+test('isIPFS.ipfsPath should not match an ipns path', function (t) {
   const actual = isIPFS.ipfsPath('/ipns/github.com/')
   const expected = false
   t.is(actual, expected)
@@ -50,7 +50,7 @@ test('isIPFS.ipnsPath should match an ipns path', function (t) {
   t.end()
 })
 
-test('isIPFS.ipnsPath should not match a github ipfs repo url', function (t) {
+test('isIPFS.ipnsPath should not match a github ipfs repo path', function (t) {
   const actual = isIPFS.ipnsPath('/ipfs/js-ipfs/blob/master/README.md')
   const expected = false
   t.is(actual, expected)
@@ -71,14 +71,14 @@ test('isIPFS.path should match an ipfs path', function (t) {
   t.end()
 })
 
-test('isIPFS.path should match an ipns url', function (t) {
+test('isIPFS.path should match an ipns path', function (t) {
   const actual = isIPFS.path('/ipns/github.com/')
   const expected = true
   t.is(actual, expected)
   t.end()
 })
 
-test('isIPFS.path should not match a github ipfs repo url', function (t) {
+test('isIPFS.path should not match a github ipfs repo path', function (t) {
   const actual = isIPFS.path('/ipfs/js-ipfs/blob/master/README.md')
   const expected = false
   t.is(actual, expected)
@@ -98,6 +98,7 @@ test('isIPFS.urlOrPath should match ipfs url', function (t) {
   t.is(actual, expected)
   t.end()
 })
+
 test('isIPFS.urlOrPath should match ipns url', function (t) {
   const actual = isIPFS.urlOrPath('http://ipfs.io/ipns/foo.bar.com')
   const expected = true
