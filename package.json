@@ -4,7 +4,7 @@
   "description": "A set of utilities to help identify IPFS resources",
   "main": "index.js",
   "scripts": {
-    "test": "tape test.js",
+    "test": "tape test-*.js",
     "lint": "standard"
   },
   "pre-commit": [

@@ -2,6 +2,7 @@ const base58 = require('bs58')
 const multihash = require('multihashes')
 
 const urlPattern = /^https?:\/\/[^\/]+\/(ip(f|n)s)\/((\w+).*)/
+const pathPattern = /^\/(ip(f|n)s)\/((\w+).*)/
 
 function isMultihash (hash) {
   try {
@@ -13,8 +14,8 @@ function isMultihash (hash) {
   }
 }
 
-function isIpfsUrl (url) {
-  const match = url.match(urlPattern)
+function isIpfs (input, pattern) {
+  const match = input.match(pattern)
   if (!match) {
     return false
   }
@@ -27,8 +28,8 @@ function isIpfsUrl (url) {
   return isMultihash(hash)
 }
 
-function isIpnsUrl (url) {
-  const match = url.match(urlPattern)
+function isIpns (input, pattern) {
+  const match = input.match(pattern)
   if (!match) {
     return false
   }
@@ -42,8 +43,13 @@ function isIpnsUrl (url) {
 
 module.exports = {
   multihash: isMultihash,
-  ipfsUrl: isIpfsUrl,
-  ipnsUrl: isIpnsUrl,
-  url: (url) => (isIpfsUrl(url) || isIpnsUrl(url)),
-  urlPattern: urlPattern
+  ipfsUrl: (url) => isIpfs(url, urlPattern),
+  ipnsUrl: (url) => isIpns(url, urlPattern),
+  url: (url) => (isIpfs(url, urlPattern) || isIpns(url, urlPattern)),
+  urlPattern: urlPattern,
+  ipfsPath: (path) => isIpfs(path, pathPattern),
+  ipnsPath: (path) => isIpns(path, pathPattern),
+  path: (path) => (isIpfs(path, pathPattern) || isIpns(path, pathPattern)),
+  pathPattern: pathPattern,
+  urlOrPath: (x) => (isIpfs(x, urlPattern) || isIpns(x, urlPattern) || isIpfs(x, pathPattern) || isIpns(x, pathPattern))
 }
