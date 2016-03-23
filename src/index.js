@@ -1,3 +1,5 @@
+'use strict'
+
 const base58 = require('bs58')
 const multihash = require('multihashes')
 
@@ -5,8 +7,9 @@ const urlPattern = /^https?:\/\/[^\/]+\/(ip(f|n)s)\/((\w+).*)/
 const pathPattern = /^\/(ip(f|n)s)\/((\w+).*)/
 
 function isMultihash (hash) {
+  const formatted = convertToString(hash)
   try {
-    const buffer = new Buffer(base58.decode(hash))
+    const buffer = new Buffer(base58.decode(formatted))
     multihash.decode(buffer)
     return true
   } catch (e) {
@@ -15,7 +18,12 @@ function isMultihash (hash) {
 }
 
 function isIpfs (input, pattern) {
-  const match = input.match(pattern)
+  const formatted = convertToString(input)
+  if (!formatted) {
+    return false
+  }
+
+  const match = formatted.match(pattern)
   if (!match) {
     return false
   }
@@ -29,7 +37,11 @@ function isIpfs (input, pattern) {
 }
 
 function isIpns (input, pattern) {
-  const match = input.match(pattern)
+  const formatted = convertToString(input)
+  if (!formatted) {
+    return false
+  }
+  const match = formatted.match(pattern)
   if (!match) {
     return false
   }
@@ -39,6 +51,18 @@ function isIpns (input, pattern) {
   }
 
   return true
+}
+
+function convertToString (input) {
+  if (Buffer.isBuffer(input)) {
+    return base58.encode(input)
+  }
+
+  if (typeof input === 'string') {
+    return input
+  }
+
+  return false
 }
 
 module.exports = {
