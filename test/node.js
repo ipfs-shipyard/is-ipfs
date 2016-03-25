@@ -2,7 +2,6 @@
 'use strict'
 const fs = require('fs')
 const tests = fs.readdirSync(__dirname)
-// const poop = require('./test-multihash')
 
 describe('node', () => {
   tests.filter((file) => {
