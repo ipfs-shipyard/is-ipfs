@@ -1,8 +1,8 @@
 is-ipfs
 ====
 
-[![build status](https://secure.travis-ci.org/xicombd/is-ipfs.png)](http://travis-ci.org/xicombd/is-ipfs)
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
+[![build status](https://secure.travis-ci.org/xicombd/is-ipfs.svg)](http://travis-ci.org/xicombd/is-ipfs)
+[![dignified.js](https://img.shields.io/badge/follows-dignified.js-blue.svg?style=flat-square)](https://github.com/dignifiedquire/dignified.js)
 
 A set of utilities to help identify [IPFS](https://ipfs.io/) resources.
 
