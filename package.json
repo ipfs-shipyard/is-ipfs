@@ -2,10 +2,15 @@
   "name": "is-ipfs",
   "version": "0.1.0",
   "description": "A set of utilities to help identify IPFS resources",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "jsnext": "src/index.js",
   "scripts": {
-    "test": "tape test-*.js",
-    "lint": "standard"
+    "test:node": "dignified-test node",
+    "test:browser": "dignified-test browser",
+    "test": "dignified-test",
+    "lint": "dignified-lint",
+    "release": "dignified-release",
+    "build": "dignified-build"
   },
   "pre-commit": [
     "test",
@@ -21,9 +26,9 @@
     "multihashes": "^0.2.0"
   },
   "devDependencies": {
-    "pre-commit": "^1.1.2",
-    "standard": "^5.4.1",
-    "tape": "^4.4.0"
+    "chai": "^3.5.0",
+    "dignified.js": "github:dignifiedquire/dignified.js",
+    "pre-commit": "^1.1.2"
   },
   "repository": {
     "type": "git",
