@@ -1,6 +1,7 @@
 /* eslint-env mocha */
-/* eslint strict: [2, "global"] */
 'use strict'
+
+const base58 = require('bs58')
 const expect = require('chai').expect
 const isIPFS = require('../src/index')
 
@@ -35,6 +36,12 @@ describe('ipfs url', () => {
     done()
   })
 
+  it('isIPFS.ipfsUrl should not match a buffer input', (done) => {
+    const actual = isIPFS.ipfsUrl(new Buffer(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
+    expect(actual).to.equal(false)
+    done()
+  })
+
   it('isIPFS.ipnsUrl should not match an ipfs url', (done) => {
     const actual = isIPFS.ipnsUrl('http://ipfs.io/ipfs/QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm')
     expect(actual).to.equal(false)
@@ -59,6 +66,12 @@ describe('ipfs url', () => {
     done()
   })
 
+  it('isIPFS.ipnsUrl should not match a buffer input', (done) => {
+    const actual = isIPFS.ipnsUrl(new Buffer(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
+    expect(actual).to.equal(false)
+    done()
+  })
+
   it('isIPFS.url should match an ipfs url', (done) => {
     const actual = isIPFS.url('http://ipfs.io/ipfs/QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm')
     expect(actual).to.equal(true)
@@ -79,6 +92,12 @@ describe('ipfs url', () => {
 
   it('isIPFS.url should not match an google url', (done) => {
     const actual = isIPFS.url('https://google.com')
+    expect(actual).to.equal(false)
+    done()
+  })
+
+  it('isIPFS.url should not match a buffer input', (done) => {
+    const actual = isIPFS.url(new Buffer(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
     expect(actual).to.equal(false)
     done()
   })
