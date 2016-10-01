@@ -5,12 +5,14 @@
   "main": "lib/index.js",
   "jsnext": "src/index.js",
   "scripts": {
-    "test:node": "dignified-test node",
-    "test:browser": "dignified-test browser",
-    "test": "dignified-test",
-    "lint": "dignified-lint",
-    "release": "dignified-release",
-    "build": "dignified-build"
+    "test:node": "aegir-test node",
+    "test:browser": "aegir-test browser",
+    "test": "aegir-test",
+    "lint": "aegir-lint",
+    "release": "aegir-release",
+    "build": "aegir-build",
+    "coverage": "aegir-coverage",
+    "coverage-publish": "aegir-coverage publish"
   },
   "pre-commit": [
     "test",
@@ -26,8 +28,8 @@
     "multihashes": "^0.2.0"
   },
   "devDependencies": {
+    "aegir": "^8.1.2",
     "chai": "^3.5.0",
-    "dignified.js": "github:dignifiedquire/dignified.js",
     "pre-commit": "^1.1.2"
   },
   "repository": {
