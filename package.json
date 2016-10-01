@@ -39,5 +39,10 @@
   "bugs": {
     "url": "https://github.com/xicombd/is-ipfs/issues"
   },
-  "homepage": "https://github.com/xicombd/is-ipfs"
+  "homepage": "https://github.com/xicombd/is-ipfs",
+  "contributors": [
+    "Francisco Baio Dias <xicombd@gmail.com>",
+    "Marcin Rataj <lidel@lidel.org>",
+    "nginnever <ginneversource@gmail.com>"
+  ]
 }
