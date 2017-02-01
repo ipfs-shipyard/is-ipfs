@@ -12,6 +12,8 @@
     "test": "aegir-test",
     "lint": "aegir-lint",
     "release": "aegir-release",
+    "release-minor": "aegir-release --type minor",
+    "release-major": "aegir-release --type major",
     "build": "aegir-build",
     "coverage": "aegir-coverage",
     "coverage-publish": "aegir-coverage publish"
