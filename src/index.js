@@ -3,7 +3,7 @@
 const base58 = require('bs58')
 const multihash = require('multihashes')
 
-const urlPattern = /^https?:\/\/[^\/]+\/(ip(f|n)s)\/((\w+).*)/
+const urlPattern = /^https?:\/\/[^/]+\/(ip(f|n)s)\/((\w+).*)/
 const pathPattern = /^\/(ip(f|n)s)\/((\w+).*)/
 
 function isMultihash (hash) {
