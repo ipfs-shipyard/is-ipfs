@@ -2,6 +2,7 @@
 
 const base58 = require('bs58')
 const multihash = require('multihashes')
+const CID = require('cids')
 
 const urlPattern = /^https?:\/\/[^/]+\/(ip(f|n)s)\/((\w+).*)/
 const pathPattern = /^\/(ip(f|n)s)\/((\w+).*)/
@@ -12,6 +13,14 @@ function isMultihash (hash) {
     const buffer = new Buffer(base58.decode(formatted))
     multihash.decode(buffer)
     return true
+  } catch (e) {
+    return false
+  }
+}
+
+function isCID (hash) {
+  try {
+    return CID.isCID(new CID(hash))
   } catch (e) {
     return false
   }
@@ -33,7 +42,7 @@ function isIpfs (input, pattern) {
   }
 
   const hash = match[4]
-  return isMultihash(hash)
+  return isCID(hash)
 }
 
 function isIpns (input, pattern) {
@@ -67,6 +76,7 @@ function convertToString (input) {
 
 module.exports = {
   multihash: isMultihash,
+  cid: isCID,
   ipfsUrl: (url) => isIpfs(url, urlPattern),
   ipnsUrl: (url) => isIpns(url, urlPattern),
   url: (url) => (isIpfs(url, urlPattern) || isIpns(url, urlPattern)),
