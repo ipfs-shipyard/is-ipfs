@@ -41,6 +41,10 @@ const isIPFS = require('is-ipfs')
 isIPFS.multihash('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
 isIPFS.multihash('noop') // false
 
+isIPFS.cid('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true (CIDv0)
+isIPFS.cid('zdj7WWeQ43G6JJvLWQWZpyHuAMq6uYWRjkBXFad11vE2LHhQ7') // true (CIDv1)
+isIPFS.cid('noop') // false
+
 isIPFS.url('https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
 isIPFS.url('https://ipfs.io/ipns/github.com') // true
 isIPFS.url('https://github.com/ipfs/js-ipfs/blob/master/README.md') // false
@@ -74,6 +78,10 @@ isIPFS.ipnsPath('/ipns/github.com') // true
 ### `isIPFS.multihash(hash)`
 
 Returns `true` if the provided string is a valid `multihash` or `false` otherwise.
+
+### `isIPFS.cid(hash)`
+
+Returns `true` if the provided string is a valid `CID` or `false` otherwise.
 
 ### `isIPFS.url(url)`
 
