@@ -1,11 +1,14 @@
 is-ipfs
 ====
 
-[![build status](https://secure.travis-ci.org/ipfs/is-ipfs.svg)](http://travis-ci.org/ipfs/is-ipfs)
-[![dignified.js](https://img.shields.io/badge/follows-dignified.js-blue.svg?style=flat-square)](https://github.com/dignifiedquire/dignified.js)
+[![](https://img.shields.io/github/release/ipfs/ipfs-companion.svg)](https://github.com/ipfs/ipfs-companion/releases/latest)
+[![](https://img.shields.io/badge/freenode-%23ipfs-blue.svg?style=flat-square)](https://webchat.freenode.net/?channels=%23ipfs)
 
-A set of utilities to help identify [IPFS](https://ipfs.io/) resources.
+> A set of utilities to help identify [IPFS](https://ipfs.io/) resources
 
+## Lead Maintainer
+
+[Marcin Rataj](https://github.com/lidel)
 
 ## Install
 
