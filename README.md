@@ -1,7 +1,7 @@
 is-ipfs
 ====
 
-[![](https://img.shields.io/github/release/ipfs/ipfs-companion.svg)](https://github.com/ipfs/ipfs-companion/releases/latest)
+[![](https://img.shields.io/github/release/ipfs/is-ipfs.svg)](https://github.com/ipfs/is-ipfs/releases/latest)
 [![](https://img.shields.io/badge/freenode-%23ipfs-blue.svg?style=flat-square)](https://webchat.freenode.net/?channels=%23ipfs)
 
 > A set of utilities to help identify [IPFS](https://ipfs.io/) resources
