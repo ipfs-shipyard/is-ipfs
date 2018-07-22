@@ -13,13 +13,13 @@ describe('ipfs multihash', () => {
   })
 
   it('isIPFS.multihash should match a valid multihash buffer', (done) => {
-    const actual = isIPFS.multihash(new Buffer(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
+    const actual = isIPFS.multihash(Buffer.from(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
     expect(actual).to.equal(true)
     done()
   })
 
   it('isIPFS.multihash should not match a buffer', (done) => {
-    const actual = isIPFS.multihash(new Buffer('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE70'))
+    const actual = isIPFS.multihash(Buffer.from('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE70'))
     expect(actual).to.equal(false)
     done()
   })

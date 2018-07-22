@@ -42,7 +42,7 @@ describe('ipfs subdomain', () => {
   })
 
   it('isIPFS.ipfsSubdomain should not match a buffer data type', (done) => {
-    const actual = isIPFS.ipfsSubdomain(new Buffer(base58.decode('QmbWqxBEKC3P8tqsKc98xmWNzrzDtRLMiMPL8wBuTGsMnR')))
+    const actual = isIPFS.ipfsSubdomain(Buffer.from(base58.decode('QmbWqxBEKC3P8tqsKc98xmWNzrzDtRLMiMPL8wBuTGsMnR')))
     expect(actual).to.equal(false)
     done()
   })
@@ -82,7 +82,7 @@ describe('ipfs subdomain', () => {
   })
 
   it('isIPFS.ipnsSubdomain should not match a buffer data type', (done) => {
-    const actual = isIPFS.ipnsSubdomain(new Buffer(base58.decode('QmNQuBJ8tg4QN6mSLXHekxBbcToPwKxamWNrDdEugxMTDd')))
+    const actual = isIPFS.ipnsSubdomain(Buffer.from(base58.decode('QmNQuBJ8tg4QN6mSLXHekxBbcToPwKxamWNrDdEugxMTDd')))
     expect(actual).to.equal(false)
     done()
   })
@@ -118,7 +118,7 @@ describe('ipfs subdomain', () => {
   })
 
   it('isIPFS.subdomain should not match a buffer data type', (done) => {
-    const actual = isIPFS.subdomain(new Buffer(base58.decode('QmbWqxBEKC3P8tqsKc98xmWNzrzDtRLMiMPL8wBuTGsMnR')))
+    const actual = isIPFS.subdomain(Buffer.from(base58.decode('QmbWqxBEKC3P8tqsKc98xmWNzrzDtRLMiMPL8wBuTGsMnR')))
     expect(actual).to.equal(false)
     done()
   })
@@ -142,5 +142,4 @@ describe('ipfs subdomain', () => {
     expect(actual).to.equal(false)
     done()
   })
-
 })

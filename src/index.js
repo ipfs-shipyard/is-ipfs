@@ -17,7 +17,7 @@ const fqdnProtocolMatch = 2
 function isMultihash (hash) {
   const formatted = convertToString(hash)
   try {
-    const buffer = new Buffer(base58.decode(formatted))
+    const buffer = Buffer.from(base58.decode(formatted))
     multihash.decode(buffer)
     return true
   } catch (e) {

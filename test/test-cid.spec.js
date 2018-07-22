@@ -13,13 +13,13 @@ describe('ipfs cid', () => {
   })
 
   it('isIPFS.cid should match a valid CIDv0 (multihash) buffer', (done) => {
-    const actual = isIPFS.cid(new Buffer(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
+    const actual = isIPFS.cid(Buffer.from(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
     expect(actual).to.equal(true)
     done()
   })
 
   it('isIPFS.cid should not match a broken CIDv0 buffer', (done) => {
-    const actual = isIPFS.cid(new Buffer('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE70'))
+    const actual = isIPFS.cid(Buffer.from('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE70'))
     expect(actual).to.equal(false)
     done()
   })
@@ -48,7 +48,6 @@ describe('ipfs cid', () => {
     done()
   })
 
-
   it('isIPFS.cid should not match an invalid CID', (done) => {
     const actual = isIPFS.cid('noop')
     expect(actual).to.equal(false)
@@ -60,6 +59,4 @@ describe('ipfs cid', () => {
     expect(actual).to.equal(false)
     done()
   })
-
-
 })

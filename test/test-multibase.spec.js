@@ -1,7 +1,6 @@
 /* eslint-env mocha */
 'use strict'
 
-const base58btc = require('bs58')
 const expect = require('chai').expect
 const isIPFS = require('../src/index')
 
@@ -30,7 +29,6 @@ describe('ipfs base32cid', () => {
     done()
   })
 
-
   it('isIPFS.base32cid should not match an invalid CID', (done) => {
     const actual = isIPFS.base32cid('noop')
     expect(actual).to.equal(false)
@@ -42,7 +40,6 @@ describe('ipfs base32cid', () => {
     expect(actual).to.equal(false)
     done()
   })
-
 })
 
 describe('ipfs multibase', () => {
@@ -69,5 +66,4 @@ describe('ipfs multibase', () => {
     expect(actual).to.equal(false)
     done()
   })
-
 })
