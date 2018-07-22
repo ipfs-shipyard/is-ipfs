@@ -36,11 +36,18 @@ describe('ipfs cid', () => {
     done()
   })
 
+  it('isIPFS.cid should match a valid CIDv1 in Base32', (done) => {
+    const actual = isIPFS.cid('bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va')
+    expect(actual).to.equal(true)
+    done()
+  })
+
   it('isIPFS.cid should not match an invalid CIDv1 (with a typo)', (done) => {
     const actual = isIPFS.cid('zdj7WWeQ43G6JJvLWQWZpyHuAMq6uYWRjkBXFad11vE2LHhQ')
     expect(actual).to.equal(false)
     done()
   })
+
 
   it('isIPFS.cid should not match an invalid CID', (done) => {
     const actual = isIPFS.cid('noop')
@@ -53,4 +60,6 @@ describe('ipfs cid', () => {
     expect(actual).to.equal(false)
     done()
   })
+
+
 })
