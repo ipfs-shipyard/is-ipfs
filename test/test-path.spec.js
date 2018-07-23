@@ -37,7 +37,7 @@ describe('ipfs path', () => {
   })
 
   it('isIPFS.ipfsPath should not match a buffer data type', (done) => {
-    const actual = isIPFS.ipfsPath(new Buffer(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
+    const actual = isIPFS.ipfsPath(Buffer.from(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
     expect(actual).to.equal(false)
     done()
   })
@@ -67,7 +67,7 @@ describe('ipfs path', () => {
   })
 
   it('isIPFS.ipnsPath should not match a buffer data type', (done) => {
-    const actual = isIPFS.ipnsPath(new Buffer(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
+    const actual = isIPFS.ipnsPath(Buffer.from(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
     expect(actual).to.equal(false)
     done()
   })
@@ -97,7 +97,7 @@ describe('ipfs path', () => {
   })
 
   it('isIPFS.path should not match a buffer data type', (done) => {
-    const actual = isIPFS.path(new Buffer(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
+    const actual = isIPFS.path(Buffer.from(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
     expect(actual).to.equal(false)
     done()
   })
@@ -127,7 +127,7 @@ describe('ipfs path', () => {
   })
 
   it('isIPFS.urlOrPath should not match a buffer data type', (done) => {
-    const actual = isIPFS.ipfsPath(new Buffer(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
+    const actual = isIPFS.ipfsPath(Buffer.from(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
     expect(actual).to.equal(false)
     done()
   })

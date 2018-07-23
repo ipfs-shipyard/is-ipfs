@@ -37,7 +37,7 @@ describe('ipfs url', () => {
   })
 
   it('isIPFS.ipfsUrl should not match a buffer input', (done) => {
-    const actual = isIPFS.ipfsUrl(new Buffer(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
+    const actual = isIPFS.ipfsUrl(Buffer.from(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
     expect(actual).to.equal(false)
     done()
   })
@@ -67,7 +67,7 @@ describe('ipfs url', () => {
   })
 
   it('isIPFS.ipnsUrl should not match a buffer input', (done) => {
-    const actual = isIPFS.ipnsUrl(new Buffer(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
+    const actual = isIPFS.ipnsUrl(Buffer.from(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
     expect(actual).to.equal(false)
     done()
   })
@@ -97,7 +97,7 @@ describe('ipfs url', () => {
   })
 
   it('isIPFS.url should not match a buffer input', (done) => {
-    const actual = isIPFS.url(new Buffer(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
+    const actual = isIPFS.url(Buffer.from(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
     expect(actual).to.equal(false)
     done()
   })
