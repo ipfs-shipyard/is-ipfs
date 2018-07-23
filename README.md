@@ -44,11 +44,6 @@ const isIPFS = require('is-ipfs')
 isIPFS.multihash('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
 isIPFS.multihash('noop') // false
 
-isIPFS.multibase('bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va') // 'base32'
-isIPFS.multibase('zdj7WWeQ43G6JJvLWQWZpyHuAMq6uYWRjkBXFad11vE2LHhQ7') // 'base58btc'
-isIPFS.multibase('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // false (no multibase prefix in CIDv0)
-isIPFS.multibase('noop') // false
-
 isIPFS.cid('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true (CIDv0)
 isIPFS.cid('zdj7WWeQ43G6JJvLWQWZpyHuAMq6uYWRjkBXFad11vE2LHhQ7') // true (CIDv1)
 isIPFS.cid('noop') // false
@@ -83,6 +78,7 @@ isIPFS.ipfsPath('/ipfs/invalid-hash') // false
 isIPFS.ipnsPath('/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // false
 isIPFS.ipnsPath('/ipns/github.com') // true
 
+isIPFS.subdomain('http://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.ipfs.dweb.link') // true
 isIPFS.subdomain('http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j52f6xwc6q.ipns.dweb.link') // true
 isIPFS.subdomain('http://www.bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.ipfs.dweb.link') // false
 isIPFS.subdomain('http://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.dweb.link') // false
@@ -110,10 +106,6 @@ Detection of IPFS Paths and identifiers in URLs is a two-stage process:
 ### `isIPFS.multihash(hash)`
 
 Returns `true` if the provided string is a valid `multihash` or `false` otherwise.
-
-### `isIPFS.multibase(cid)`
-
-Returns a string with multibase name if the provided CID has `multibase` prefix or `false` otherwise.
 
 ### `isIPFS.cid(hash)`
 

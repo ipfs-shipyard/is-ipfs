@@ -108,7 +108,6 @@ function convertToString (input) {
 
 module.exports = {
   multihash: isMultihash,
-  multibase: isMultibase,
   cid: isCID,
   base32cid: (cid) => (isMultibase(cid) === 'base32' && isCID(cid)),
   ipfsSubdomain: (url) => isIpfs(url, fqdnPattern, fqdnProtocolMatch, fqdnHashMatch),
