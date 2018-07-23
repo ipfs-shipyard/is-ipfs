@@ -106,13 +106,16 @@ function convertToString (input) {
   return false
 }
 
+const ipfsSubdomain = (url) => isIpfs(url, fqdnPattern, fqdnProtocolMatch, fqdnHashMatch)
+const ipnsSubdomain = (url) => isIpns(url, fqdnPattern, fqdnProtocolMatch, fqdnHashMatch)
+
 module.exports = {
   multihash: isMultihash,
   cid: isCID,
   base32cid: (cid) => (isMultibase(cid) === 'base32' && isCID(cid)),
-  ipfsSubdomain: (url) => isIpfs(url, fqdnPattern, fqdnProtocolMatch, fqdnHashMatch),
-  ipnsSubdomain: (url) => isIpns(url, fqdnPattern, fqdnProtocolMatch, fqdnHashMatch),
-  subdomain: (url) => (isIpfs(url, fqdnPattern, fqdnProtocolMatch, fqdnHashMatch) || isIpns(url, fqdnPattern, fqdnProtocolMatch, fqdnHashMatch)),
+  ipfsSubdomain: ipfsSubdomain,
+  ipnsSubdomain: ipnsSubdomain,
+  subdomain: (url) => (ipfsSubdomain(url) || ipnsSubdomain(url)),
   subdomainPattern: fqdnPattern,
   ipfsUrl: (url) => isIpfs(url, urlPattern),
   ipnsUrl: (url) => isIpns(url, urlPattern),

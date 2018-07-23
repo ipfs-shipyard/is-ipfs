@@ -94,7 +94,7 @@ isIPFS.ipnsSubdomain('http://foo-bar.ipns.dweb.link') // false (not a PeerID)
 
 # API
 
-A suite of util methods provides efficient validation.
+A suite of util methods that provides efficient validation.
 
 Detection of IPFS Paths and identifiers in URLs is a two-stage process:
 1.  `urlPattern`/`pathPattern`/`subdomainPattern` regex is applied to quickly identify potential candidates
