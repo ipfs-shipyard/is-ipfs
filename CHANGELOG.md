@@ -1,3 +1,13 @@
+<a name="0.4.7"></a>
+## [0.4.7](https://github.com/ipfs/is-ipfs/compare/v0.4.6...v0.4.7) (2018-09-25)
+
+
+### Bug Fixes
+
+* switch to cids v0.5.5 ([c07a35f](https://github.com/ipfs/is-ipfs/commit/c07a35f))
+
+
+
 <a name="0.4.6"></a>
 ## [0.4.6](https://github.com/ipfs/is-ipfs/compare/v0.4.5...v0.4.6) (2018-09-25)
 
