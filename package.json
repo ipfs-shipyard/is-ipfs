@@ -48,6 +48,7 @@
   },
   "homepage": "https://github.com/ipfs/is-ipfs",
   "contributors": [
+    "Alan Shaw <alan.shaw@protocol.ai>",
     "David Dias <daviddias.p@gmail.com>",
     "Francisco Baio Dias <xicombd@gmail.com>",
     "Henrique Dias <hacdias@gmail.com>",
