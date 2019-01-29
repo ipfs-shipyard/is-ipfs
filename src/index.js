@@ -94,12 +94,16 @@ function isIpns (input, pattern, protocolMatch = defaultProtocolMatch, hashMatch
   return true
 }
 
+function isString (input) {
+  return typeof input === 'string'
+}
+
 function convertToString (input) {
   if (Buffer.isBuffer(input)) {
     return base58.encode(input)
   }
 
-  if (typeof input === 'string') {
+  if (isString(input)) {
     return input
   }
 
@@ -125,5 +129,6 @@ module.exports = {
   ipnsPath: (path) => isIpns(path, pathPattern),
   path: (path) => (isIpfs(path, pathPattern) || isIpns(path, pathPattern)),
   pathPattern: pathPattern,
-  urlOrPath: (x) => (isIpfs(x, urlPattern) || isIpns(x, urlPattern) || isIpfs(x, pathPattern) || isIpns(x, pathPattern))
+  urlOrPath: (x) => (isIpfs(x, urlPattern) || isIpns(x, urlPattern) || isIpfs(x, pathPattern) || isIpns(x, pathPattern)),
+  cidPath: path => isString(path) && path.includes('/') && isCID(path.split('/')[0])
 }

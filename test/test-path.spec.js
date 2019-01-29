@@ -131,4 +131,24 @@ describe('ipfs path', () => {
     expect(actual).to.equal(false)
     done()
   })
+
+  it('isIPFS.cidPath should not match a CID path', () => {
+    const actual = isIPFS.cidPath('QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm/path/to/file')
+    expect(actual).to.equal(true)
+  })
+
+  it('isIPFS.cidPath should not match a CID path with trailing slash', () => {
+    const actual = isIPFS.cidPath('QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm/')
+    expect(actual).to.equal(true)
+  })
+
+  it('isIPFS.cidPath should not match a CID', () => {
+    const actual = isIPFS.cidPath('QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm')
+    expect(actual).to.equal(false)
+  })
+
+  it('isIPFS.cidPath should not match a non string', () => {
+    const actual = isIPFS.cidPath({ toString: () => 'QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm/path/to/file' })
+    expect(actual).to.equal(false)
+  })
 })
