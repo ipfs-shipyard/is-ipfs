@@ -130,5 +130,5 @@ module.exports = {
   path: (path) => (isIpfs(path, pathPattern) || isIpns(path, pathPattern)),
   pathPattern: pathPattern,
   urlOrPath: (x) => (isIpfs(x, urlPattern) || isIpns(x, urlPattern) || isIpfs(x, pathPattern) || isIpns(x, pathPattern)),
-  cidPath: path => isString(path) && path.includes('/') && isCID(path.split('/')[0])
+  cidPath: path => isString(path) && !isCID(path) && isIpfs(`/ipfs/${path}`, pathPattern)
 }
