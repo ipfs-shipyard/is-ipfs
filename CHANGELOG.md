@@ -1,3 +1,8 @@
+<a name="0.5.1"></a>
+## [0.5.1](https://github.com/ipfs/is-ipfs/compare/v0.5.0...v0.5.1) (2019-02-11)
+
+
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/ipfs/is-ipfs/compare/v0.4.8...v0.5.0) (2019-02-11)
 
