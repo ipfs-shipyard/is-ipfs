@@ -1,3 +1,18 @@
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/ipfs/is-ipfs/compare/v0.4.8...v0.5.0) (2019-02-11)
+
+
+### Bug Fixes
+
+* double validate ([#25](https://github.com/ipfs/is-ipfs/issues/25)) ([8f8616f](https://github.com/ipfs/is-ipfs/commit/8f8616f))
+
+
+### Features
+
+* add cidPath function ([7be55d3](https://github.com/ipfs/is-ipfs/commit/7be55d3))
+
+
+
 <a name="0.4.8"></a>
 ## [0.4.8](https://github.com/ipfs/is-ipfs/compare/v0.4.7...v0.4.8) (2018-11-23)
 
