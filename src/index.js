@@ -35,7 +35,8 @@ function isMultibase (hash) {
 
 function isCID (hash) {
   try {
-    return CID.isCID(new CID(hash))
+    new CID(hash) // eslint-disable-line no-new
+    return true
   } catch (e) {
     return false
   }
