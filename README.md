@@ -1,4 +1,4 @@
-is-ipfs
+is-ipfs 🕵️
 ====
 
 [![](https://img.shields.io/github/release/ipfs/is-ipfs.svg)](https://github.com/ipfs/is-ipfs/releases/latest)
@@ -23,7 +23,7 @@ $ npm install --save is-ipfs
 The code published to npm that gets loaded on require is in fact an ES5 transpiled version with the right shims added. This means that you can require it and use with your favorite bundler without having to adjust asset management process.
 
 ```js
-var is-ipfs = require('is-ipfs')
+var isIPFS = require('is-ipfs')
 ```
 
 
@@ -31,7 +31,7 @@ var is-ipfs = require('is-ipfs')
 
 Loading this module through a script tag will make the ```IsIpfs``` obj available in the global namespace.
 
-```
+```html
 <script src="https://unpkg.com/is-ipfs/dist/index.min.js"></script>
 <!-- OR -->
 <script src="https://unpkg.com/is-ipfs/dist/index.js"></script>
@@ -147,7 +147,6 @@ Returns `true` if the provided string is a valid IPFS or IPNS path or `false` ot
 
 Returns `true` if the provided string is a valid IPFS or IPNS url or path or `false` otherwise.
 
-
 ### `isIPFS.ipfsPath(path)`
 
 Returns `true` if the provided string is a valid IPFS path or `false` otherwise.
@@ -155,6 +154,11 @@ Returns `true` if the provided string is a valid IPFS path or `false` otherwise.
 ### `isIPFS.ipnsPath(path)`
 
 Returns `true` if the provided string is a valid IPNS path or `false` otherwise.
+
+### `isIPFS.cidPath(path)`
+
+Returns `true` if the provided string is a valid "CID path" (IPFS path without `/ipfs/` prefix) or `false` otherwise.
+
 
 ## Subdomains
 
