@@ -96,6 +96,12 @@ isIPFS.ipnsSubdomain('http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j5
 isIPFS.ipnsSubdomain('http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j52f6xwc6q.dweb.link') // false
 isIPFS.ipnsSubdomain('http://QmcNioXSC1bfJj1dcFErhUfyjFzoX2HodkRccsFFVJJvg8.ipns.dweb.link') // false
 isIPFS.ipnsSubdomain('http://foo-bar.ipns.dweb.link') // false (not a PeerID)
+
+isIPFS.multiaddr('/ip4/127.0.0.1/udp/1234') // true
+isIPFS.multiaddr('/ip4/127.0.0.1/udp/1234/http') // true
+isIPFS.multiaddr('/ip6/::1/udp/1234') // true
+isIPFS.multiaddr('ip6/::1/udp/1234') // false
+isIPFS.multiaddr('/yoloinvalid/::1/udp/1234') // false
 ```
 
 # API
@@ -115,7 +121,7 @@ Returns `true` if the provided string is a valid `multihash` or `false` otherwis
 
 ### `isIPFS.cid(hash)`
 
-Returns `true` if the provided string is a valid `CID` or `false` otherwise.
+Returns `true` if the provided string or [`CID`](https://github.com/ipld/js-cid) is a valid [CID](https://docs.ipfs.io/guides/concepts/cid/) or `false` otherwise.
 
 ### `isIPFS.base32cid(hash)`
 
@@ -172,6 +178,11 @@ Returns `true` if the provided string includes a valid IPFS subdomain or `false`
 
 Returns `true` if the provided string includes a valid IPNS subdomain or `false` otherwise.
 
+## Multiaddrs
+
+### `isIPFS.multiaddr(addr)`
+
+Returns `true` if the provided `string`, [`Multiaddr`](https://github.com/multiformats/js-multiaddr) or `Buffer` includes a valid [multiaddr](https://multiformats.io/multiaddr/) or `false` otherwise.
 
 # License
 

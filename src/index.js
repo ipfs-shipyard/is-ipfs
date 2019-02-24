@@ -3,6 +3,7 @@
 const base58 = require('bs58')
 const multihash = require('multihashes')
 const multibase = require('multibase')
+const Multiaddr = require('multiaddr')
 const CID = require('cids')
 
 const urlPattern = /^https?:\/\/[^/]+\/(ip(f|n)s)\/((\w+).*)/
@@ -40,6 +41,20 @@ function isCID (hash) {
   } catch (e) {
     return false
   }
+}
+
+function isMultiaddr (input) {
+  if (!input) return false
+  if (isString(input) || input instanceof Buffer) {
+    try {
+      new Multiaddr(input) // eslint-disable-line no-new
+      return true
+    } catch (e) {
+      return false
+    }
+  }
+  if (Multiaddr.isMultiaddr(input)) return true
+  return false
 }
 
 function isIpfs (input, pattern, protocolMatch = defaultProtocolMatch, hashMatch = defaultHashMath) {
@@ -116,6 +131,7 @@ const ipnsSubdomain = (url) => isIpns(url, fqdnPattern, fqdnProtocolMatch, fqdnH
 
 module.exports = {
   multihash: isMultihash,
+  multiaddr: isMultiaddr,
   cid: isCID,
   base32cid: (cid) => (isMultibase(cid) === 'base32' && isCID(cid)),
   ipfsSubdomain: ipfsSubdomain,
