@@ -62,3 +62,82 @@ describe('ipfs multiaddr', () => {
     done()
   })
 })
+
+describe('ipfs peerMultiaddr', () => {
+  // https://github.com/multiformats/js-mafmt/blob/v6.0.6/test/index.spec.js#L137
+  const goodCircuit = [
+    '/p2p-circuit',
+    '/p2p-circuit/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj',
+    '/p2p-circuit/ip4/127.0.0.1/tcp/20008/ws/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj',
+    '/p2p-circuit/ip4/1.2.3.4/tcp/3456/ws/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/p2p-circuit/ip4/1.2.3.4/tcp/3456/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/p2p-circuit/ip4/127.0.0.1/tcp/4002/ipfs/QmddWMcQX6orJGHpETYMyPgXrCXCtYANMFVDCvhKoDwLqA',
+    '/p2p-circuit/ipfs/QmddWMcQX6orJGHpETYMyPgXrCXCtYANMFVDCvhKoDwLqA',
+    '/p2p-circuit/ip4/127.0.0.1/tcp/20008/ws/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj/' +
+    'p2p-circuit/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj'
+  ]
+  // https://github.com/multiformats/js-mafmt/blob/v6.0.6/test/index.spec.js#L157
+  const validPeerMultiaddrs = [
+    '/ip4/127.0.0.1/tcp/20008/ws/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj',
+    '/ip4/1.2.3.4/tcp/3456/ws/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/ip4/1.2.3.4/tcp/3456/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit',
+    '/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj'
+  ].concat(goodCircuit)
+
+  it('isIPFS.peerMultiaddr should match a string with a valid IPFS peer', (done) => {
+    for (let addr of validPeerMultiaddrs) {
+      const actual = isIPFS.peerMultiaddr(addr)
+      expect(actual, `isIPFS.peerMultiaddr(${addr})`).to.equal(true)
+    }
+    done()
+  })
+
+  it('isIPFS.peerMultiaddr should match a valid Multiaddr instance', (done) => {
+    for (let addr of validPeerMultiaddrs) {
+      const ma = new Multiaddr(addr)
+      const actual = isIPFS.peerMultiaddr(ma)
+      expect(actual, `isIPFS.peerMultiaddr(${addr})`).to.equal(true)
+    }
+    done()
+  })
+
+  it('isIPFS.peerMultiaddr should match a Buffer with multiaddr', (done) => {
+    for (let addr of validPeerMultiaddrs) {
+      const ma = new Multiaddr(addr)
+      const actual = isIPFS.peerMultiaddr((Buffer.from(ma.buffer)))
+      expect(actual, `isIPFS.peerMultiaddr(${addr})`).to.equal(true)
+    }
+    done()
+  })
+
+  it('isIPFS.peerMultiaddr should not match random Buffer', (done) => {
+    const actual = isIPFS.peerMultiaddr(Buffer.from('randombuffer'))
+    expect(actual).to.equal(false)
+    done()
+  })
+
+  it('isIPFS.peerMultiaddr should not match an invalid multiaddr (no initial slash)', (done) => {
+    const actual = isIPFS.peerMultiaddr('ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4')
+    expect(actual).to.equal(false)
+    done()
+  })
+
+  it('isIPFS.peerMultiaddr should not match an invalid multiaddr (unknown namespace)', (done) => {
+    const actual = isIPFS.peerMultiaddr('/yoloinvalid/1.2.3.4/tcp/3456/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4')
+    expect(actual).to.equal(false)
+    done()
+  })
+
+  it('isIPFS.peerMultiaddr should not match an invalid multiaddr', (done) => {
+    const actual = isIPFS.peerMultiaddr('noop')
+    expect(actual).to.equal(false)
+    done()
+  })
+
+  it('isIPFS.peerMultiaddr should not match an invalid multiaddr data type', (done) => {
+    const actual = isIPFS.peerMultiaddr(4)
+    expect(actual).to.equal(false)
+    done()
+  })
+})

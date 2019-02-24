@@ -102,6 +102,11 @@ isIPFS.multiaddr('/ip4/127.0.0.1/udp/1234/http') // true
 isIPFS.multiaddr('/ip6/::1/udp/1234') // true
 isIPFS.multiaddr('ip6/::1/udp/1234') // false
 isIPFS.multiaddr('/yoloinvalid/::1/udp/1234') // false
+
+isIPFS.peerMultiaddr('/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4') // true
+isIPFS.peerMultiaddr('/ip4/127.0.0.1/tcp/1234/ws/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj') // true
+isIPFS.peerMultiaddr('/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj') // true
+isIPFS.peerMultiaddr('/ip4/127.0.0.1/udp/1234') // false
 ```
 
 # API
@@ -121,7 +126,7 @@ Returns `true` if the provided string is a valid `multihash` or `false` otherwis
 
 ### `isIPFS.cid(hash)`
 
-Returns `true` if the provided string or [`CID`](https://github.com/ipld/js-cid) is a valid [CID](https://docs.ipfs.io/guides/concepts/cid/) or `false` otherwise.
+Returns `true` if the provided string or [`CID`](https://github.com/ipld/js-cid) represents a valid [CID](https://docs.ipfs.io/guides/concepts/cid/) or `false` otherwise.
 
 ### `isIPFS.base32cid(hash)`
 
@@ -182,7 +187,11 @@ Returns `true` if the provided string includes a valid IPNS subdomain or `false`
 
 ### `isIPFS.multiaddr(addr)`
 
-Returns `true` if the provided `string`, [`Multiaddr`](https://github.com/multiformats/js-multiaddr) or `Buffer` includes a valid [multiaddr](https://multiformats.io/multiaddr/) or `false` otherwise.
+Returns `true` if the provided `string`, [`Multiaddr`](https://github.com/multiformats/js-multiaddr) or `Buffer` represents a valid [multiaddr](https://multiformats.io/multiaddr/) or `false` otherwise.
+
+### `isIPFS.peerMultiaddr(addr)`
+
+Returns `true` if the provided `string`, [`Multiaddr`](https://github.com/multiformats/js-multiaddr) or `Buffer` represents a valid "IPFS Peer" multiaddr (matching [`IPFS` format from `mafmt`](https://github.com/multiformats/js-mafmt#api)) or `false` otherwise.
 
 # License
 
