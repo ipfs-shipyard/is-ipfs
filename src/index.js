@@ -46,25 +46,17 @@ function isCID (hash) {
 
 function isMultiaddr (input) {
   if (!input) return false
-  if (isString(input) || input instanceof Buffer) {
-    try {
-      new Multiaddr(input) // eslint-disable-line no-new
-      return true
-    } catch (e) {
-      return false
-    }
-  }
   if (Multiaddr.isMultiaddr(input)) return true
-  return false
+  try {
+    new Multiaddr(input) // eslint-disable-line no-new
+    return true
+  } catch (e) {
+    return false
+  }
 }
 
 function isPeerMultiaddr (input) {
-  if (!isMultiaddr(input)) return false
-  if (input instanceof Buffer) {
-    // mafmt does not support Buffer input
-    input = new Multiaddr(input)
-  }
-  return mafmt.IPFS.matches(input)
+  return isMultiaddr(input) && mafmt.IPFS.matches(input)
 }
 
 function isIpfs (input, pattern, protocolMatch = defaultProtocolMatch, hashMatch = defaultHashMath) {
