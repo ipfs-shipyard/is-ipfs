@@ -118,7 +118,7 @@ Detection of IPFS Paths and identifiers in URLs is a two-stage process:
 2.  proper CID validation is applied to remove false-positives
 
 
-## Utils
+## Content Identifiers
 
 ### `isIPFS.multihash(hash)`
 
@@ -126,7 +126,7 @@ Returns `true` if the provided string is a valid `multihash` or `false` otherwis
 
 ### `isIPFS.cid(hash)`
 
-Returns `true` if the provided string or [`CID`](https://github.com/ipld/js-cid) represents a valid [CID](https://docs.ipfs.io/guides/concepts/cid/) or `false` otherwise.
+Returns `true` if the provided string or [`CID`](https://github.com/ipld/js-cid) object represents a valid [CID](https://docs.ipfs.io/guides/concepts/cid/) or `false` otherwise.
 
 ### `isIPFS.base32cid(hash)`
 
@@ -185,9 +185,13 @@ Returns `true` if the provided string includes a valid IPNS subdomain or `false`
 
 ## Multiaddrs
 
+Below methods provide basic detection of [multiaddr](https://github.com/multiformats/multiaddr)s: composable and future-proof network addresses.
+
+Complex validation of multiaddr can be built using `isIPFS.multiaddr` and  [`mafmt`](https://github.com/multiformats/js-mafmt) library.
+
 ### `isIPFS.multiaddr(addr)`
 
-Returns `true` if the provided `string`, [`Multiaddr`](https://github.com/multiformats/js-multiaddr) or `Buffer` represents a valid [multiaddr](https://multiformats.io/multiaddr/) or `false` otherwise.
+Returns `true` if the provided `string`, [`Multiaddr`](https://github.com/multiformats/js-multiaddr) or `Buffer` represents a valid multiaddr or `false` otherwise.
 
 ### `isIPFS.peerMultiaddr(addr)`
 
