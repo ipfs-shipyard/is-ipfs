@@ -31,7 +31,7 @@
   "license": "MIT",
   "dependencies": {
     "bs58": "4.0.1",
-    "cids": "~0.5.6",
+    "cids": "github:multiformats/js-cid#refactor/cidv1base32-default",
     "multibase": "~0.6.0",
     "multihashes": "~0.4.13"
   },
