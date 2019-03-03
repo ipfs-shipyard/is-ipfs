@@ -96,6 +96,17 @@ isIPFS.ipnsSubdomain('http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j5
 isIPFS.ipnsSubdomain('http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j52f6xwc6q.dweb.link') // false
 isIPFS.ipnsSubdomain('http://QmcNioXSC1bfJj1dcFErhUfyjFzoX2HodkRccsFFVJJvg8.ipns.dweb.link') // false
 isIPFS.ipnsSubdomain('http://foo-bar.ipns.dweb.link') // false (not a PeerID)
+
+isIPFS.multiaddr('/ip4/127.0.0.1/udp/1234') // true
+isIPFS.multiaddr('/ip4/127.0.0.1/udp/1234/http') // true
+isIPFS.multiaddr('/ip6/::1/udp/1234') // true
+isIPFS.multiaddr('ip6/::1/udp/1234') // false
+isIPFS.multiaddr('/yoloinvalid/::1/udp/1234') // false
+
+isIPFS.peerMultiaddr('/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4') // true
+isIPFS.peerMultiaddr('/ip4/127.0.0.1/tcp/1234/ws/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj') // true
+isIPFS.peerMultiaddr('/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj') // true
+isIPFS.peerMultiaddr('/ip4/127.0.0.1/udp/1234') // false
 ```
 
 # API
@@ -107,7 +118,7 @@ Detection of IPFS Paths and identifiers in URLs is a two-stage process:
 2.  proper CID validation is applied to remove false-positives
 
 
-## Utils
+## Content Identifiers
 
 ### `isIPFS.multihash(hash)`
 
@@ -115,7 +126,7 @@ Returns `true` if the provided string is a valid `multihash` or `false` otherwis
 
 ### `isIPFS.cid(hash)`
 
-Returns `true` if the provided string is a valid `CID` or `false` otherwise.
+Returns `true` if the provided string or [`CID`](https://github.com/ipld/js-cid) object represents a valid [CID](https://docs.ipfs.io/guides/concepts/cid/) or `false` otherwise.
 
 ### `isIPFS.base32cid(hash)`
 
@@ -176,6 +187,19 @@ Returns `true` if the provided string includes a valid IPFS subdomain or `false`
 
 Returns `true` if the provided string includes a valid IPNS subdomain or `false` otherwise.
 
+## Multiaddrs
+
+Below methods provide basic detection of [multiaddr](https://github.com/multiformats/multiaddr)s: composable and future-proof network addresses.
+
+Complex validation of multiaddr can be built using `isIPFS.multiaddr` and  [`mafmt`](https://github.com/multiformats/js-mafmt) library.
+
+### `isIPFS.multiaddr(addr)`
+
+Returns `true` if the provided `string`, [`Multiaddr`](https://github.com/multiformats/js-multiaddr) or `Buffer` represents a valid multiaddr or `false` otherwise.
+
+### `isIPFS.peerMultiaddr(addr)`
+
+Returns `true` if the provided `string`, [`Multiaddr`](https://github.com/multiformats/js-multiaddr) or `Buffer` represents a valid "IPFS Peer" multiaddr (matching [`IPFS` format from `mafmt`](https://github.com/multiformats/js-mafmt#api)) or `false` otherwise.
 
 # License
 

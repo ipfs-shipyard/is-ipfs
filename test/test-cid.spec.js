@@ -4,8 +4,16 @@
 const base58 = require('bs58')
 const expect = require('chai').expect
 const isIPFS = require('../src/index')
+const CID = require('cids')
 
 describe('ipfs cid', () => {
+  it('isIPFS.cid should match a valid CID instance', (done) => {
+    const cid = new CID('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')
+    const actual = isIPFS.cid(cid)
+    expect(actual).to.equal(true)
+    done()
+  })
+
   it('isIPFS.cid should match a valid CIDv0 (multihash)', (done) => {
     const actual = isIPFS.cid('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')
     expect(actual).to.equal(true)

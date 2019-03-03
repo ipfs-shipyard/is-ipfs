@@ -1,23 +1,42 @@
-
 language: node_js
+cache: npm
+stages:
+  - check
+  - test
+  - cov
+
 node_js:
-  - node
+  - '10'
 
-# Make sure we have new NPM.
-before_install:
-  - npm install -g npm
+os:
+  - linux
+  - osx
 
-script:
-  - npm run lint
-  - npm test
-  - npm run coverage
+script: npx nyc -s npm run test:node -- --bail
+after_success: npx nyc report --reporter=text-lcov > coverage.lcov && npx codecov
 
-addons:
-  firefox: 'latest'
+jobs:
+  include:
+    - os: windows
+      cache: false
 
-before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
+    - stage: check
+      script:
+        - npx aegir commitlint --travis
+        - npx aegir dep-check
+        - npm run lint
 
-after_success:
- - npm run coverage-publish
+    - stage: test
+      name: chrome
+      addons:
+        chrome: stable
+      script: npx aegir test -t browser -t webworker
+
+    - stage: test
+      name: firefox
+      addons:
+        firefox: latest
+      script: npx aegir test -t browser -t webworker -- --browsers FirefoxHeadless
+
+notifications:
+  email: false
