@@ -1,3 +1,19 @@
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/ipfs/is-ipfs/compare/v0.5.1...v0.6.0) (2019-03-03)
+
+
+### Bug Fixes
+
+* **ci:** switch to modern .travis.yml ([972ab2e](https://github.com/ipfs/is-ipfs/commit/972ab2e))
+
+
+### Features
+
+* isIPFS.multiaddr(input) ([820d475](https://github.com/ipfs/is-ipfs/commit/820d475))
+* isIPFS.peerMultiaddr(input) ([673dc59](https://github.com/ipfs/is-ipfs/commit/673dc59))
+
+
+
 <a name="0.5.1"></a>
 ## [0.5.1](https://github.com/ipfs/is-ipfs/compare/v0.5.0...v0.5.1) (2019-02-11)
 
