@@ -38,7 +38,7 @@ describe('ipfs cid', () => {
     done()
   })
 
-  it('isIPFS.cid should match a valid CIDv1', (done) => {
+  it('isIPFS.cid should match a valid CIDv1 in Base58btc', (done) => {
     const actual = isIPFS.cid('zdj7WWeQ43G6JJvLWQWZpyHuAMq6uYWRjkBXFad11vE2LHhQ7')
     expect(actual).to.equal(true)
     done()
