@@ -1,6 +1,6 @@
 {
   "name": "is-ipfs",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "A set of utilities to help identify IPFS resources",
   "leadMaintainer": "Marcin Rataj <lidel@lidel.org>",
   "main": "src/index.js",
