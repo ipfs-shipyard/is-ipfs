@@ -1,3 +1,8 @@
+<a name="0.6.3"></a>
+## [0.6.3](https://github.com/ipfs/is-ipfs/compare/v0.6.1...v0.6.3) (2020-01-07)
+
+
+
 <a name="0.6.2"></a>
 ## [0.6.2](https://github.com/ipfs/is-ipfs/compare/v0.6.1...v0.6.2) (2020-01-07)
 
