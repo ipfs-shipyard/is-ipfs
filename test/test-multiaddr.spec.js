@@ -86,7 +86,7 @@ describe('ipfs peerMultiaddr', () => {
   ].concat(goodCircuit)
 
   it('isIPFS.peerMultiaddr should match a string with a valid IPFS peer', (done) => {
-    for (let addr of validPeerMultiaddrs) {
+    for (const addr of validPeerMultiaddrs) {
       const actual = isIPFS.peerMultiaddr(addr)
       expect(actual, `isIPFS.peerMultiaddr(${addr})`).to.equal(true)
     }
@@ -94,7 +94,7 @@ describe('ipfs peerMultiaddr', () => {
   })
 
   it('isIPFS.peerMultiaddr should match a valid Multiaddr instance', (done) => {
-    for (let addr of validPeerMultiaddrs) {
+    for (const addr of validPeerMultiaddrs) {
       const ma = new Multiaddr(addr)
       const actual = isIPFS.peerMultiaddr(ma)
       expect(actual, `isIPFS.peerMultiaddr(${addr})`).to.equal(true)
@@ -103,7 +103,7 @@ describe('ipfs peerMultiaddr', () => {
   })
 
   it('isIPFS.peerMultiaddr should match a Buffer with multiaddr', (done) => {
-    for (let addr of validPeerMultiaddrs) {
+    for (const addr of validPeerMultiaddrs) {
       const ma = new Multiaddr(addr)
       const actual = isIPFS.peerMultiaddr((Buffer.from(ma.buffer)))
       expect(actual, `isIPFS.peerMultiaddr(${addr})`).to.equal(true)

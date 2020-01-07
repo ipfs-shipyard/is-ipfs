@@ -32,13 +32,13 @@
   "dependencies": {
     "bs58": "^4.0.1",
     "cids": "~0.7.0",
-    "mafmt": "^6.0.7",
-    "multiaddr": "^6.0.4",
+    "mafmt": "^7.0.0",
+    "multiaddr": "^7.2.1",
     "multibase": "~0.6.0",
     "multihashes": "~0.4.13"
   },
   "devDependencies": {
-    "aegir": "^18.2.0",
+    "aegir": "^20.5.0",
     "chai": "^4.2.0",
     "pre-commit": "^1.2.2"
   },
