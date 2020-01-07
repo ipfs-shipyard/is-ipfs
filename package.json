@@ -38,7 +38,7 @@
     "multihashes": "~0.4.13"
   },
   "devDependencies": {
-    "aegir": "^18.2.0",
+    "aegir": "^20.5.0",
     "chai": "^4.2.0",
     "pre-commit": "^1.2.2"
   },
