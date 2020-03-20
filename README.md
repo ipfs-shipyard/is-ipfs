@@ -56,6 +56,8 @@ isIPFS.url('https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o'
 isIPFS.url('https://ipfs.io/ipns/github.com') // true
 isIPFS.url('https://github.com/ipfs/js-ipfs/blob/master/README.md') // false
 isIPFS.url('https://google.com') // false
+isIPFS.url('http://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.ipfs.dweb.link') // false (use .subdomain instead)
+isIPFS.url('http://en.wikipedia-on-ipfs.org.ipfs.localhost:8080') // false (use .subdomain instead)
 
 isIPFS.path('/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
 isIPFS.path('/ipns/github.com') // true
@@ -107,9 +109,10 @@ isIPFS.multiaddr('/ip6/::1/udp/1234') // true
 isIPFS.multiaddr('ip6/::1/udp/1234') // false
 isIPFS.multiaddr('/yoloinvalid/::1/udp/1234') // false
 
-isIPFS.peerMultiaddr('/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4') // true
-isIPFS.peerMultiaddr('/ip4/127.0.0.1/tcp/1234/ws/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj') // true
-isIPFS.peerMultiaddr('/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj') // true
+isIPFS.peerMultiaddr('/p2p/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4') // true
+isIPFS.peerMultiaddr('/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4') // true (legacy notation)
+isIPFS.peerMultiaddr('/ip4/127.0.0.1/tcp/1234/ws/p2p/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj') // true
+isIPFS.peerMultiaddr('/p2p/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit/p2p/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj') // true
 isIPFS.peerMultiaddr('/ip4/127.0.0.1/udp/1234') // false
 ```
 
