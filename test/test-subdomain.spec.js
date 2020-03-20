@@ -18,6 +18,12 @@ describe('ipfs subdomain', () => {
     done()
   })
 
+  it('isIPFS.ipfsSubdomain should match localhost with port', (done) => {
+    const actual = isIPFS.ipfsSubdomain('http://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.ipfs.localhost:8080')
+    expect(actual).to.equal(true)
+    done()
+  })
+
   it('isIPFS.ipfsSubdomain should not match non-cid subdomains', (done) => {
     const actual = isIPFS.ipfsSubdomain('http://not-a-cid.ipfs.dweb.link')
     expect(actual).to.equal(false)
@@ -87,6 +93,32 @@ describe('ipfs subdomain', () => {
     done()
   })
 
+  it('isIPFS.dnslinkSubdomain should match .ipns.localhost zone with FQDN', (done) => {
+    // we do not support opaque strings in subdomains, only  peerids
+    const actual = isIPFS.dnslinkSubdomain('http://docs.ipfs.io.ipns.localhost:8080/some/path')
+    expect(actual).to.equal(true)
+    done()
+  })
+
+  it('isIPFS.dnslinkSubdomain should match .ipns.sub.sub.domain.tld zone with FQDN', (done) => {
+    // we do not support opaque strings in subdomains, only  peerids
+    const actual = isIPFS.dnslinkSubdomain('http://docs.ipfs.io.ipns.foo.bar.buzz.dweb.link')
+    expect(actual).to.equal(true)
+    done()
+  })
+
+  it('isIPFS.dnslinkSubdomain should match *.ipns. zone with FQDN', (done) => {
+    const actual = isIPFS.dnslinkSubdomain('http://docs.ipfs.io.ipns.locahost:8080')
+    expect(actual).to.equal(true)
+    done()
+  })
+
+  it('isIPFS.dnslinkSubdomain should not match a .ipns. zone with cidv1b32', (done) => {
+    const actual = isIPFS.dnslinkSubdomain('http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j52f6xwc6q.ipns.dweb.link')
+    expect(actual).to.equal(false)
+    done()
+  })
+
   it('isIPFS.subdomain should match an ipfs subdomain', (done) => {
     const actual = isIPFS.subdomain('http://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.ipfs.dweb.link')
     expect(actual).to.equal(true)
@@ -95,6 +127,13 @@ describe('ipfs subdomain', () => {
 
   it('isIPFS.subdomain should match an ipns subdomain with PeerID as cidv1b32', (done) => {
     const actual = isIPFS.subdomain('http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j52f6xwc6q.ipns.dweb.link')
+    expect(actual).to.equal(true)
+    done()
+  })
+
+  it('isIPFS.subdomain should match .ipns.localhost zone with FQDN', (done) => {
+    // we do not support opaque strings in subdomains, only  peerids
+    const actual = isIPFS.subdomain('http://docs.ipfs.io.ipns.dweb.link')
     expect(actual).to.equal(true)
     done()
   })

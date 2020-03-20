@@ -23,7 +23,7 @@ $ npm install --save is-ipfs
 The code published to npm that gets loaded on require is in fact an ES5 transpiled version with the right shims added. This means that you can require it and use with your favorite bundler without having to adjust asset management process.
 
 ```js
-var isIPFS = require('is-ipfs')
+const isIPFS = require('is-ipfs')
 ```
 
 
@@ -98,6 +98,9 @@ isIPFS.ipnsSubdomain('http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j5
 isIPFS.ipnsSubdomain('http://QmcNioXSC1bfJj1dcFErhUfyjFzoX2HodkRccsFFVJJvg8.ipns.dweb.link') // false
 isIPFS.ipnsSubdomain('http://foo-bar.ipns.dweb.link') // false (not a PeerID)
 
+isIPFS.dnslinkSubdomain('http://en.wikipedia-on-ipfs.org.ipns.localhost:8080') // true
+isIPFS.dnslinkSubdomain('http//bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j52f6xwc6q.ipns.dweb.link') // false
+
 isIPFS.multiaddr('/ip4/127.0.0.1/udp/1234') // true
 isIPFS.multiaddr('/ip4/127.0.0.1/udp/1234/http') // true
 isIPFS.multiaddr('/ip6/::1/udp/1234') // true
@@ -116,7 +119,7 @@ A suite of util methods that provides efficient validation.
 
 Detection of IPFS Paths and identifiers in URLs is a two-stage process:
 1.  `urlPattern`/`pathPattern`/`subdomainPattern` regex is applied to quickly identify potential candidates
-2.  proper CID validation is applied to remove false-positives
+2.  proper CID/FQDN validation is applied to remove false-positives
 
 
 ## Content Identifiers
@@ -178,15 +181,19 @@ Validated subdomain convention: `cidv1b32.ip(f|n)s.domain.tld`
 
 ### `isIPFS.subdomain(url)`
 
-Returns `true` if the provided string includes a valid IPFS or IPNS subdomain or `false` otherwise.
+Returns `true` if the provided `url` string includes a valid IPFS, IPNS or DNSLink subdomain or `false` otherwise.
 
 ### `isIPFS.ipfsSubdomain(url)`
 
-Returns `true` if the provided string includes a valid IPFS subdomain or `false` otherwise.
+Returns `true` if the provided `url` string includes a valid IPFS subdomain (case-insensitive CIDv1) or `false` otherwise.
 
 ### `isIPFS.ipnsSubdomain(url)`
 
-Returns `true` if the provided string includes a valid IPNS subdomain or `false` otherwise.
+Returns `true` if the provided `url` string includes a valid IPNS subdomain (CIDv1 with `libp2p-key` multicodec) or `false` otherwise.
+
+### `isIPFS.dnslinkSubdomain(url)`
+
+Returns `true` if the provided `url` string includes a valid DNSLink subdomain (such as `http://en.wikipedia-on-ipfs.org.ipns.localhost:8080`) or `false` otherwise.
 
 ## Multiaddrs
 

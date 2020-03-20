@@ -7,14 +7,22 @@ const Multiaddr = require('multiaddr')
 const mafmt = require('mafmt')
 const CID = require('cids')
 
-const urlPattern = /^https?:\/\/[^/]+\/(ip(f|n)s)\/((\w+).*)/
-const pathPattern = /^\/(ip(f|n)s)\/((\w+).*)/
+const urlPattern = /^https?:\/\/[^/]+\/(ip[fn]s)\/([^/]+)/
+const pathPattern = /^\/(ip[fn]s)\/([^/]+)/
 const defaultProtocolMatch = 1
-const defaultHashMath = 4
+const defaultHashMath = 2
 
-const fqdnPattern = /^https?:\/\/([^/]+)\.(ip(?:f|n)s)\.[^/]+/
-const fqdnHashMatch = 1
-const fqdnProtocolMatch = 2
+// CID, libp2p-key or DNSLink
+const subdomainPattern = /^https?:\/\/([^/]+)\.(ip[fs]s)\.[^/]+/
+const subdomainIdMatch = 1
+const subdomainProtocolMatch = 2
+// /ipfs/$cid represented as subdomain
+const ipfsSubdomainPattern = /^https?:\/\/([^/]+)\.(ipfs)\.[^/]+/
+// /ipns/$libp2p-key represented as subdomain
+const libp2pKeySubdomainPattern = /^https?:\/\/([^/]+)\.(ipns)\.[^/]+/
+// /ipns/$fqdn represented as subdomain
+// (requires at least two DNS labels separated by ".")
+const dnslinkSubdomainPattern = /^https?:\/\/([^.]+\.[^/]+)\.(ipns)\.[^/]+/
 
 function isMultihash (hash) {
   const formatted = convertToString(hash)
@@ -76,7 +84,7 @@ function isIpfs (input, pattern, protocolMatch = defaultProtocolMatch, hashMatch
 
   let hash = match[hashMatch]
 
-  if (hash && pattern === fqdnPattern) {
+  if (hash && pattern === ipfsSubdomainPattern) {
     // when doing checks for subdomain context
     // ensure hash is case-insensitive
     // (browsers force-lowercase authority compotent anyway)
@@ -100,16 +108,45 @@ function isIpns (input, pattern, protocolMatch = defaultProtocolMatch, hashMatch
     return false
   }
 
-  if (hashMatch && pattern === fqdnPattern) {
-    let hash = match[hashMatch]
+  let ipnsId = match[hashMatch]
+
+  if (ipnsId && pattern === libp2pKeySubdomainPattern) {
     // when doing checks for subdomain context
     // ensure hash is case-insensitive
     // (browsers force-lowercase authority compotent anyway)
-    hash = hash.toLowerCase()
-    return isCID(hash)
+    ipnsId = ipnsId.toLowerCase()
+    return isCID(ipnsId)
   }
 
   return true
+}
+
+function isDNSLink (input, pattern, protocolMatch = defaultProtocolMatch, idMatch) {
+  const formatted = convertToString(input)
+  if (!formatted) {
+    return false
+  }
+
+  const match = formatted.match(pattern)
+  if (!match) {
+    return false
+  }
+
+  if (match[protocolMatch] !== 'ipns') {
+    return false
+  }
+
+  const fqdn = match[idMatch]
+
+  if (fqdn && pattern === dnslinkSubdomainPattern) {
+    try {
+      const { hostname } = new URL(`http://${fqdn}`) // eslint-disable-line no-new
+      return fqdn === hostname
+    } catch (e) {
+      return false
+    }
+  }
+  return false
 }
 
 function isString (input) {
@@ -128,8 +165,9 @@ function convertToString (input) {
   return false
 }
 
-const ipfsSubdomain = (url) => isIpfs(url, fqdnPattern, fqdnProtocolMatch, fqdnHashMatch)
-const ipnsSubdomain = (url) => isIpns(url, fqdnPattern, fqdnProtocolMatch, fqdnHashMatch)
+const ipfsSubdomain = (url) => isIpfs(url, ipfsSubdomainPattern, subdomainProtocolMatch, subdomainIdMatch)
+const ipnsSubdomain = (url) => isIpns(url, libp2pKeySubdomainPattern, subdomainProtocolMatch, subdomainIdMatch)
+const dnslinkSubdomain = (url) => isDNSLink(url, dnslinkSubdomainPattern, subdomainProtocolMatch, subdomainIdMatch)
 
 module.exports = {
   multihash: isMultihash,
@@ -137,10 +175,14 @@ module.exports = {
   peerMultiaddr: isPeerMultiaddr,
   cid: isCID,
   base32cid: (cid) => (isMultibase(cid) === 'base32' && isCID(cid)),
-  ipfsSubdomain: ipfsSubdomain,
-  ipnsSubdomain: ipnsSubdomain,
-  subdomain: (url) => (ipfsSubdomain(url) || ipnsSubdomain(url)),
-  subdomainPattern: fqdnPattern,
+  ipfsSubdomain,
+  ipnsSubdomain,
+  dnslinkSubdomain,
+  subdomain: (url) => (ipfsSubdomain(url) || ipnsSubdomain(url) || dnslinkSubdomain(url)),
+  subdomainPattern,
+  ipfsSubdomainPattern,
+  libp2pKeySubdomainPattern,
+  dnslinkSubdomainPattern,
   ipfsUrl: (url) => isIpfs(url, urlPattern),
   ipnsUrl: (url) => isIpns(url, urlPattern),
   url: (url) => (isIpfs(url, urlPattern) || isIpns(url, urlPattern)),
