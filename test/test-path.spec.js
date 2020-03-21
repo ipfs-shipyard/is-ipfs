@@ -7,13 +7,13 @@ const expect = require('chai').expect
 
 describe('ipfs path', () => {
   it('isIPFS.ipfsPath should match an ipfs path', (done) => {
-    const actual = isIPFS.ipfsPath('/ipfs/QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm')
+    const actual = isIPFS.ipfsPath('/ipfs/QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm?arg=val#hash')
     expect(actual).to.equal(true)
     done()
   })
 
   it('isIPFS.ipfsPath should match a complex ipfs path', (done) => {
-    const actual = isIPFS.ipfsPath('/ipfs/QmeWz9YZEeNFXQhHg4PnR5ZiNr5isttgi5n1tc1eD5EfGU/content/index.html')
+    const actual = isIPFS.ipfsPath('/ipfs/QmeWz9YZEeNFXQhHg4PnR5ZiNr5isttgi5n1tc1eD5EfGU/content/index.html?arg=val#hash')
     expect(actual).to.equal(true)
     done()
   })

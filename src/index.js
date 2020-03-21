@@ -7,8 +7,8 @@ const Multiaddr = require('multiaddr')
 const mafmt = require('mafmt')
 const CID = require('cids')
 
-const urlPattern = /^https?:\/\/[^/]+\/(ip[fn]s)\/([^/]+)/
-const pathPattern = /^\/(ip[fn]s)\/([^/]+)/
+const urlPattern = /^https?:\/\/[^/]+\/(ip[fn]s)\/([^/?#]+)/
+const pathPattern = /^\/(ip[fn]s)\/([^/?#]+)/
 const defaultProtocolMatch = 1
 const defaultHashMath = 2
 

@@ -7,13 +7,13 @@ const isIPFS = require('../src/index')
 
 describe('ipfs url', () => {
   it('isIPFS.ipfsUrl should match an ipfs url', (done) => {
-    const actual = isIPFS.ipfsUrl('http://ipfs.io/ipfs/QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm')
+    const actual = isIPFS.ipfsUrl('http://ipfs.io/ipfs/QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm?arg=val#hash')
     expect(actual).to.equal(true)
     done()
   })
 
   it('isIPFS.ipfsUrl should match a complex ipfs url', (done) => {
-    const actual = isIPFS.ipfsUrl('http://ipfs.alexandria.media/ipfs/QmeWz9YZEeNFXQhHg4PnR5ZiNr5isttgi5n1tc1eD5EfGU/content/index.html')
+    const actual = isIPFS.ipfsUrl('http://ipfs.alexandria.media/ipfs/QmeWz9YZEeNFXQhHg4PnR5ZiNr5isttgi5n1tc1eD5EfGU/content/index.html?arg=val#hash')
     expect(actual).to.equal(true)
     done()
   })
