@@ -13,16 +13,12 @@ const defaultProtocolMatch = 1
 const defaultHashMath = 2
 
 // CID, libp2p-key or DNSLink
-const subdomainPattern = /^https?:\/\/([^/]+)\.(ip[fs]s)\.[^/]+/
+const subdomainPattern = /^https?:\/\/([^/]+)\.(ip[fn]s)\.[^/?]+/
 const subdomainIdMatch = 1
 const subdomainProtocolMatch = 2
-// /ipfs/$cid represented as subdomain
-const ipfsSubdomainPattern = /^https?:\/\/([^/]+)\.(ipfs)\.[^/]+/
-// /ipns/$libp2p-key represented as subdomain
-const libp2pKeySubdomainPattern = /^https?:\/\/([^/]+)\.(ipns)\.[^/]+/
-// /ipns/$fqdn represented as subdomain
-// (requires at least two DNS labels separated by ".")
-const dnslinkSubdomainPattern = /^https?:\/\/([^.]+\.[^/]+)\.(ipns)\.[^/]+/
+
+// Fully qualified domain name (FQDN) that has an explicit .tld suffix
+const fqdnWithTld = /^(([a-z0-9]|[a-z0-9][a-z0-9-]*[a-z0-9])\.)+([a-z0-9]|[a-z0-9][a-z0-9-]*[a-z0-9])$/
 
 function isMultihash (hash) {
   const formatted = convertToString(hash)
@@ -84,7 +80,7 @@ function isIpfs (input, pattern, protocolMatch = defaultProtocolMatch, hashMatch
 
   let hash = match[hashMatch]
 
-  if (hash && pattern === ipfsSubdomainPattern) {
+  if (hash && pattern === subdomainPattern) {
     // when doing checks for subdomain context
     // ensure hash is case-insensitive
     // (browsers force-lowercase authority compotent anyway)
@@ -110,7 +106,7 @@ function isIpns (input, pattern, protocolMatch = defaultProtocolMatch, hashMatch
 
   let ipnsId = match[hashMatch]
 
-  if (ipnsId && pattern === libp2pKeySubdomainPattern) {
+  if (ipnsId && pattern === subdomainPattern) {
     // when doing checks for subdomain context
     // ensure hash is case-insensitive
     // (browsers force-lowercase authority compotent anyway)
@@ -138,10 +134,12 @@ function isDNSLink (input, pattern, protocolMatch = defaultProtocolMatch, idMatc
 
   const fqdn = match[idMatch]
 
-  if (fqdn && pattern === dnslinkSubdomainPattern) {
+  if (fqdn && pattern === subdomainPattern) {
     try {
+      // URL implementation in web browsers forces lowercase of the hostname
       const { hostname } = new URL(`http://${fqdn}`) // eslint-disable-line no-new
-      return fqdn === hostname
+      // Confirm fqdn has an explicit TLD
+      return fqdnWithTld.test(hostname)
     } catch (e) {
       return false
     }
@@ -165,9 +163,9 @@ function convertToString (input) {
   return false
 }
 
-const ipfsSubdomain = (url) => isIpfs(url, ipfsSubdomainPattern, subdomainProtocolMatch, subdomainIdMatch)
-const ipnsSubdomain = (url) => isIpns(url, libp2pKeySubdomainPattern, subdomainProtocolMatch, subdomainIdMatch)
-const dnslinkSubdomain = (url) => isDNSLink(url, dnslinkSubdomainPattern, subdomainProtocolMatch, subdomainIdMatch)
+const ipfsSubdomain = (url) => isIpfs(url, subdomainPattern, subdomainProtocolMatch, subdomainIdMatch)
+const ipnsSubdomain = (url) => isIpns(url, subdomainPattern, subdomainProtocolMatch, subdomainIdMatch)
+const dnslinkSubdomain = (url) => isDNSLink(url, subdomainPattern, subdomainProtocolMatch, subdomainIdMatch)
 
 module.exports = {
   multihash: isMultihash,
@@ -180,9 +178,6 @@ module.exports = {
   dnslinkSubdomain,
   subdomain: (url) => (ipfsSubdomain(url) || ipnsSubdomain(url) || dnslinkSubdomain(url)),
   subdomainPattern,
-  ipfsSubdomainPattern,
-  libp2pKeySubdomainPattern,
-  dnslinkSubdomainPattern,
   ipfsUrl: (url) => isIpfs(url, urlPattern),
   ipnsUrl: (url) => isIpns(url, urlPattern),
   url: (url) => (isIpfs(url, urlPattern) || isIpns(url, urlPattern)),

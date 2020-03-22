@@ -119,6 +119,12 @@ describe('ipfs subdomain', () => {
     done()
   })
 
+  it('isIPFS.dnslinkSubdomain should not match if *.ipns is not a fqdn with tld', (done) => {
+    const actual = isIPFS.dnslinkSubdomain('http://no-fqdn-with-tld.ipns.dweb.link')
+    expect(actual).to.equal(false)
+    done()
+  })
+
   it('isIPFS.subdomain should match an ipfs subdomain', (done) => {
     const actual = isIPFS.subdomain('http://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.ipfs.dweb.link')
     expect(actual).to.equal(true)
@@ -150,8 +156,8 @@ describe('ipfs subdomain', () => {
     done()
   })
 
-  it('isIPFS.subdomain should not match if ipns peerid is invalid', (done) => {
-    const actual = isIPFS.subdomain('http://not-a-cid.ipns.dweb.link')
+  it('isIPFS.subdomain should not match if *.ipns is not libp2pkey nor fqdn', (done) => {
+    const actual = isIPFS.subdomain('http://not-a-cid-or-dnslink.ipns.dweb.link')
     expect(actual).to.equal(false)
     done()
   })

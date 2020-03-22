@@ -104,6 +104,7 @@ isIPFS.ipnsSubdomain('http://foo-bar.ipns.dweb.link') // false (not a PeerID)
 
 isIPFS.dnslinkSubdomain('http://en.wikipedia-on-ipfs.org.ipns.localhost:8080') // true
 isIPFS.dnslinkSubdomain('http//bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j52f6xwc6q.ipns.dweb.link') // false
+isIPFS.dnslinkSubdomain('http//hostname-without-tld.ipns.dweb.link') // false
 
 isIPFS.multiaddr('/ip4/127.0.0.1/udp/1234') // true
 isIPFS.multiaddr('/ip4/127.0.0.1/udp/1234/http') // true
@@ -186,7 +187,7 @@ Validated subdomain convention: `cidv1b32.ip(f|n)s.domain.tld`
 
 ### `isIPFS.subdomain(url)`
 
-Returns `true` if the provided `url` string includes a valid IPFS, IPNS or DNSLink subdomain or `false` otherwise.
+Returns `true` if the provided `url` string includes a valid IPFS, looks like IPNS or DNSLink subdomain or `false` otherwise.
 
 ### `isIPFS.ipfsSubdomain(url)`
 
@@ -194,11 +195,24 @@ Returns `true` if the provided `url` string includes a valid IPFS subdomain (cas
 
 ### `isIPFS.ipnsSubdomain(url)`
 
-Returns `true` if the provided `url` string includes a valid IPNS subdomain (CIDv1 with `libp2p-key` multicodec) or `false` otherwise.
+Returns `true` if the provided `url` string looks like a valid IPNS subdomain
+(subdomain context requires CIDv1 with `libp2p-key` multicodec) or `false`
+otherwise.
+
+**Note:** `ipnsSubdomain` method works in offline mode: it does not perform
+actual IPNS record lookup over DHT or other content routing method. It may
+return false-positives. To ensure IPNS record  exists, make a call to
+`/api/v0/name/resolve?arg=<ipnsid>`
 
 ### `isIPFS.dnslinkSubdomain(url)`
 
-Returns `true` if the provided `url` string includes a valid DNSLink subdomain (such as `http://en.wikipedia-on-ipfs.org.ipns.localhost:8080`) or `false` otherwise.
+Returns `true` if the provided `url` string looks like a valid DNSLink
+subdomain (such as `http://en.wikipedia-on-ipfs.org.ipns.localhost:8080`) or
+`false` otherwise.
+
+**Note:** `dnslinkSubdomain` method works in offline mode: it does not perform
+actual DNSLink lookup. It may return false-positives. To ensure DNSLink exists,
+make a call to `/api/v0/dns?arg=<fqdn>`
 
 ## Multiaddrs
 
