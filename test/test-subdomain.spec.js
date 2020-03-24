@@ -168,23 +168,39 @@ describe('ipfs subdomain', () => {
     done()
   })
 
-  /* We keep subdomain logic separate from legacy urlOrPath checks, below is a fail-safe to ensure we keep that behavior */
-
-  it('isIPFS.urlOrPath should not match ipfs url with cidv1b32 subdomain', (done) => {
+  it('isIPFS.urlOrPath should match ipfs url with cidv1b32 subdomain', (done) => {
     const actual = isIPFS.urlOrPath('http://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.ipfs.dweb.link')
-    expect(actual).to.equal(false)
+    expect(actual).to.equal(true)
     done()
   })
 
-  it('isIPFS.urlOrPath should not match ipns url', (done) => {
+  it('isIPFS.urlOrPath should match subdomain ipns', (done) => {
     const actual = isIPFS.urlOrPath('http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j52f6xwc6q.ipns.dweb.link')
-    expect(actual).to.equal(false)
+    expect(actual).to.equal(true)
     done()
   })
 
-  it('isIPFS.urlOrPath should not match ipns in subdomain', (done) => {
-    const actual = isIPFS.urlOrPath('http://a-dnslink-website.com.ipns.dweb.link')
-    expect(actual).to.equal(false)
+  it('isIPFS.urlOrPath should match potential DNSLink in subdomain', (done) => {
+    const actual = isIPFS.urlOrPath('http://a-dnslink-website.com.ipns.localhost:8080')
+    expect(actual).to.equal(true)
+    done()
+  })
+
+  it('isIPFS.url should match ipfs url with cidv1b32 subdomain', (done) => {
+    const actual = isIPFS.url('http://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.ipfs.dweb.link')
+    expect(actual).to.equal(true)
+    done()
+  })
+
+  it('isIPFS.url should match subdomain ipns', (done) => {
+    const actual = isIPFS.url('http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j52f6xwc6q.ipns.dweb.link')
+    expect(actual).to.equal(true)
+    done()
+  })
+
+  it('isIPFS.url should match potential DNSLink in subdomain', (done) => {
+    const actual = isIPFS.url('http://a-dnslink-website.com.ipns.localhost:8080')
+    expect(actual).to.equal(true)
     done()
   })
 })

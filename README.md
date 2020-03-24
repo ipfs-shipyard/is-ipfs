@@ -55,10 +55,10 @@ isIPFS.base32cid('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // false
 isIPFS.url('https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
 isIPFS.url('https://ipfs.io/ipfs/QmbWqxBEKC3P8tqsKc98xmWNzrzDtRLMiMPL8wBuTGsMnR?filename=guardian.jpg') // true
 isIPFS.url('https://ipfs.io/ipns/github.com') // true
+isIPFS.url('https://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.ipfs.dweb.link') // true
+isIPFS.url('http://en.wikipedia-on-ipfs.org.ipfs.localhost:8080') // true
 isIPFS.url('https://github.com/ipfs/js-ipfs/blob/master/README.md') // false
 isIPFS.url('https://google.com') // false
-isIPFS.url('http://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.ipfs.dweb.link') // false (use .subdomain instead)
-isIPFS.url('http://en.wikipedia-on-ipfs.org.ipfs.localhost:8080') // false (use .subdomain instead)
 
 isIPFS.path('/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
 isIPFS.path('/ipfs/QmbWqxBEKC3P8tqsKc98xmWNzrzDtRLMiMPL8wBuTGsMnR?filename=guardian.jpg') // true
@@ -69,6 +69,7 @@ isIPFS.urlOrPath('https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFo
 isIPFS.urlOrPath('https://ipfs.io/ipns/github.com') // true
 isIPFS.urlOrPath('/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
 isIPFS.urlOrPath('/ipns/github.com') // true
+isIPFS.urlOrPath('https://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.ipfs.dweb.link') // true
 isIPFS.urlOrPath('https://google.com') // false
 
 isIPFS.ipfsUrl('https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
@@ -124,9 +125,8 @@ isIPFS.peerMultiaddr('/ip4/127.0.0.1/udp/1234') // false
 A suite of util methods that provides efficient validation.
 
 Detection of IPFS Paths and identifiers in URLs is a two-stage process:
-1.  `urlPattern`/`pathPattern`/`subdomainPattern` regex is applied to quickly identify potential candidates
-2.  proper CID/FQDN validation is applied to remove false-positives
-
+1.  `pathPattern`/`pathGatewayPattern`/`subdomainGatewayPattern` regex is applied to quickly identify potential candidates
+2.  proper CID validation is applied to remove false-positives
 
 ## Content Identifiers
 

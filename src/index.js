@@ -7,13 +7,13 @@ const Multiaddr = require('multiaddr')
 const mafmt = require('mafmt')
 const CID = require('cids')
 
-const urlPattern = /^https?:\/\/[^/]+\/(ip[fn]s)\/([^/?#]+)/
+const pathGatewayPattern = /^https?:\/\/[^/]+\/(ip[fn]s)\/([^/?#]+)/
 const pathPattern = /^\/(ip[fn]s)\/([^/?#]+)/
 const defaultProtocolMatch = 1
 const defaultHashMath = 2
 
 // CID, libp2p-key or DNSLink
-const subdomainPattern = /^https?:\/\/([^/]+)\.(ip[fn]s)\.[^/?]+/
+const subdomainGatewayPattern = /^https?:\/\/([^/]+)\.(ip[fn]s)\.[^/?]+/
 const subdomainIdMatch = 1
 const subdomainProtocolMatch = 2
 
@@ -80,7 +80,7 @@ function isIpfs (input, pattern, protocolMatch = defaultProtocolMatch, hashMatch
 
   let hash = match[hashMatch]
 
-  if (hash && pattern === subdomainPattern) {
+  if (hash && pattern === subdomainGatewayPattern) {
     // when doing checks for subdomain context
     // ensure hash is case-insensitive
     // (browsers force-lowercase authority compotent anyway)
@@ -106,7 +106,7 @@ function isIpns (input, pattern, protocolMatch = defaultProtocolMatch, hashMatch
 
   let ipnsId = match[hashMatch]
 
-  if (ipnsId && pattern === subdomainPattern) {
+  if (ipnsId && pattern === subdomainGatewayPattern) {
     // when doing checks for subdomain context
     // ensure hash is case-insensitive
     // (browsers force-lowercase authority compotent anyway)
@@ -134,7 +134,7 @@ function isDNSLink (input, pattern, protocolMatch = defaultProtocolMatch, idMatc
 
   const fqdn = match[idMatch]
 
-  if (fqdn && pattern === subdomainPattern) {
+  if (fqdn && pattern === subdomainGatewayPattern) {
     try {
       // URL implementation in web browsers forces lowercase of the hostname
       const { hostname } = new URL(`http://${fqdn}`) // eslint-disable-line no-new
@@ -163,9 +163,12 @@ function convertToString (input) {
   return false
 }
 
-const ipfsSubdomain = (url) => isIpfs(url, subdomainPattern, subdomainProtocolMatch, subdomainIdMatch)
-const ipnsSubdomain = (url) => isIpns(url, subdomainPattern, subdomainProtocolMatch, subdomainIdMatch)
-const dnslinkSubdomain = (url) => isDNSLink(url, subdomainPattern, subdomainProtocolMatch, subdomainIdMatch)
+const url = (url) => (isIpfs(url, pathGatewayPattern) || isIpns(url, pathGatewayPattern) || subdomain(url))
+const path = (path) => (isIpfs(path, pathPattern) || isIpns(path, pathPattern))
+const ipfsSubdomain = (url) => isIpfs(url, subdomainGatewayPattern, subdomainProtocolMatch, subdomainIdMatch)
+const ipnsSubdomain = (url) => isIpns(url, subdomainGatewayPattern, subdomainProtocolMatch, subdomainIdMatch)
+const dnslinkSubdomain = (url) => isDNSLink(url, subdomainGatewayPattern, subdomainProtocolMatch, subdomainIdMatch)
+const subdomain = (url) => (ipfsSubdomain(url) || ipnsSubdomain(url) || dnslinkSubdomain(url))
 
 module.exports = {
   multihash: isMultihash,
@@ -176,16 +179,16 @@ module.exports = {
   ipfsSubdomain,
   ipnsSubdomain,
   dnslinkSubdomain,
-  subdomain: (url) => (ipfsSubdomain(url) || ipnsSubdomain(url) || dnslinkSubdomain(url)),
-  subdomainPattern,
-  ipfsUrl: (url) => isIpfs(url, urlPattern),
-  ipnsUrl: (url) => isIpns(url, urlPattern),
-  url: (url) => (isIpfs(url, urlPattern) || isIpns(url, urlPattern)),
-  urlPattern: urlPattern,
+  subdomain,
+  subdomainGatewayPattern,
+  ipfsUrl: (url) => isIpfs(url, pathGatewayPattern),
+  ipnsUrl: (url) => isIpns(url, pathGatewayPattern),
+  url,
+  pathGatewayPattern: pathGatewayPattern,
   ipfsPath: (path) => isIpfs(path, pathPattern),
   ipnsPath: (path) => isIpns(path, pathPattern),
-  path: (path) => (isIpfs(path, pathPattern) || isIpns(path, pathPattern)),
-  pathPattern: pathPattern,
-  urlOrPath: (x) => (isIpfs(x, urlPattern) || isIpns(x, urlPattern) || isIpfs(x, pathPattern) || isIpns(x, pathPattern)),
+  path,
+  pathPattern,
+  urlOrPath: (x) => (url(x) || path(x)),
   cidPath: path => isString(path) && !isCID(path) && isIpfs(`/ipfs/${path}`, pathPattern)
 }
