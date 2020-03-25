@@ -101,11 +101,8 @@ isIPFS.ipfsSubdomain('http://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27
 isIPFS.ipnsSubdomain('http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j52f6xwc6q.ipns.dweb.link') // true
 isIPFS.ipnsSubdomain('http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j52f6xwc6q.dweb.link') // false
 isIPFS.ipnsSubdomain('http://QmcNioXSC1bfJj1dcFErhUfyjFzoX2HodkRccsFFVJJvg8.ipns.dweb.link') // false
-isIPFS.ipnsSubdomain('http://foo-bar.ipns.dweb.link') // false (not a PeerID)
-
-isIPFS.dnslinkSubdomain('http://en.wikipedia-on-ipfs.org.ipns.localhost:8080') // true
-isIPFS.dnslinkSubdomain('http//bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j52f6xwc6q.ipns.dweb.link') // false
-isIPFS.dnslinkSubdomain('http//hostname-without-tld.ipns.dweb.link') // false
+isIPFS.ipnsSubdomain('http://en.wikipedia-on-ipfs.org.ipns.localhost:8080') // true (assuming DNSLink)
+isIPFS.ipnsSubdomain('http://hostname-without-tld.ipns.dweb.link') // false (missing TLD)
 
 isIPFS.multiaddr('/ip4/127.0.0.1/udp/1234') // true
 isIPFS.multiaddr('/ip4/127.0.0.1/udp/1234/http') // true
@@ -187,7 +184,7 @@ Validated subdomain convention: `cidv1b32.ip(f|n)s.domain.tld`
 
 ### `isIPFS.subdomain(url)`
 
-Returns `true` if the provided `url` string includes a valid IPFS, looks like IPNS or DNSLink subdomain or `false` otherwise.
+Returns `true` if the provided `url` string includes a valid IPFS, looks like IPNS/DNSLink subdomain or `false` otherwise.
 
 ### `isIPFS.ipfsSubdomain(url)`
 
@@ -196,23 +193,16 @@ Returns `true` if the provided `url` string includes a valid IPFS subdomain (cas
 ### `isIPFS.ipnsSubdomain(url)`
 
 Returns `true` if the provided `url` string looks like a valid IPNS subdomain
-(subdomain context requires CIDv1 with `libp2p-key` multicodec) or `false`
+(CIDv1 with `libp2p-key` multicodec or something that looks like a FQDN, for example `en.wikipedia-on-ipfs.org.ipns.localhost:8080`) or `false`
 otherwise.
 
 **Note:** `ipnsSubdomain` method works in offline mode: it does not perform
 actual IPNS record lookup over DHT or other content routing method. It may
-return false-positives. To ensure IPNS record  exists, make a call to
-`/api/v0/name/resolve?arg=<ipnsid>`
+return false-positives:
 
-### `isIPFS.dnslinkSubdomain(url)`
+- To ensure IPNS record  exists, make a call to `/api/v0/name/resolve?arg=<ipnsid>`
+- To ensure DNSLink exists, make a call to `/api/v0/dns?arg=<fqdn>`
 
-Returns `true` if the provided `url` string looks like a valid DNSLink
-subdomain (such as `http://en.wikipedia-on-ipfs.org.ipns.localhost:8080`) or
-`false` otherwise.
-
-**Note:** `dnslinkSubdomain` method works in offline mode: it does not perform
-actual DNSLink lookup. It may return false-positives. To ensure DNSLink exists,
-make a call to `/api/v0/dns?arg=<fqdn>`
 
 ## Multiaddrs
 

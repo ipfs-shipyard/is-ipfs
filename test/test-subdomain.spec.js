@@ -74,13 +74,6 @@ describe('ipfs subdomain', () => {
     done()
   })
 
-  it('isIPFS.ipnsSubdomain should not match .ipns. zone with non-cid subdomain', (done) => {
-    // we do not support opaque strings in subdomains, only  peerids
-    const actual = isIPFS.ipnsSubdomain('http://a-dnslink-website.com.ipns.dweb.link')
-    expect(actual).to.equal(false)
-    done()
-  })
-
   it('isIPFS.ipnsSubdomain should not match without .ipns. zone', (done) => {
     const actual = isIPFS.ipnsSubdomain('http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j52f6xwc6q.dweb.link')
     expect(actual).to.equal(false)
@@ -93,34 +86,32 @@ describe('ipfs subdomain', () => {
     done()
   })
 
-  it('isIPFS.dnslinkSubdomain should match .ipns.localhost zone with FQDN', (done) => {
-    // we do not support opaque strings in subdomains, only  peerids
-    const actual = isIPFS.dnslinkSubdomain('http://docs.ipfs.io.ipns.localhost:8080/some/path')
+  it('isIPFS.ipnsSubdomain should match .ipns.localhost zone with FQDN', (done) => {
+    const actual = isIPFS.ipnsSubdomain('http://docs.ipfs.io.ipns.localhost:8080/some/path')
     expect(actual).to.equal(true)
     done()
   })
 
-  it('isIPFS.dnslinkSubdomain should match .ipns.sub.sub.domain.tld zone with FQDN', (done) => {
-    // we do not support opaque strings in subdomains, only  peerids
-    const actual = isIPFS.dnslinkSubdomain('http://docs.ipfs.io.ipns.foo.bar.buzz.dweb.link')
+  it('isIPFS.ipnsSubdomain should match .ipns.sub.sub.domain.tld zone with FQDN', (done) => {
+    const actual = isIPFS.ipnsSubdomain('http://docs.ipfs.io.ipns.foo.bar.buzz.dweb.link')
     expect(actual).to.equal(true)
     done()
   })
 
-  it('isIPFS.dnslinkSubdomain should match *.ipns. zone with FQDN', (done) => {
-    const actual = isIPFS.dnslinkSubdomain('http://docs.ipfs.io.ipns.locahost:8080')
+  it('isIPFS.ipnsSubdomain should match *.ipns. zone with FQDN', (done) => {
+    const actual = isIPFS.ipnsSubdomain('http://docs.ipfs.io.ipns.locahost:8080')
     expect(actual).to.equal(true)
     done()
   })
 
-  it('isIPFS.dnslinkSubdomain should not match a .ipns. zone with cidv1b32', (done) => {
-    const actual = isIPFS.dnslinkSubdomain('http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j52f6xwc6q.ipns.dweb.link')
-    expect(actual).to.equal(false)
+  it('isIPFS.ipnsSubdomain should match .ipns. zone with cidv1b32', (done) => {
+    const actual = isIPFS.ipnsSubdomain('http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j52f6xwc6q.ipns.dweb.link')
+    expect(actual).to.equal(true)
     done()
   })
 
-  it('isIPFS.dnslinkSubdomain should not match if *.ipns is not a fqdn with tld', (done) => {
-    const actual = isIPFS.dnslinkSubdomain('http://no-fqdn-with-tld.ipns.dweb.link')
+  it('isIPFS.ipnsSubdomain should not match if *.ipns is not a fqdn with tld', (done) => {
+    const actual = isIPFS.ipnsSubdomain('http://no-fqdn-with-tld.ipns.dweb.link')
     expect(actual).to.equal(false)
     done()
   })
