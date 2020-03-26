@@ -61,7 +61,7 @@ isIPFS.url('https://github.com/ipfs/js-ipfs/blob/master/README.md') // false
 isIPFS.url('https://google.com') // false
 
 isIPFS.path('/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
-isIPFS.path('/ipfs/QmbWqxBEKC3P8tqsKc98xmWNzrzDtRLMiMPL8wBuTGsMnR?filename=guardian.jpg') // true
+isIPFS.path('/ipfs/QmbcBPAwCDxRMB1Qe7CRQmxdrTSkxKwM9y6rZw2FjGtbsb/?weird-filename=test.jpg') // true
 isIPFS.path('/ipns/github.com') // true
 isIPFS.path('/ipfs/js-ipfs/blob/master/README.md') // false
 
