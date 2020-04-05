@@ -1,3 +1,58 @@
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/ipfs/is-ipfs/compare/v0.6.3...v1.0.0) (2020-04-05)
+
+
+### Features
+
+* support subdomains in isIPFS.url(url) ([#32](https://github.com/ipfs/is-ipfs/issues/32)) ([22d001d](https://github.com/ipfs/is-ipfs/commit/22d001d)), closes [/github.com/ipfs/is-ipfs/pull/32#discussion_r396161665](https://github.com//github.com/ipfs/is-ipfs/pull/32/issues/discussion_r396161665)
+
+
+### BREAKING CHANGES
+
+* `isIPFS.subdomain` now returns true for <domain.tld>.ipns.localhost
+* `isIPFS.subdomainPattern` changed
+
+* test: support peer multiaddr with /p2p/
+
+Context: https://github.com/libp2p/libp2p/issues/79
+
+* fix: explicitly ignore URL param and hash
+
+.url and .path now return true when validating:
+https://ipfs.io/ipfs/<CID>?filename=name.png#foo
+
+* refactor: simplify dnslinkSubdomain
+
+License: MIT
+Signed-off-by: Marcin Rataj <lidel@lidel.org>
+
+* fix: url() check should include subdomain()
+
+When .url was created we only had path gateways.  When .subdomain was
+added, we did not update .url to test for subdomain gateways, which in
+the long run will confuse people and feels like a bug.
+
+Let's fix this: .url() will now check for both subdomain and path gateways
+* .url(url) now returns true if .subdomain(url) is true
+
+* refactor: merge DNSLink check into ipnsSubdomain()
+
+This makes subdomain checks follow what path gateway checks do, removing
+confusion.
+
+In both cases (IPNS and DNSLink) user needs to perform online record
+check, so this is just a handy way of detecting potential matches.
+
+* docs: update examples
+* refactor: switch to iso-url
+* refactor: lint-package-json
+* chore: update deps
+
+License: MIT
+Signed-off-by: Marcin Rataj <lidel@lidel.org>
+
+
+
 <a name="0.6.3"></a>
 ## [0.6.3](https://github.com/ipfs/is-ipfs/compare/v0.6.1...v0.6.3) (2020-01-07)
 
