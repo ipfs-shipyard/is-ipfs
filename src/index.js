@@ -6,6 +6,7 @@ const multibase = require('multibase')
 const Multiaddr = require('multiaddr')
 const mafmt = require('mafmt')
 const CID = require('cids')
+const { URL } = require('iso-url')
 
 const pathGatewayPattern = /^https?:\/\/[^/]+\/(ip[fn]s)\/([^/?#]+)/
 const pathPattern = /^\/(ip[fn]s)\/([^/?#]+)/

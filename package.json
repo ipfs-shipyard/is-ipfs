@@ -32,6 +32,7 @@
   "dependencies": {
     "bs58": "^4.0.1",
     "cids": "~0.7.0",
+    "iso-url": "~0.4.7",
     "mafmt": "^7.0.0",
     "multiaddr": "^7.2.1",
     "multibase": "~0.7.0",
