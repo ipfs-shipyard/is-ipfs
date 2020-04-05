@@ -42,15 +42,15 @@
   },
   "dependencies": {
     "bs58": "^4.0.1",
-    "cids": "~0.7.0",
+    "cids": "~0.8.0",
     "iso-url": "~0.4.7",
-    "mafmt": "^7.0.0",
-    "multiaddr": "^7.2.1",
+    "mafmt": "^7.1.0",
+    "multiaddr": "^7.4.3",
     "multibase": "~0.7.0",
-    "multihashes": "~0.4.13"
+    "multihashes": "~0.4.19"
   },
   "devDependencies": {
-    "aegir": "^21.4.3",
+    "aegir": "^21.4.5",
     "chai": "^4.2.0",
     "pre-commit": "^1.2.2"
   },
