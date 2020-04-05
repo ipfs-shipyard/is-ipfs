@@ -23,7 +23,7 @@ $ npm install --save is-ipfs
 The code published to npm that gets loaded on require is in fact an ES5 transpiled version with the right shims added. This means that you can require it and use with your favorite bundler without having to adjust asset management process.
 
 ```js
-var isIPFS = require('is-ipfs')
+const isIPFS = require('is-ipfs')
 ```
 
 
@@ -53,11 +53,15 @@ isIPFS.base32cid('bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va') 
 isIPFS.base32cid('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // false
 
 isIPFS.url('https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
+isIPFS.url('https://ipfs.io/ipfs/QmbWqxBEKC3P8tqsKc98xmWNzrzDtRLMiMPL8wBuTGsMnR?filename=guardian.jpg') // true
 isIPFS.url('https://ipfs.io/ipns/github.com') // true
+isIPFS.url('https://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.ipfs.dweb.link') // true
+isIPFS.url('http://en.wikipedia-on-ipfs.org.ipfs.localhost:8080') // true
 isIPFS.url('https://github.com/ipfs/js-ipfs/blob/master/README.md') // false
 isIPFS.url('https://google.com') // false
 
 isIPFS.path('/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
+isIPFS.path('/ipfs/QmbcBPAwCDxRMB1Qe7CRQmxdrTSkxKwM9y6rZw2FjGtbsb/?weird-filename=test.jpg') // true
 isIPFS.path('/ipns/github.com') // true
 isIPFS.path('/ipfs/js-ipfs/blob/master/README.md') // false
 
@@ -65,6 +69,7 @@ isIPFS.urlOrPath('https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFo
 isIPFS.urlOrPath('https://ipfs.io/ipns/github.com') // true
 isIPFS.urlOrPath('/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
 isIPFS.urlOrPath('/ipns/github.com') // true
+isIPFS.urlOrPath('https://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.ipfs.dweb.link') // true
 isIPFS.urlOrPath('https://google.com') // false
 
 isIPFS.ipfsUrl('https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
@@ -96,7 +101,8 @@ isIPFS.ipfsSubdomain('http://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27
 isIPFS.ipnsSubdomain('http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j52f6xwc6q.ipns.dweb.link') // true
 isIPFS.ipnsSubdomain('http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j52f6xwc6q.dweb.link') // false
 isIPFS.ipnsSubdomain('http://QmcNioXSC1bfJj1dcFErhUfyjFzoX2HodkRccsFFVJJvg8.ipns.dweb.link') // false
-isIPFS.ipnsSubdomain('http://foo-bar.ipns.dweb.link') // false (not a PeerID)
+isIPFS.ipnsSubdomain('http://en.wikipedia-on-ipfs.org.ipns.localhost:8080') // true (assuming DNSLink)
+isIPFS.ipnsSubdomain('http://hostname-without-tld.ipns.dweb.link') // false (missing TLD)
 
 isIPFS.multiaddr('/ip4/127.0.0.1/udp/1234') // true
 isIPFS.multiaddr('/ip4/127.0.0.1/udp/1234/http') // true
@@ -104,9 +110,10 @@ isIPFS.multiaddr('/ip6/::1/udp/1234') // true
 isIPFS.multiaddr('ip6/::1/udp/1234') // false
 isIPFS.multiaddr('/yoloinvalid/::1/udp/1234') // false
 
-isIPFS.peerMultiaddr('/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4') // true
-isIPFS.peerMultiaddr('/ip4/127.0.0.1/tcp/1234/ws/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj') // true
-isIPFS.peerMultiaddr('/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj') // true
+isIPFS.peerMultiaddr('/p2p/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4') // true
+isIPFS.peerMultiaddr('/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4') // true (legacy notation)
+isIPFS.peerMultiaddr('/ip4/127.0.0.1/tcp/1234/ws/p2p/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj') // true
+isIPFS.peerMultiaddr('/p2p/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit/p2p/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj') // true
 isIPFS.peerMultiaddr('/ip4/127.0.0.1/udp/1234') // false
 ```
 
@@ -115,9 +122,8 @@ isIPFS.peerMultiaddr('/ip4/127.0.0.1/udp/1234') // false
 A suite of util methods that provides efficient validation.
 
 Detection of IPFS Paths and identifiers in URLs is a two-stage process:
-1.  `urlPattern`/`pathPattern`/`subdomainPattern` regex is applied to quickly identify potential candidates
+1.  `pathPattern`/`pathGatewayPattern`/`subdomainGatewayPattern` regex is applied to quickly identify potential candidates
 2.  proper CID validation is applied to remove false-positives
-
 
 ## Content Identifiers
 
@@ -178,15 +184,25 @@ Validated subdomain convention: `cidv1b32.ip(f|n)s.domain.tld`
 
 ### `isIPFS.subdomain(url)`
 
-Returns `true` if the provided string includes a valid IPFS or IPNS subdomain or `false` otherwise.
+Returns `true` if the provided `url` string includes a valid IPFS, looks like IPNS/DNSLink subdomain or `false` otherwise.
 
 ### `isIPFS.ipfsSubdomain(url)`
 
-Returns `true` if the provided string includes a valid IPFS subdomain or `false` otherwise.
+Returns `true` if the provided `url` string includes a valid IPFS subdomain (case-insensitive CIDv1) or `false` otherwise.
 
 ### `isIPFS.ipnsSubdomain(url)`
 
-Returns `true` if the provided string includes a valid IPNS subdomain or `false` otherwise.
+Returns `true` if the provided `url` string looks like a valid IPNS subdomain
+(CIDv1 with `libp2p-key` multicodec or something that looks like a FQDN, for example `en.wikipedia-on-ipfs.org.ipns.localhost:8080`) or `false`
+otherwise.
+
+**Note:** `ipnsSubdomain` method works in offline mode: it does not perform
+actual IPNS record lookup over DHT or other content routing method. It may
+return false-positives:
+
+- To ensure IPNS record  exists, make a call to `/api/v0/name/resolve?arg=<ipnsid>`
+- To ensure DNSLink exists, make a call to `/api/v0/dns?arg=<fqdn>`
+
 
 ## Multiaddrs
 

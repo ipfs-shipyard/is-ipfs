@@ -1,17 +1,38 @@
 {
   "name": "is-ipfs",
   "version": "0.6.3",
-  "description": "A set of utilities to help identify IPFS resources",
+  "description": "A set of utilities to help identify IPFS resources on the web",
+  "keywords": [
+    "js-ipfs",
+    "ipns",
+    "gateway",
+    "dnslink",
+    "ipfs"
+  ],
+  "homepage": "https://github.com/ipfs/is-ipfs",
+  "bugs": {
+    "url": "https://github.com/ipfs/is-ipfs/issues"
+  },
+  "license": "MIT",
+  "author": "Francisco Dias <francisco@baiodias.com> (http://franciscodias.net/)",
   "leadMaintainer": "Marcin Rataj <lidel@lidel.org>",
+  "files": [
+    "src",
+    "dist"
+  ],
   "main": "src/index.js",
   "browser": {
     "fs": false
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ipfs/is-ipfs.git"
   },
   "scripts": {
     "test:node": "aegir test --target node",
     "test:browser": "aegir test --target browser",
     "test": "aegir test",
-    "lint": "aegir lint",
+    "lint": "aegir lint && aegir lint-package-json",
     "release": "aegir release",
     "release-minor": "aegir release --type minor",
     "release-major": "aegir release --type major",
@@ -19,37 +40,28 @@
     "coverage": "aegir coverage",
     "coverage-publish": "aegir coverage --upload"
   },
+  "dependencies": {
+    "bs58": "^4.0.1",
+    "cids": "~0.8.0",
+    "iso-url": "~0.4.7",
+    "mafmt": "^7.1.0",
+    "multiaddr": "^7.4.3",
+    "multibase": "~0.7.0",
+    "multihashes": "~0.4.19"
+  },
+  "devDependencies": {
+    "aegir": "^21.4.5",
+    "chai": "^4.2.0",
+    "pre-commit": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  },
   "pre-commit": [
     "test",
     "lint"
   ],
-  "keywords": [
-    "js-ipfs",
-    "ipfs"
-  ],
-  "author": "Francisco Dias <francisco@baiodias.com> (http://franciscodias.net/)",
-  "license": "MIT",
-  "dependencies": {
-    "bs58": "^4.0.1",
-    "cids": "~0.7.0",
-    "mafmt": "^7.0.0",
-    "multiaddr": "^7.2.1",
-    "multibase": "~0.6.0",
-    "multihashes": "~0.4.13"
-  },
-  "devDependencies": {
-    "aegir": "^20.5.0",
-    "chai": "^4.2.0",
-    "pre-commit": "^1.2.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ipfs/is-ipfs.git"
-  },
-  "bugs": {
-    "url": "https://github.com/ipfs/is-ipfs/issues"
-  },
-  "homepage": "https://github.com/ipfs/is-ipfs",
   "contributors": [
     "Alan Shaw <alan.shaw@protocol.ai>",
     "David Dias <daviddias.p@gmail.com>",

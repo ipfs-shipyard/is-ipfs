@@ -6,15 +6,20 @@ const multibase = require('multibase')
 const Multiaddr = require('multiaddr')
 const mafmt = require('mafmt')
 const CID = require('cids')
+const { URL } = require('iso-url')
 
-const urlPattern = /^https?:\/\/[^/]+\/(ip(f|n)s)\/((\w+).*)/
-const pathPattern = /^\/(ip(f|n)s)\/((\w+).*)/
+const pathGatewayPattern = /^https?:\/\/[^/]+\/(ip[fn]s)\/([^/?#]+)/
+const pathPattern = /^\/(ip[fn]s)\/([^/?#]+)/
 const defaultProtocolMatch = 1
-const defaultHashMath = 4
+const defaultHashMath = 2
 
-const fqdnPattern = /^https?:\/\/([^/]+)\.(ip(?:f|n)s)\.[^/]+/
-const fqdnHashMatch = 1
-const fqdnProtocolMatch = 2
+// CID, libp2p-key or DNSLink
+const subdomainGatewayPattern = /^https?:\/\/([^/]+)\.(ip[fn]s)\.[^/?]+/
+const subdomainIdMatch = 1
+const subdomainProtocolMatch = 2
+
+// Fully qualified domain name (FQDN) that has an explicit .tld suffix
+const fqdnWithTld = /^(([a-z0-9]|[a-z0-9][a-z0-9-]*[a-z0-9])\.)+([a-z0-9]|[a-z0-9][a-z0-9-]*[a-z0-9])$/
 
 function isMultihash (hash) {
   const formatted = convertToString(hash)
@@ -76,7 +81,7 @@ function isIpfs (input, pattern, protocolMatch = defaultProtocolMatch, hashMatch
 
   let hash = match[hashMatch]
 
-  if (hash && pattern === fqdnPattern) {
+  if (hash && pattern === subdomainGatewayPattern) {
     // when doing checks for subdomain context
     // ensure hash is case-insensitive
     // (browsers force-lowercase authority compotent anyway)
@@ -100,13 +105,24 @@ function isIpns (input, pattern, protocolMatch = defaultProtocolMatch, hashMatch
     return false
   }
 
-  if (hashMatch && pattern === fqdnPattern) {
-    let hash = match[hashMatch]
+  let ipnsId = match[hashMatch]
+
+  if (ipnsId && pattern === subdomainGatewayPattern) {
     // when doing checks for subdomain context
-    // ensure hash is case-insensitive
+    // ensure ipnsId is case-insensitive
     // (browsers force-lowercase authority compotent anyway)
-    hash = hash.toLowerCase()
-    return isCID(hash)
+    ipnsId = ipnsId.toLowerCase()
+    // Check if it is cidv1
+    if (isCID(ipnsId)) return true
+    // Check if it looks like FQDN
+    try {
+      // URL implementation in web browsers forces lowercase of the hostname
+      const { hostname } = new URL(`http://${ipnsId}`) // eslint-disable-line no-new
+      // Check if potential FQDN has an explicit TLD
+      return fqdnWithTld.test(hostname)
+    } catch (e) {
+      return false
+    }
   }
 
   return true
@@ -128,8 +144,15 @@ function convertToString (input) {
   return false
 }
 
-const ipfsSubdomain = (url) => isIpfs(url, fqdnPattern, fqdnProtocolMatch, fqdnHashMatch)
-const ipnsSubdomain = (url) => isIpns(url, fqdnPattern, fqdnProtocolMatch, fqdnHashMatch)
+const ipfsSubdomain = (url) => isIpfs(url, subdomainGatewayPattern, subdomainProtocolMatch, subdomainIdMatch)
+const ipnsSubdomain = (url) => isIpns(url, subdomainGatewayPattern, subdomainProtocolMatch, subdomainIdMatch)
+const subdomain = (url) => ipfsSubdomain(url) || ipnsSubdomain(url)
+
+const ipfsUrl = (url) => isIpfs(url, pathGatewayPattern) || ipfsSubdomain(url)
+const ipnsUrl = (url) => isIpns(url, pathGatewayPattern) || ipnsSubdomain(url)
+const url = (url) => ipfsUrl(url) || ipnsUrl(url) || subdomain(url)
+
+const path = (path) => isIpfs(path, pathPattern) || isIpns(path, pathPattern)
 
 module.exports = {
   multihash: isMultihash,
@@ -137,18 +160,18 @@ module.exports = {
   peerMultiaddr: isPeerMultiaddr,
   cid: isCID,
   base32cid: (cid) => (isMultibase(cid) === 'base32' && isCID(cid)),
-  ipfsSubdomain: ipfsSubdomain,
-  ipnsSubdomain: ipnsSubdomain,
-  subdomain: (url) => (ipfsSubdomain(url) || ipnsSubdomain(url)),
-  subdomainPattern: fqdnPattern,
-  ipfsUrl: (url) => isIpfs(url, urlPattern),
-  ipnsUrl: (url) => isIpns(url, urlPattern),
-  url: (url) => (isIpfs(url, urlPattern) || isIpns(url, urlPattern)),
-  urlPattern: urlPattern,
+  ipfsSubdomain,
+  ipnsSubdomain,
+  subdomain,
+  subdomainGatewayPattern,
+  ipfsUrl,
+  ipnsUrl,
+  url,
+  pathGatewayPattern: pathGatewayPattern,
   ipfsPath: (path) => isIpfs(path, pathPattern),
   ipnsPath: (path) => isIpns(path, pathPattern),
-  path: (path) => (isIpfs(path, pathPattern) || isIpns(path, pathPattern)),
-  pathPattern: pathPattern,
-  urlOrPath: (x) => (isIpfs(x, urlPattern) || isIpns(x, urlPattern) || isIpfs(x, pathPattern) || isIpns(x, pathPattern)),
+  path,
+  pathPattern,
+  urlOrPath: (x) => url(x) || path(x),
   cidPath: path => isString(path) && !isCID(path) && isIpfs(`/ipfs/${path}`, pathPattern)
 }
