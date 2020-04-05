@@ -2,16 +2,37 @@
   "name": "is-ipfs",
   "version": "0.6.3",
   "description": "A set of utilities to help identify IPFS resources on the web",
+  "keywords": [
+    "js-ipfs",
+    "ipns",
+    "gateway",
+    "dnslink",
+    "ipfs"
+  ],
+  "homepage": "https://github.com/ipfs/is-ipfs",
+  "bugs": {
+    "url": "https://github.com/ipfs/is-ipfs/issues"
+  },
+  "license": "MIT",
+  "author": "Francisco Dias <francisco@baiodias.com> (http://franciscodias.net/)",
   "leadMaintainer": "Marcin Rataj <lidel@lidel.org>",
+  "files": [
+    "src",
+    "dist"
+  ],
   "main": "src/index.js",
   "browser": {
     "fs": false
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ipfs/is-ipfs.git"
   },
   "scripts": {
     "test:node": "aegir test --target node",
     "test:browser": "aegir test --target browser",
     "test": "aegir test",
-    "lint": "aegir lint",
+    "lint": "aegir lint && aegir lint-package-json",
     "release": "aegir release",
     "release-minor": "aegir release --type minor",
     "release-major": "aegir release --type major",
@@ -19,16 +40,6 @@
     "coverage": "aegir coverage",
     "coverage-publish": "aegir coverage --upload"
   },
-  "pre-commit": [
-    "test",
-    "lint"
-  ],
-  "keywords": [
-    "js-ipfs",
-    "ipfs"
-  ],
-  "author": "Francisco Dias <francisco@baiodias.com> (http://franciscodias.net/)",
-  "license": "MIT",
   "dependencies": {
     "bs58": "^4.0.1",
     "cids": "~0.7.0",
@@ -43,14 +54,14 @@
     "chai": "^4.2.0",
     "pre-commit": "^1.2.2"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ipfs/is-ipfs.git"
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
   },
-  "bugs": {
-    "url": "https://github.com/ipfs/is-ipfs/issues"
-  },
-  "homepage": "https://github.com/ipfs/is-ipfs",
+  "pre-commit": [
+    "test",
+    "lint"
+  ],
   "contributors": [
     "Alan Shaw <alan.shaw@protocol.ai>",
     "David Dias <daviddias.p@gmail.com>",
