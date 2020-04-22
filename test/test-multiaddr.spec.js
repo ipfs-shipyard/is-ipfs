@@ -1,6 +1,7 @@
 /* eslint-env mocha */
 'use strict'
 
+const { Buffer } = require('buffer')
 const expect = require('chai').expect
 const Multiaddr = require('multiaddr')
 const isIPFS = require('../src/index')
