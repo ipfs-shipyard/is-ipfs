@@ -1,3 +1,13 @@
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/ipfs/is-ipfs/compare/v1.0.0...v1.0.1) (2020-04-22)
+
+
+### Bug Fixes
+
+* remove bs58 and add buffer ([#33](https://github.com/ipfs/is-ipfs/issues/33)) ([b711186](https://github.com/ipfs/is-ipfs/commit/b711186))
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/ipfs/is-ipfs/compare/v0.6.3...v1.0.0) (2020-04-05)
 
