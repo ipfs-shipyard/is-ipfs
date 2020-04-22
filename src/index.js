@@ -1,6 +1,6 @@
 'use strict'
 
-const base58 = require('bs58')
+const { Buffer } = require('buffer')
 const multihash = require('multihashes')
 const multibase = require('multibase')
 const Multiaddr = require('multiaddr')
@@ -24,8 +24,7 @@ const fqdnWithTld = /^(([a-z0-9]|[a-z0-9][a-z0-9-]*[a-z0-9])\.)+([a-z0-9]|[a-z0-
 function isMultihash (hash) {
   const formatted = convertToString(hash)
   try {
-    const buffer = Buffer.from(base58.decode(formatted))
-    multihash.decode(buffer)
+    multihash.decode(multibase.decode('z' + formatted))
     return true
   } catch (e) {
     return false
@@ -134,7 +133,7 @@ function isString (input) {
 
 function convertToString (input) {
   if (Buffer.isBuffer(input)) {
-    return base58.encode(input)
+    return multibase.encode('base58btc', input).toString().slice(1)
   }
 
   if (isString(input)) {

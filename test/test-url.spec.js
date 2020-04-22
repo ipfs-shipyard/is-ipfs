@@ -1,6 +1,7 @@
 /* eslint-env mocha */
 'use strict'
 
+const { Buffer } = require('buffer')
 const base58 = require('bs58')
 const expect = require('chai').expect
 const isIPFS = require('../src/index')
