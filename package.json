@@ -50,7 +50,7 @@
     "multihashes": "~0.4.19"
   },
   "devDependencies": {
-    "aegir": "^21.4.5",
+    "aegir": "^21.10.1",
     "bs58": "^4.0.1",
     "chai": "^4.2.0",
     "pre-commit": "^1.2.2"
