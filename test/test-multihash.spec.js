@@ -12,13 +12,13 @@ describe('ipfs multihash', () => {
     done()
   })
 
-  it('isIPFS.multihash should match a valid multihash buffer', (done) => {
+  it('isIPFS.multihash should match a valid multihash Uint8Array', (done) => {
     const actual = isIPFS.multihash(uint8ArrayFromString('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o', 'base58btc'))
     expect(actual).to.equal(true)
     done()
   })
 
-  it('isIPFS.multihash should not match a buffer', (done) => {
+  it('isIPFS.multihash should not match a Uint8Array', (done) => {
     const actual = isIPFS.multihash(uint8ArrayFromString('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE70'))
     expect(actual).to.equal(false)
     done()

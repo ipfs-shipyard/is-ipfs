@@ -20,13 +20,13 @@ describe('ipfs cid', () => {
     done()
   })
 
-  it('isIPFS.cid should match a valid CIDv0 (multihash) buffer', (done) => {
+  it('isIPFS.cid should match a valid CIDv0 (multihash) Uint8Array', (done) => {
     const actual = isIPFS.cid(uint8ArrayFromString('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o', 'base58btc'))
     expect(actual).to.equal(true)
     done()
   })
 
-  it('isIPFS.cid should not match a broken CIDv0 buffer', (done) => {
+  it('isIPFS.cid should not match a broken CIDv0 Uint8Array', (done) => {
     const actual = isIPFS.cid(uint8ArrayFromString('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE70'))
     expect(actual).to.equal(false)
     done()

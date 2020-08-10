@@ -34,7 +34,7 @@ describe('ipfs multiaddr', () => {
   })
 
   it('isIPFS.multiaddr should not match random Uint8Array', (done) => {
-    const actual = isIPFS.multiaddr(uint8ArrayFromString('randombuffer'))
+    const actual = isIPFS.multiaddr(uint8ArrayFromString('randomUint8Array'))
     expect(actual).to.equal(false)
     done()
   })
@@ -121,7 +121,7 @@ describe('ipfs peerMultiaddr', () => {
   })
 
   it('isIPFS.peerMultiaddr should not match random Uint8Array', (done) => {
-    const actual = isIPFS.peerMultiaddr(uint8ArrayFromString('randombuffer'))
+    const actual = isIPFS.peerMultiaddr(uint8ArrayFromString('randomUint8Array'))
     expect(actual).to.equal(false)
     done()
   })

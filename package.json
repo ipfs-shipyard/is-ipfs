@@ -41,7 +41,6 @@
     "coverage-publish": "aegir coverage --upload"
   },
   "dependencies": {
-    "buffer": "^5.6.0",
     "cids": "^1.0.0",
     "iso-url": "~0.4.7",
     "mafmt": "^8.0.0",
