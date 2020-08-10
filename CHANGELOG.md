@@ -1,3 +1,20 @@
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/ipfs/is-ipfs/compare/v1.0.3...v2.0.0) (2020-08-10)
+
+
+### Bug Fixes
+
+* replace node buffers with uint8arrays ([#34](https://github.com/ipfs/is-ipfs/issues/34)) ([ac5ec19](https://github.com/ipfs/is-ipfs/commit/ac5ec19))
+
+
+### BREAKING CHANGES
+
+* this module now only has deps that use Uint8Arrays and not Buffers
+
+Co-authored-by: Marcin Rataj <lidel@lidel.org>
+
+
+
 <a name="1.0.3"></a>
 ## [1.0.3](https://github.com/ipfs/is-ipfs/compare/v1.0.2...v1.0.3) (2020-04-22)
 
