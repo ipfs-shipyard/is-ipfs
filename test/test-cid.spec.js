@@ -1,11 +1,10 @@
 /* eslint-env mocha */
 'use strict'
 
-const { Buffer } = require('buffer')
-const base58 = require('bs58')
-const expect = require('chai').expect
+const { expect } = require('aegir/utils/chai')
 const isIPFS = require('../src/index')
 const CID = require('cids')
+const uint8ArrayFromString = require('uint8arrays/from-string')
 
 describe('ipfs cid', () => {
   it('isIPFS.cid should match a valid CID instance', (done) => {
@@ -22,13 +21,13 @@ describe('ipfs cid', () => {
   })
 
   it('isIPFS.cid should match a valid CIDv0 (multihash) buffer', (done) => {
-    const actual = isIPFS.cid(Buffer.from(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
+    const actual = isIPFS.cid(uint8ArrayFromString('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o', 'base58btc'))
     expect(actual).to.equal(true)
     done()
   })
 
   it('isIPFS.cid should not match a broken CIDv0 buffer', (done) => {
-    const actual = isIPFS.cid(Buffer.from('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE70'))
+    const actual = isIPFS.cid(uint8ArrayFromString('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE70'))
     expect(actual).to.equal(false)
     done()
   })

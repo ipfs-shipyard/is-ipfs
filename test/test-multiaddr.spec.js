@@ -1,10 +1,10 @@
 /* eslint-env mocha */
 'use strict'
 
-const { Buffer } = require('buffer')
-const expect = require('chai').expect
+const { expect } = require('aegir/utils/chai')
 const Multiaddr = require('multiaddr')
 const isIPFS = require('../src/index')
+const uint8ArrayFromString = require('uint8arrays/from-string')
 
 describe('ipfs multiaddr', () => {
   it('isIPFS.multiaddr should match a string with valid ip4 multiaddr', (done) => {
@@ -26,15 +26,15 @@ describe('ipfs multiaddr', () => {
     done()
   })
 
-  it('isIPFS.multiaddr should match a Buffer with multiaddr', (done) => {
+  it('isIPFS.multiaddr should match a Uint8Array with multiaddr', (done) => {
     const ma = new Multiaddr('/ip6/::1/udp/1234/http')
-    const actual = isIPFS.multiaddr(Buffer.from(ma.buffer))
+    const actual = isIPFS.multiaddr(ma.bytes)
     expect(actual).to.equal(true)
     done()
   })
 
-  it('isIPFS.multiaddr should not match random Buffer', (done) => {
-    const actual = isIPFS.multiaddr(Buffer.from('randombuffer'))
+  it('isIPFS.multiaddr should not match random Uint8Array', (done) => {
+    const actual = isIPFS.multiaddr(uint8ArrayFromString('randombuffer'))
     expect(actual).to.equal(false)
     done()
   })
@@ -111,17 +111,17 @@ describe('ipfs peerMultiaddr', () => {
     done()
   })
 
-  it('isIPFS.peerMultiaddr should match a Buffer with multiaddr', (done) => {
+  it('isIPFS.peerMultiaddr should match a Uint8Array with multiaddr', (done) => {
     for (const addr of validPeerMultiaddrs) {
       const ma = new Multiaddr(addr)
-      const actual = isIPFS.peerMultiaddr((Buffer.from(ma.buffer)))
+      const actual = isIPFS.peerMultiaddr(ma.bytes)
       expect(actual, `isIPFS.peerMultiaddr(${addr})`).to.equal(true)
     }
     done()
   })
 
-  it('isIPFS.peerMultiaddr should not match random Buffer', (done) => {
-    const actual = isIPFS.peerMultiaddr(Buffer.from('randombuffer'))
+  it('isIPFS.peerMultiaddr should not match random Uint8Array', (done) => {
+    const actual = isIPFS.peerMultiaddr(uint8ArrayFromString('randombuffer'))
     expect(actual).to.equal(false)
     done()
   })

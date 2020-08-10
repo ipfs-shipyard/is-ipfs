@@ -1,10 +1,9 @@
 /* eslint-env mocha */
 'use strict'
 
-const { Buffer } = require('buffer')
-const base58 = require('bs58')
 const isIPFS = require('../src/index')
-const expect = require('chai').expect
+const { expect } = require('aegir/utils/chai')
+const uint8ArrayFromString = require('uint8arrays/from-string')
 
 describe('ipfs path', () => {
   it('isIPFS.ipfsPath should match an ipfs path', (done) => {
@@ -37,8 +36,8 @@ describe('ipfs path', () => {
     done()
   })
 
-  it('isIPFS.ipfsPath should not match a buffer data type', (done) => {
-    const actual = isIPFS.ipfsPath(Buffer.from(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
+  it('isIPFS.ipfsPath should not match a Uint8Array data type', (done) => {
+    const actual = isIPFS.ipfsPath(uint8ArrayFromString('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o', 'base58btc'))
     expect(actual).to.equal(false)
     done()
   })
@@ -67,8 +66,8 @@ describe('ipfs path', () => {
     done()
   })
 
-  it('isIPFS.ipnsPath should not match a buffer data type', (done) => {
-    const actual = isIPFS.ipnsPath(Buffer.from(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
+  it('isIPFS.ipnsPath should not match a Uint8Array data type', (done) => {
+    const actual = isIPFS.ipnsPath(uint8ArrayFromString('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o', 'base58btc'))
     expect(actual).to.equal(false)
     done()
   })
@@ -97,8 +96,8 @@ describe('ipfs path', () => {
     done()
   })
 
-  it('isIPFS.path should not match a buffer data type', (done) => {
-    const actual = isIPFS.path(Buffer.from(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
+  it('isIPFS.path should not match a Uint8Array data type', (done) => {
+    const actual = isIPFS.path(uint8ArrayFromString('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o', 'base58btc'))
     expect(actual).to.equal(false)
     done()
   })
@@ -127,8 +126,8 @@ describe('ipfs path', () => {
     done()
   })
 
-  it('isIPFS.urlOrPath should not match a buffer data type', (done) => {
-    const actual = isIPFS.ipfsPath(Buffer.from(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
+  it('isIPFS.urlOrPath should not match a Uint8Array data type', (done) => {
+    const actual = isIPFS.ipfsPath(uint8ArrayFromString('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o', 'base58btc'))
     expect(actual).to.equal(false)
     done()
   })

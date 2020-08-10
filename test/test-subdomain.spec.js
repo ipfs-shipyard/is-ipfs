@@ -1,10 +1,9 @@
 /* eslint-env mocha */
 'use strict'
 
-const { Buffer } = require('buffer')
-const base58 = require('bs58')
 const isIPFS = require('../src/index')
-const expect = require('chai').expect
+const { expect } = require('aegir/utils/chai')
+const uint8ArrayFromString = require('uint8arrays/from-string')
 
 describe('ipfs subdomain', () => {
   it('isIPFS.ipfsSubdomain should match a cidv1b32', (done) => {
@@ -48,8 +47,8 @@ describe('ipfs subdomain', () => {
     done()
   })
 
-  it('isIPFS.ipfsSubdomain should not match a buffer data type', (done) => {
-    const actual = isIPFS.ipfsSubdomain(Buffer.from(base58.decode('QmbWqxBEKC3P8tqsKc98xmWNzrzDtRLMiMPL8wBuTGsMnR')))
+  it('isIPFS.ipfsSubdomain should not match a Uint8Array data type', (done) => {
+    const actual = isIPFS.ipfsSubdomain(uint8ArrayFromString('QmbWqxBEKC3P8tqsKc98xmWNzrzDtRLMiMPL8wBuTGsMnR', 'base58btc'))
     expect(actual).to.equal(false)
     done()
   })
@@ -81,8 +80,8 @@ describe('ipfs subdomain', () => {
     done()
   })
 
-  it('isIPFS.ipnsSubdomain should not match a buffer data type', (done) => {
-    const actual = isIPFS.ipnsSubdomain(Buffer.from(base58.decode('QmNQuBJ8tg4QN6mSLXHekxBbcToPwKxamWNrDdEugxMTDd')))
+  it('isIPFS.ipnsSubdomain should not match a Uint8Array data type', (done) => {
+    const actual = isIPFS.ipnsSubdomain(uint8ArrayFromString('QmNQuBJ8tg4QN6mSLXHekxBbcToPwKxamWNrDdEugxMTDd', 'base58btc'))
     expect(actual).to.equal(false)
     done()
   })
@@ -154,8 +153,8 @@ describe('ipfs subdomain', () => {
     done()
   })
 
-  it('isIPFS.subdomain should not match a buffer data type', (done) => {
-    const actual = isIPFS.subdomain(Buffer.from(base58.decode('QmbWqxBEKC3P8tqsKc98xmWNzrzDtRLMiMPL8wBuTGsMnR')))
+  it('isIPFS.subdomain should not match a Uint8Array data type', (done) => {
+    const actual = isIPFS.subdomain(uint8ArrayFromString('QmbWqxBEKC3P8tqsKc98xmWNzrzDtRLMiMPL8wBuTGsMnR', 'base58btc'))
     expect(actual).to.equal(false)
     done()
   })
