@@ -1,10 +1,9 @@
 /* eslint-env mocha */
 'use strict'
 
-const { Buffer } = require('buffer')
-const base58 = require('bs58')
-const expect = require('chai').expect
+const { expect } = require('aegir/utils/chai')
 const isIPFS = require('../src/index')
+const uint8ArrayFromString = require('uint8arrays/from-string')
 
 describe('ipfs url', () => {
   it('isIPFS.ipfsUrl should match an ipfs url', (done) => {
@@ -37,8 +36,8 @@ describe('ipfs url', () => {
     done()
   })
 
-  it('isIPFS.ipfsUrl should not match a buffer input', (done) => {
-    const actual = isIPFS.ipfsUrl(Buffer.from(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
+  it('isIPFS.ipfsUrl should not match a Uint8Array input', (done) => {
+    const actual = isIPFS.ipfsUrl(uint8ArrayFromString('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o', 'base58btc'))
     expect(actual).to.equal(false)
     done()
   })
@@ -67,8 +66,8 @@ describe('ipfs url', () => {
     done()
   })
 
-  it('isIPFS.ipnsUrl should not match a buffer input', (done) => {
-    const actual = isIPFS.ipnsUrl(Buffer.from(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
+  it('isIPFS.ipnsUrl should not match a Uint8Array input', (done) => {
+    const actual = isIPFS.ipnsUrl(uint8ArrayFromString('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o', 'base58btc'))
     expect(actual).to.equal(false)
     done()
   })
@@ -97,8 +96,8 @@ describe('ipfs url', () => {
     done()
   })
 
-  it('isIPFS.url should not match a buffer input', (done) => {
-    const actual = isIPFS.url(Buffer.from(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
+  it('isIPFS.url should not match a Uint8Array input', (done) => {
+    const actual = isIPFS.url(uint8ArrayFromString('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o', 'base58btc'))
     expect(actual).to.equal(false)
     done()
   })

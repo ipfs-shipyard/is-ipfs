@@ -1,12 +1,12 @@
 'use strict'
 
-const { Buffer } = require('buffer')
 const multihash = require('multihashes')
 const multibase = require('multibase')
 const Multiaddr = require('multiaddr')
 const mafmt = require('mafmt')
 const CID = require('cids')
 const { URL } = require('iso-url')
+const uint8ArrayToString = require('uint8arrays/to-string')
 
 const pathGatewayPattern = /^https?:\/\/[^/]+\/(ip[fn]s)\/([^/?#]+)/
 const pathPattern = /^\/(ip[fn]s)\/([^/?#]+)/
@@ -132,8 +132,8 @@ function isString (input) {
 }
 
 function convertToString (input) {
-  if (Buffer.isBuffer(input)) {
-    return multibase.encode('base58btc', input).toString().slice(1)
+  if (input instanceof Uint8Array) {
+    return uint8ArrayToString(input, 'base58btc')
   }
 
   if (isString(input)) {

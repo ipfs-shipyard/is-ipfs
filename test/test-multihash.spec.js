@@ -1,10 +1,9 @@
 /* eslint-env mocha */
 'use strict'
 
-const { Buffer } = require('buffer')
-const base58 = require('bs58')
-const expect = require('chai').expect
+const { expect } = require('aegir/utils/chai')
 const isIPFS = require('../src/index')
+const uint8ArrayFromString = require('uint8arrays/from-string')
 
 describe('ipfs multihash', () => {
   it('isIPFS.multihash should match a valid multihash', (done) => {
@@ -13,14 +12,14 @@ describe('ipfs multihash', () => {
     done()
   })
 
-  it('isIPFS.multihash should match a valid multihash buffer', (done) => {
-    const actual = isIPFS.multihash(Buffer.from(base58.decode('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')))
+  it('isIPFS.multihash should match a valid multihash Uint8Array', (done) => {
+    const actual = isIPFS.multihash(uint8ArrayFromString('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o', 'base58btc'))
     expect(actual).to.equal(true)
     done()
   })
 
-  it('isIPFS.multihash should not match a buffer', (done) => {
-    const actual = isIPFS.multihash(Buffer.from('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE70'))
+  it('isIPFS.multihash should not match a Uint8Array', (done) => {
+    const actual = isIPFS.multihash(uint8ArrayFromString('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE70'))
     expect(actual).to.equal(false)
     done()
   })
