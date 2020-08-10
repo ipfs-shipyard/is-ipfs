@@ -212,11 +212,11 @@ Complex validation of multiaddr can be built using `isIPFS.multiaddr` and  [`maf
 
 ### `isIPFS.multiaddr(addr)`
 
-Returns `true` if the provided `string`, [`Multiaddr`](https://github.com/multiformats/js-multiaddr) or `Buffer` represents a valid multiaddr or `false` otherwise.
+Returns `true` if the provided `string`, [`Multiaddr`](https://github.com/multiformats/js-multiaddr) or `Uint8Array` represents a valid multiaddr or `false` otherwise.
 
 ### `isIPFS.peerMultiaddr(addr)`
 
-Returns `true` if the provided `string`, [`Multiaddr`](https://github.com/multiformats/js-multiaddr) or `Buffer` represents a valid "IPFS Peer" multiaddr (matching [`IPFS` format from `mafmt`](https://github.com/multiformats/js-mafmt#api)) or `false` otherwise.
+Returns `true` if the provided `string`, [`Multiaddr`](https://github.com/multiformats/js-multiaddr) or `Uint8Array` represents a valid "IPFS Peer" multiaddr (matching [`IPFS` format from `mafmt`](https://github.com/multiformats/js-mafmt#api)) or `false` otherwise.
 
 # License
 
