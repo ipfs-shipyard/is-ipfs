@@ -110,9 +110,15 @@ describe('ipfs subdomain', () => {
     done()
   })
 
-  it('isIPFS.ipnsSubdomain should not match if *.ipns is not a fqdn with tld', (done) => {
-    const actual = isIPFS.ipnsSubdomain('http://no-fqdn-with-tld.ipns.dweb.link')
+  it('isIPFS.ipnsSubdomain should not match if *.ipns is not a valid hostname', (done) => {
+    const actual = isIPFS.ipnsSubdomain('http://invalid-hostname-.ipns.dweb.link')
     expect(actual).to.equal(false)
+    done()
+  })
+
+  it('isIPFS.ipnsSubdomain should match if *.ipns is FQDN inlined into a single DNS label', (done) => {
+    const actual = isIPFS.ipnsSubdomain('https://en-wikipedia--on--ipfs-org.ipns.dweb.link')
+    expect(actual).to.equal(true)
     done()
   })
 
@@ -148,8 +154,14 @@ describe('ipfs subdomain', () => {
   })
 
   it('isIPFS.subdomain should not match if *.ipns is not libp2pkey nor fqdn', (done) => {
-    const actual = isIPFS.subdomain('http://not-a-cid-or-dnslink.ipns.dweb.link')
+    const actual = isIPFS.subdomain('http://not-a-cid-or-valid-hostname-.ipns.dweb.link')
     expect(actual).to.equal(false)
+    done()
+  })
+
+  it('isIPFS.subdomain should match if *.ipns looks like an inlined DNSLink name', (done) => {
+    const actual = isIPFS.subdomain('http://en-wikipedia--on--ipfs-org.ipns.dweb.link')
+    expect(actual).to.equal(true)
     done()
   })
 

@@ -115,6 +115,12 @@ function isIpns (input, pattern, protocolMatch = defaultProtocolMatch, hashMatch
     if (isCID(ipnsId)) return true
     // Check if it looks like FQDN
     try {
+      if (!ipnsId.includes('.') && ipnsId.includes('-')) {
+        // name without tld, assuming its inlined into a single DNS label
+        // (https://github.com/ipfs/in-web-browsers/issues/169)
+        // en-wikipedia--on--ipfs-org → en.wikipedia-on-ipfs.org
+        ipnsId = ipnsId.replace(/--/g, '@').replace(/-/g, '.').replace(/@/g, '-')
+      }
       // URL implementation in web browsers forces lowercase of the hostname
       const { hostname } = new URL(`http://${ipnsId}`) // eslint-disable-line no-new
       // Check if potential FQDN has an explicit TLD
