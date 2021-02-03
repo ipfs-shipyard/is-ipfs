@@ -60,7 +60,7 @@ function isMultiaddr (input) {
 }
 
 function isPeerMultiaddr (input) {
-  return isMultiaddr(input) && mafmt.P2P.matches(input)
+  return isMultiaddr(input) && (mafmt.P2P.matches(input) || mafmt.DNS.matches(input))
 }
 
 function isIpfs (input, pattern, protocolMatch = defaultProtocolMatch, hashMatch = defaultHashMath) {

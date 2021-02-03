@@ -19,8 +19,14 @@ describe('ipfs multiaddr', () => {
     done()
   })
 
-  it('isIPFS.multiaddr should match a string with valid dnsaddr multiaddr', (done) => {
+  it('isIPFS.multiaddr should match a string with valid dnsaddr multiaddr (no key)', (done) => {
     const actual = isIPFS.multiaddr('/dnsaddr/bootstrap.libp2p.io')
+    expect(actual).to.equal(true)
+    done()
+  })
+
+  it('isIPFS.multiaddr should match a string with valid dnsaddr multiaddr (with key)', (done) => {
+    const actual = isIPFS.multiaddr('/dnsaddr/bootstrap.libp2p.io/p2p/QmNnooDu7bfjPFoTZYxMNLWUQJyrVwtbZg5gBMjTezGAJN')
     expect(actual).to.equal(true)
     done()
   })
@@ -97,6 +103,7 @@ describe('ipfs peerMultiaddr', () => {
     '/ip4/1.2.3.4/tcp/3456/ws/p2p-webrtc-star/p2p/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/ip4/1.2.3.4/tcp/3456/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/dnsaddr/bootstrap.libp2p.io/p2p/QmNnooDu7bfjPFoTZYxMNLWUQJyrVwtbZg5gBMjTezGAJN',
+    '/dnsaddr/bootstrap.libp2p.io',
     '/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit',
     '/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj'
   ].concat(goodCircuit)
