@@ -41,16 +41,16 @@
     "coverage-publish": "aegir coverage --upload"
   },
   "dependencies": {
-    "cids": "^1.0.0",
-    "iso-url": "~0.4.7",
-    "mafmt": "^8.0.0",
-    "multiaddr": "^8.0.0",
-    "multibase": "^3.0.0",
+    "cids": "^1.0.2",
+    "iso-url": "^1.0.0",
+    "mafmt": "^8.0.1",
+    "multiaddr": "^8.1.1",
+    "multibase": "^3.0.1",
     "multihashes": "^3.0.1",
     "uint8arrays": "^1.1.0"
   },
   "devDependencies": {
-    "aegir": "^25.0.0",
+    "aegir": "^28.1.0",
     "pre-commit": "^1.2.2"
   },
   "engines": {
