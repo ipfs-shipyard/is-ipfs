@@ -1,3 +1,13 @@
+# [3.0.0](https://github.com/ipfs/is-ipfs/compare/v2.0.0...v3.0.0) (2021-02-03)
+
+
+### Features
+
+* dnsaddr support in peerMultiaddr ([#35](https://github.com/ipfs/is-ipfs/issues/35)) ([4a4710d](https://github.com/ipfs/is-ipfs/commit/4a4710d13b546d8271c6b5f60f214c9010139666))
+* **subdomain:** support inlined DNSLink names ([#36](https://github.com/ipfs/is-ipfs/issues/36)) ([7ab7125](https://github.com/ipfs/is-ipfs/commit/7ab712538fa9a8aee4a3d2cd3496371a8cf0e78b))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/ipfs/is-ipfs/compare/v1.0.3...v2.0.0) (2020-08-10)
 
