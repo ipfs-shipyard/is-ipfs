@@ -102,7 +102,8 @@ isIPFS.ipnsSubdomain('http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j5
 isIPFS.ipnsSubdomain('http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j52f6xwc6q.dweb.link') // false
 isIPFS.ipnsSubdomain('http://QmcNioXSC1bfJj1dcFErhUfyjFzoX2HodkRccsFFVJJvg8.ipns.dweb.link') // false
 isIPFS.ipnsSubdomain('http://en.wikipedia-on-ipfs.org.ipns.localhost:8080') // true (assuming DNSLink)
-isIPFS.ipnsSubdomain('http://hostname-without-tld.ipns.dweb.link') // false (missing TLD)
+isIPFS.ipnsSubdomain('http://en-wikipedia--on--ipfs-org.ipns.localhost:8080') // true (assuming inlined DNSLink)
+isIPFS.ipnsSubdomain('http://hostname-without-tld-.ipns.dweb.link') // false (not a CID, invalid DNS label)
 
 isIPFS.multiaddr('/ip4/127.0.0.1/udp/1234') // true
 isIPFS.multiaddr('/ip4/127.0.0.1/udp/1234/http') // true
