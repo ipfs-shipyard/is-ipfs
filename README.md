@@ -219,7 +219,7 @@ Returns `true` if the provided `string`, [`Multiaddr`](https://github.com/multif
 
 ### `isIPFS.peerMultiaddr(addr)`
 
-Returns `true` if the provided `string`, [`Multiaddr`](https://github.com/multiformats/js-multiaddr) or `Uint8Array` represents a valid libp2p peer multiaddr (matching [`P2P` format from `mafmt`](https://github.com/multiformats/js-mafmt#api)) or `false` otherwise.
+Returns `true` if the provided `string`, [`Multiaddr`](https://github.com/multiformats/js-multiaddr) or `Uint8Array` represents a valid libp2p peer multiaddr (matching [`P2P` or `DNS` format from `mafmt`](https://github.com/multiformats/js-mafmt#api)) or `false` otherwise.
 
 # License
 
