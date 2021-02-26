@@ -148,6 +148,7 @@ describe('ipfs path', () => {
   })
 
   it('isIPFS.cidPath should not match a non string', () => {
+    // @ts-ignore data type is invalid
     const actual = isIPFS.cidPath({ toString: () => 'QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm/path/to/file' })
     expect(actual).to.equal(false)
   })

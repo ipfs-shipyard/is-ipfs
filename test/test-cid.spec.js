@@ -101,6 +101,7 @@ describe('ipfs base32cid', () => {
   })
 
   it('isIPFS.base32cid should not match an invalid CID data type', (done) => {
+    // @ts-ignore data type is invalid
     const actual = isIPFS.base32cid(4)
     expect(actual).to.equal(false)
     done()

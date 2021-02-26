@@ -5,6 +5,7 @@ const multibase = require('multibase')
 const Multiaddr = require('multiaddr')
 const mafmt = require('mafmt')
 const CID = require('cids')
+// @ts-ignore
 const { URL } = require('iso-url')
 const uint8ArrayToString = require('uint8arrays/to-string')
 
@@ -21,6 +22,9 @@ const subdomainProtocolMatch = 2
 // Fully qualified domain name (FQDN) that has an explicit .tld suffix
 const fqdnWithTld = /^(([a-z0-9]|[a-z0-9][a-z0-9-]*[a-z0-9])\.)+([a-z0-9]|[a-z0-9][a-z0-9-]*[a-z0-9])$/
 
+/**
+ * @param {*} hash
+ */
 function isMultihash (hash) {
   const formatted = convertToString(hash)
   try {
@@ -31,6 +35,9 @@ function isMultihash (hash) {
   }
 }
 
+/**
+ * @param {*} hash
+ */
 function isMultibase (hash) {
   try {
     return multibase.isEncoded(hash)
@@ -39,6 +46,9 @@ function isMultibase (hash) {
   }
 }
 
+/**
+ * @param {*} hash
+ */
 function isCID (hash) {
   try {
     new CID(hash) // eslint-disable-line no-new
@@ -48,6 +58,9 @@ function isCID (hash) {
   }
 }
 
+/**
+ * @param {*} input
+ */
 function isMultiaddr (input) {
   if (!input) return false
   if (Multiaddr.isMultiaddr(input)) return true
@@ -59,10 +72,19 @@ function isMultiaddr (input) {
   }
 }
 
+/**
+ * @param {string | Uint8Array | Multiaddr} input
+ */
 function isPeerMultiaddr (input) {
   return isMultiaddr(input) && (mafmt.P2P.matches(input) || mafmt.DNS.matches(input))
 }
 
+/**
+ * @param {string | Uint8Array} input
+ * @param {RegExp | string} pattern
+ * @param {number} [protocolMatch=1]
+ * @param {number} [hashMatch=2]
+ */
 function isIpfs (input, pattern, protocolMatch = defaultProtocolMatch, hashMatch = defaultHashMath) {
   const formatted = convertToString(input)
   if (!formatted) {
@@ -83,14 +105,21 @@ function isIpfs (input, pattern, protocolMatch = defaultProtocolMatch, hashMatch
   if (hash && pattern === subdomainGatewayPattern) {
     // when doing checks for subdomain context
     // ensure hash is case-insensitive
-    // (browsers force-lowercase authority compotent anyway)
+    // (browsers force-lowercase authority competent anyway)
     hash = hash.toLowerCase()
   }
 
   return isCID(hash)
 }
 
-function isIpns (input, pattern, protocolMatch = defaultProtocolMatch, hashMatch) {
+/**
+ *
+ * @param {string | Uint8Array} input
+ * @param {string | RegExp} pattern
+ * @param {number} [protocolMatch=1]
+ * @param {number} [hashMatch=1]
+ */
+function isIpns (input, pattern, protocolMatch = defaultProtocolMatch, hashMatch = defaultHashMath) {
   const formatted = convertToString(input)
   if (!formatted) {
     return false
@@ -133,10 +162,16 @@ function isIpns (input, pattern, protocolMatch = defaultProtocolMatch, hashMatch
   return true
 }
 
+/**
+ * @param {any} input
+ */
 function isString (input) {
   return typeof input === 'string'
 }
 
+/**
+ * @param {Uint8Array | string} input
+ */
 function convertToString (input) {
   if (input instanceof Uint8Array) {
     return uint8ArrayToString(input, 'base58btc')
@@ -149,14 +184,35 @@ function convertToString (input) {
   return false
 }
 
+/**
+ * @param {string | Uint8Array} url
+ */
 const ipfsSubdomain = (url) => isIpfs(url, subdomainGatewayPattern, subdomainProtocolMatch, subdomainIdMatch)
+/**
+ * @param {string | Uint8Array} url
+ */
 const ipnsSubdomain = (url) => isIpns(url, subdomainGatewayPattern, subdomainProtocolMatch, subdomainIdMatch)
+/**
+ * @param {string | Uint8Array} url
+ */
 const subdomain = (url) => ipfsSubdomain(url) || ipnsSubdomain(url)
 
+/**
+ * @param {string | Uint8Array} url
+ */
 const ipfsUrl = (url) => isIpfs(url, pathGatewayPattern) || ipfsSubdomain(url)
+/**
+ * @param {string | Uint8Array} url
+ */
 const ipnsUrl = (url) => isIpns(url, pathGatewayPattern) || ipnsSubdomain(url)
+/**
+ * @param {string | Uint8Array} url
+ */
 const url = (url) => ipfsUrl(url) || ipnsUrl(url) || subdomain(url)
 
+/**
+ * @param {string | Uint8Array} path
+ */
 const path = (path) => isIpfs(path, pathPattern) || isIpns(path, pathPattern)
 
 module.exports = {
@@ -164,6 +220,9 @@ module.exports = {
   multiaddr: isMultiaddr,
   peerMultiaddr: isPeerMultiaddr,
   cid: isCID,
+  /**
+   * @param {CID | string | Uint8Array} cid
+   */
   base32cid: (cid) => (isMultibase(cid) === 'base32' && isCID(cid)),
   ipfsSubdomain,
   ipnsSubdomain,
@@ -173,10 +232,22 @@ module.exports = {
   ipnsUrl,
   url,
   pathGatewayPattern: pathGatewayPattern,
+  /**
+   * @param {string | Uint8Array} path
+   */
   ipfsPath: (path) => isIpfs(path, pathPattern),
+  /**
+   * @param {string | Uint8Array} path
+   */
   ipnsPath: (path) => isIpns(path, pathPattern),
   path,
   pathPattern,
+  /**
+   * @param {string | Uint8Array} x
+   */
   urlOrPath: (x) => url(x) || path(x),
+  /**
+   * @param {string | Uint8Array | CID} path
+   */
   cidPath: path => isString(path) && !isCID(path) && isIpfs(`/ipfs/${path}`, pathPattern)
 }

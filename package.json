@@ -29,6 +29,7 @@
     "url": "https://github.com/ipfs/is-ipfs.git"
   },
   "scripts": {
+    "prepare": "aegir build --no-bundle",
     "test:node": "aegir test --target node",
     "test:browser": "aegir test --target browser",
     "test": "aegir test",
@@ -36,7 +37,7 @@
     "release": "aegir release",
     "release-minor": "aegir release --type minor",
     "release-major": "aegir release --type major",
-    "build": "aegir build",
+    "prepublishOnly": "aegir build",
     "coverage": "aegir coverage",
     "coverage-publish": "aegir coverage --upload"
   },
@@ -50,7 +51,7 @@
     "uint8arrays": "^2.0.5"
   },
   "devDependencies": {
-    "aegir": "^30.3.0",
+    "aegir": "^31.0.0",
     "pre-commit": "^1.2.2"
   },
   "engines": {

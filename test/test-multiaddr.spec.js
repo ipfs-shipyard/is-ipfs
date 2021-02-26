@@ -159,6 +159,7 @@ describe('ipfs peerMultiaddr', () => {
   })
 
   it('isIPFS.peerMultiaddr should not match an invalid multiaddr data type', (done) => {
+    // @ts-ignore data type is invalid
     const actual = isIPFS.peerMultiaddr(4)
     expect(actual).to.equal(false)
     done()
