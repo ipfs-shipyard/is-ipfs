@@ -105,7 +105,7 @@ function isIpfs (input, pattern, protocolMatch = defaultProtocolMatch, hashMatch
   if (hash && pattern === subdomainGatewayPattern) {
     // when doing checks for subdomain context
     // ensure hash is case-insensitive
-    // (browsers force-lowercase authority competent anyway)
+    // (browsers force-lowercase authority component anyway)
     hash = hash.toLowerCase()
   }
 
