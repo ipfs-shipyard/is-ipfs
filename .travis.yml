@@ -1,5 +1,6 @@
 language: node_js
 cache: npm
+dist: bionic
 stages:
   - check
   - test
