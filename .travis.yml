@@ -39,7 +39,7 @@ jobs:
       name: firefox
       addons:
         firefox: latest
-      script: npx aegir test -t browser -t webworker -- --browser Firefox
+      script: npx aegir test -t browser -t webworker -- --browser firefox
 
     - stage: test
       name: electron-main
