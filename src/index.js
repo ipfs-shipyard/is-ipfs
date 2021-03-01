@@ -5,7 +5,6 @@ const multibase = require('multibase')
 const Multiaddr = require('multiaddr')
 const mafmt = require('mafmt')
 const CID = require('cids')
-// @ts-ignore
 const { URL } = require('iso-url')
 const uint8ArrayToString = require('uint8arrays/to-string')
 
