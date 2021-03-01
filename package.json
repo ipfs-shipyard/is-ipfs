@@ -36,10 +36,7 @@
     "lint": "aegir lint && aegir lint-package-json",
     "release": "aegir release",
     "release-minor": "aegir release --type minor",
-    "release-major": "aegir release --type major",
-    "prepublishOnly": "aegir build",
-    "coverage": "aegir coverage",
-    "coverage-publish": "aegir coverage --upload"
+    "release-major": "aegir release --type major"
   },
   "dependencies": {
     "cids": "^1.1.5",
