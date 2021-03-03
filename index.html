@@ -1,45 +1,313 @@
 <!doctype html>
-<html lang="en">
+<html class="default no-js">
 <head>
-  <meta charset='utf-8'>
-  <title>is-ipfs 2.0.0 | Documentation</title>
-  <meta name='description' content='A set of utilities to help identify IPFS resources on the web'>
-  <meta name='viewport' content='width=device-width,initial-scale=1'>
-  <link href='assets/bass.css' rel='stylesheet'>
-  <link href='assets/style.css' rel='stylesheet'>
-  <link href='assets/github.css' rel='stylesheet'>
-  <link href='assets/split.css' rel='stylesheet'>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>is-ipfs - v4.0.0</title>
+	<meta name="description" content="Documentation for is-ipfs - v4.0.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
 </head>
-<body class='documentation m0'>
-    <div class='flex'>
-      <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
-        <div class='py1 px2'>
-          <h3 class='mb0 no-anchor'>is-ipfs</h3>
-          <div class='mb1'><code>2.0.0</code></div>
-          <input
-            placeholder='Filter'
-            id='filter-input'
-            class='col12 block input'
-            spellcheck='false'
-            autocapitalize='off'
-            autocorrect='off'
-            type='text' />
-          <div id='toc'>
-            <ul class='list-reset h5 py1-ul'>
-              
-            </ul>
-          </div>
-          <div class='mt1 h6 quiet'>
-            <a href='https://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
-          </div>
-        </div>
-      </div>
-      <div id='split-right' class='relative overflow-auto height-viewport-100'>
-        
-      </div>
-    </div>
-  <script src='assets/anchor.js'></script>
-  <script src='assets/split.js'></script>
-  <script src='assets/site.js'></script>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">is-ipfs - v4.0.0</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>is-ipfs - v4.0.0</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#is-ipfs-🕵️" id="is-ipfs-🕵️" style="color: inherit; text-decoration: none;">
+					<h1>is-ipfs 🕵️</h1>
+				</a>
+				<p><a href="https://github.com/ipfs/is-ipfs/releases/latest"><img src="https://img.shields.io/github/release/ipfs/is-ipfs.svg" alt=""></a>
+				<a href="https://webchat.freenode.net/?channels=%23ipfs"><img src="https://img.shields.io/badge/freenode-%23ipfs-blue.svg?style=flat-square" alt=""></a></p>
+				<blockquote>
+					<p>A set of utilities to help identify <a href="https://ipfs.io/">IPFS</a> resources</p>
+				</blockquote>
+				<a href="#lead-maintainer" id="lead-maintainer" style="color: inherit; text-decoration: none;">
+					<h2>Lead Maintainer</h2>
+				</a>
+				<p><a href="https://github.com/lidel">Marcin Rataj</a></p>
+				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
+					<h1>Install</h1>
+				</a>
+				<a href="#in-nodejs-through-npm" id="in-nodejs-through-npm" style="color: inherit; text-decoration: none;">
+					<h3>In Node.js through npm</h3>
+				</a>
+				<pre><code class="language-bash"><span style="color: #000000">$ npm install --save is-ipfs</span>
+</code></pre>
+				<a href="#browser-browserify-webpack-other-bundlers" id="browser-browserify-webpack-other-bundlers" style="color: inherit; text-decoration: none;">
+					<h3>Browser: Browserify, Webpack, other bundlers</h3>
+				</a>
+				<p>The code published to npm that gets loaded on require is in fact an ES5 transpiled version with the right shims added. This means that you can require it and use with your favorite bundler without having to adjust asset management process.</p>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">isIPFS</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;is-ipfs&#039;</span><span style="color: #000000">)</span>
+</code></pre>
+				<a href="#in-the-browser-through-ltscriptgt-tag" id="in-the-browser-through-ltscriptgt-tag" style="color: inherit; text-decoration: none;">
+					<h3>In the Browser through <code>&lt;script&gt;</code> tag</h3>
+				</a>
+				<p>Loading this module through a script tag will make the <code>IsIpfs</code> obj available in the global namespace.</p>
+				<pre><code class="language-html"><span style="color: #800000">&lt;script</span><span style="color: #000000FF"> </span><span style="color: #FF0000">src</span><span style="color: #000000FF">=</span><span style="color: #0000FF">&quot;https://unpkg.com/is-ipfs/dist/index.min.js&quot;</span><span style="color: #800000">&gt;&lt;/script&gt;</span>
+<span style="color: #008000">&lt;!-- OR --&gt;</span>
+<span style="color: #800000">&lt;script</span><span style="color: #000000FF"> </span><span style="color: #FF0000">src</span><span style="color: #000000FF">=</span><span style="color: #0000FF">&quot;https://unpkg.com/is-ipfs/dist/index.js&quot;</span><span style="color: #800000">&gt;&lt;/script&gt;</span>
+</code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h1>Usage</h1>
+				</a>
+				<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">isIPFS</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;is-ipfs&#039;</span><span style="color: #000000">)</span>
+
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">multihash</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">multihash</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;noop&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false</span>
+
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">cid</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true (CIDv0)</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">cid</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;bafybeiasb5vpmaounyilfuxbd3lryvosl4yefqrfahsb2esg46q6tu6y5q&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true (CIDv1 in Base32)</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">cid</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;zdj7WWeQ43G6JJvLWQWZpyHuAMq6uYWRjkBXFad11vE2LHhQ7&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true (CIDv1 in Base58btc)</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">cid</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;noop&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false</span>
+
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">base32cid</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">base32cid</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false</span>
+
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">url</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">url</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://ipfs.io/ipfs/QmbWqxBEKC3P8tqsKc98xmWNzrzDtRLMiMPL8wBuTGsMnR?filename=guardian.jpg&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">url</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://ipfs.io/ipns/github.com&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">url</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.ipfs.dweb.link&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">url</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://en.wikipedia-on-ipfs.org.ipfs.localhost:8080&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">url</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://github.com/ipfs/js-ipfs/blob/master/README.md&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">url</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://google.com&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false</span>
+
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">path</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">path</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/ipfs/QmbcBPAwCDxRMB1Qe7CRQmxdrTSkxKwM9y6rZw2FjGtbsb/?weird-filename=test.jpg&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">path</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/ipns/github.com&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">path</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/ipfs/js-ipfs/blob/master/README.md&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false</span>
+
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">urlOrPath</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">urlOrPath</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://ipfs.io/ipns/github.com&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">urlOrPath</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">urlOrPath</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/ipns/github.com&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">urlOrPath</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.ipfs.dweb.link&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">urlOrPath</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://google.com&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false</span>
+
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">ipfsUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">ipfsUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://ipfs.io/ipfs/invalid-hash&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false</span>
+
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">ipnsUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">ipnsUrl</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://ipfs.io/ipns/github.com&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">ipfsPath</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">ipfsPath</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/ipfs/invalid-hash&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false</span>
+
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">ipnsPath</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">ipnsPath</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/ipns/github.com&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">cidPath</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o/path/to/file&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">cidPath</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o/&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">cidPath</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">cidPath</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">cidPath</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o/file&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false</span>
+
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">subdomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.ipfs.dweb.link&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">subdomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j52f6xwc6q.ipns.dweb.link&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">subdomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://www.bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.ipfs.dweb.link&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">subdomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.dweb.link&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false</span>
+
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">ipfsSubdomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.ipfs.dweb.link&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">ipfsSubdomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.dweb.link&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false</span>
+
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">ipnsSubdomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j52f6xwc6q.ipns.dweb.link&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">ipnsSubdomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j52f6xwc6q.dweb.link&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">ipnsSubdomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://QmcNioXSC1bfJj1dcFErhUfyjFzoX2HodkRccsFFVJJvg8.ipns.dweb.link&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">ipnsSubdomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://en.wikipedia-on-ipfs.org.ipns.localhost:8080&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true (assuming DNSLink)</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">ipnsSubdomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://en-wikipedia--on--ipfs-org.ipns.localhost:8080&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true (assuming inlined DNSLink)</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">ipnsSubdomain</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://hostname-without-tld-.ipns.dweb.link&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false (not a CID, invalid DNS label)</span>
+
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">multiaddr</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/ip4/127.0.0.1/udp/1234&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">multiaddr</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/ip4/127.0.0.1/udp/1234/http&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">multiaddr</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/ip6/::1/udp/1234&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">multiaddr</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;ip6/::1/udp/1234&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">multiaddr</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/yoloinvalid/::1/udp/1234&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false</span>
+
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">peerMultiaddr</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/p2p/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">peerMultiaddr</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true (legacy notation)</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">peerMultiaddr</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/ip4/127.0.0.1/tcp/1234/ws/p2p/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">peerMultiaddr</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/p2p/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit/p2p/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">peerMultiaddr</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/dnsaddr/bootstrap.libp2p.io&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false (key missing, needs additional DNS lookup to tell if this is valid)</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">peerMultiaddr</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/dnsaddr/bootstrap.libp2p.io/p2p/QmNnooDu7bfjPFoTZYxMNLWUQJyrVwtbZg5gBMjTezGAJN&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// true (key present, ip and port can be resolved later)</span>
+<span style="color: #001080">isIPFS</span><span style="color: #000000">.</span><span style="color: #795E26">peerMultiaddr</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/ip4/127.0.0.1/udp/1234&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// false (key missing)</span>
+</code></pre>
+				<a href="#api" id="api" style="color: inherit; text-decoration: none;">
+					<h1>API</h1>
+				</a>
+				<p>A suite of util methods that provides efficient validation.</p>
+				<p>Detection of IPFS Paths and identifiers in URLs is a two-stage process:</p>
+				<ol>
+					<li> <code>pathPattern</code>/<code>pathGatewayPattern</code>/<code>subdomainGatewayPattern</code> regex is applied to quickly identify potential candidates</li>
+					<li> proper CID validation is applied to remove false-positives</li>
+				</ol>
+				<a href="#content-identifiers" id="content-identifiers" style="color: inherit; text-decoration: none;">
+					<h2>Content Identifiers</h2>
+				</a>
+				<a href="#isipfsmultihashhash" id="isipfsmultihashhash" style="color: inherit; text-decoration: none;">
+					<h3><code>isIPFS.multihash(hash)</code></h3>
+				</a>
+				<p>Returns <code>true</code> if the provided string is a valid <code>multihash</code> or <code>false</code> otherwise.</p>
+				<a href="#isipfscidhash" id="isipfscidhash" style="color: inherit; text-decoration: none;">
+					<h3><code>isIPFS.cid(hash)</code></h3>
+				</a>
+				<p>Returns <code>true</code> if the provided string or <a href="https://github.com/ipld/js-cid"><code>CID</code></a> object represents a valid <a href="https://docs.ipfs.io/guides/concepts/cid/">CID</a> or <code>false</code> otherwise.</p>
+				<a href="#isipfsbase32cidhash" id="isipfsbase32cidhash" style="color: inherit; text-decoration: none;">
+					<h3><code>isIPFS.base32cid(hash)</code></h3>
+				</a>
+				<p>Returns <code>true</code> if the provided string is a valid <code>CID</code> in Base32 encoding or <code>false</code> otherwise.</p>
+				<a href="#urls" id="urls" style="color: inherit; text-decoration: none;">
+					<h2>URLs</h2>
+				</a>
+				<a href="#isipfsurlurl" id="isipfsurlurl" style="color: inherit; text-decoration: none;">
+					<h3><code>isIPFS.url(url)</code></h3>
+				</a>
+				<p>Returns <code>true</code> if the provided string is a valid IPFS or IPNS url or <code>false</code> otherwise.</p>
+				<a href="#isipfsipfsurlurl" id="isipfsipfsurlurl" style="color: inherit; text-decoration: none;">
+					<h3><code>isIPFS.ipfsUrl(url)</code></h3>
+				</a>
+				<p>Returns <code>true</code> if the provided string is a valid IPFS url or <code>false</code> otherwise.</p>
+				<a href="#isipfsipnsurlurl" id="isipfsipnsurlurl" style="color: inherit; text-decoration: none;">
+					<h3><code>isIPFS.ipnsUrl(url)</code></h3>
+				</a>
+				<p>Returns <code>true</code> if the provided string is a valid IPNS url or <code>false</code> otherwise.</p>
+				<a href="#paths" id="paths" style="color: inherit; text-decoration: none;">
+					<h2>Paths</h2>
+				</a>
+				<p>Standalone validation of IPFS Paths: <code>/ip(f|n)s/&lt;cid&gt;/..</code></p>
+				<a href="#isipfspathpath" id="isipfspathpath" style="color: inherit; text-decoration: none;">
+					<h3><code>isIPFS.path(path)</code></h3>
+				</a>
+				<p>Returns <code>true</code> if the provided string is a valid IPFS or IPNS path or <code>false</code> otherwise.</p>
+				<a href="#isipfsurlorpathpath" id="isipfsurlorpathpath" style="color: inherit; text-decoration: none;">
+					<h3><code>isIPFS.urlOrPath(path)</code></h3>
+				</a>
+				<p>Returns <code>true</code> if the provided string is a valid IPFS or IPNS url or path or <code>false</code> otherwise.</p>
+				<a href="#isipfsipfspathpath" id="isipfsipfspathpath" style="color: inherit; text-decoration: none;">
+					<h3><code>isIPFS.ipfsPath(path)</code></h3>
+				</a>
+				<p>Returns <code>true</code> if the provided string is a valid IPFS path or <code>false</code> otherwise.</p>
+				<a href="#isipfsipnspathpath" id="isipfsipnspathpath" style="color: inherit; text-decoration: none;">
+					<h3><code>isIPFS.ipnsPath(path)</code></h3>
+				</a>
+				<p>Returns <code>true</code> if the provided string is a valid IPNS path or <code>false</code> otherwise.</p>
+				<a href="#isipfscidpathpath" id="isipfscidpathpath" style="color: inherit; text-decoration: none;">
+					<h3><code>isIPFS.cidPath(path)</code></h3>
+				</a>
+				<p>Returns <code>true</code> if the provided string is a valid &quot;CID path&quot; (IPFS path without <code>/ipfs/</code> prefix) or <code>false</code> otherwise.</p>
+				<a href="#subdomains" id="subdomains" style="color: inherit; text-decoration: none;">
+					<h2>Subdomains</h2>
+				</a>
+				<p>Validated subdomain convention: <code>cidv1b32.ip(f|n)s.domain.tld</code></p>
+				<a href="#isipfssubdomainurl" id="isipfssubdomainurl" style="color: inherit; text-decoration: none;">
+					<h3><code>isIPFS.subdomain(url)</code></h3>
+				</a>
+				<p>Returns <code>true</code> if the provided <code>url</code> string includes a valid IPFS, looks like IPNS/DNSLink subdomain or <code>false</code> otherwise.</p>
+				<a href="#isipfsipfssubdomainurl" id="isipfsipfssubdomainurl" style="color: inherit; text-decoration: none;">
+					<h3><code>isIPFS.ipfsSubdomain(url)</code></h3>
+				</a>
+				<p>Returns <code>true</code> if the provided <code>url</code> string includes a valid IPFS subdomain (case-insensitive CIDv1) or <code>false</code> otherwise.</p>
+				<a href="#isipfsipnssubdomainurl" id="isipfsipnssubdomainurl" style="color: inherit; text-decoration: none;">
+					<h3><code>isIPFS.ipnsSubdomain(url)</code></h3>
+				</a>
+				<p>Returns <code>true</code> if the provided <code>url</code> string looks like a valid IPNS subdomain
+					(CIDv1 with <code>libp2p-key</code> multicodec or something that looks like a FQDN, for example <code>en.wikipedia-on-ipfs.org.ipns.localhost:8080</code>) or <code>false</code>
+				otherwise.</p>
+				<p><strong>Note:</strong> <code>ipnsSubdomain</code> method works in offline mode: it does not perform
+					actual IPNS record lookup over DHT or other content routing method. It may
+				return false-positives:</p>
+				<ul>
+					<li>To ensure IPNS record  exists, make a call to <code>/api/v0/name/resolve?arg=&lt;ipnsid&gt;</code></li>
+					<li>To ensure DNSLink exists, make a call to <code>/api/v0/dns?arg=&lt;fqdn&gt;</code></li>
+				</ul>
+				<a href="#multiaddrs" id="multiaddrs" style="color: inherit; text-decoration: none;">
+					<h2>Multiaddrs</h2>
+				</a>
+				<p>Below methods provide basic detection of <a href="https://github.com/multiformats/multiaddr">multiaddr</a>s: composable and future-proof network addresses.</p>
+				<p>Complex validation of multiaddr can be built using <code>isIPFS.multiaddr</code> and  <a href="https://github.com/multiformats/js-mafmt"><code>mafmt</code></a> library.</p>
+				<a href="#isipfsmultiaddraddr" id="isipfsmultiaddraddr" style="color: inherit; text-decoration: none;">
+					<h3><code>isIPFS.multiaddr(addr)</code></h3>
+				</a>
+				<p>Returns <code>true</code> if the provided <code>string</code>, <a href="https://github.com/multiformats/js-multiaddr"><code>Multiaddr</code></a> or <code>Uint8Array</code> represents a valid multiaddr or <code>false</code> otherwise.</p>
+				<a href="#isipfspeermultiaddraddr" id="isipfspeermultiaddraddr" style="color: inherit; text-decoration: none;">
+					<h3><code>isIPFS.peerMultiaddr(addr)</code></h3>
+				</a>
+				<p>Returns <code>true</code> if the provided <code>string</code>, <a href="https://github.com/multiformats/js-multiaddr"><code>Multiaddr</code></a> or <code>Uint8Array</code> represents a valid libp2p peer multiaddr (matching <a href="https://github.com/multiformats/js-mafmt#api"><code>P2P</code> format from <code>mafmt</code></a>) or <code>false</code> otherwise.</p>
+				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+					<h1>License</h1>
+				</a>
+				<p>MIT</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-property">
+						<a href="modules.html#default" class="tsd-kind-icon">default</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer>
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+		</div>
+	</div>
+</footer>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
 </body>
 </html>
