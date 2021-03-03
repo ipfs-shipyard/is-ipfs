@@ -1,3 +1,23 @@
+# [4.0.0](https://github.com/ipfs/is-ipfs/compare/v3.0.0...v4.0.0) (2021-03-03)
+
+
+### Bug Fixes
+
+* **peerMultiaddr:** require /p2p/{key} ([#40](https://github.com/ipfs/is-ipfs/issues/40)) ([25a2436](https://github.com/ipfs/is-ipfs/commit/25a2436d8af7d0ee55c778665b6e7e1d26422216)), closes [#38](https://github.com/ipfs/is-ipfs/issues/38)
+
+
+### Features
+
+* add types ([#39](https://github.com/ipfs/is-ipfs/issues/39)) ([4a96bde](https://github.com/ipfs/is-ipfs/commit/4a96bde4a3b83fa625964136f31443b24f83d583))
+
+
+### BREAKING CHANGES
+
+* **peerMultiaddr:** /dnsaddr without explicit /p2p/{key} is no longer a
+valid peer multiaddr. See https://github.com/ipfs-shipyard/is-ipfs/issues/38 for rationale why.
+
+
+
 # [3.0.0](https://github.com/ipfs/is-ipfs/compare/v2.0.0...v3.0.0) (2021-02-03)
 
 
