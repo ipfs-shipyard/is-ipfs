@@ -75,7 +75,7 @@ function isMultiaddr (input) {
  * @param {string | Uint8Array | Multiaddr} input
  */
 function isPeerMultiaddr (input) {
-  return isMultiaddr(input) && (mafmt.P2P.matches(input) || mafmt.DNS.matches(input))
+  return isMultiaddr(input) && mafmt.P2P.matches(input)
 }
 
 /**

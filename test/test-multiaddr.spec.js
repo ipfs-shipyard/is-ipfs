@@ -103,7 +103,6 @@ describe('ipfs peerMultiaddr', () => {
     '/ip4/1.2.3.4/tcp/3456/ws/p2p-webrtc-star/p2p/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/ip4/1.2.3.4/tcp/3456/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/dnsaddr/bootstrap.libp2p.io/p2p/QmNnooDu7bfjPFoTZYxMNLWUQJyrVwtbZg5gBMjTezGAJN',
-    '/dnsaddr/bootstrap.libp2p.io',
     '/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit',
     '/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj'
   ].concat(goodCircuit)
@@ -142,6 +141,13 @@ describe('ipfs peerMultiaddr', () => {
 
   it('isIPFS.peerMultiaddr should not match an invalid multiaddr (no initial slash)', (done) => {
     const actual = isIPFS.peerMultiaddr('ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4')
+    expect(actual).to.equal(false)
+    done()
+  })
+
+  it('isIPFS.peerMultiaddr should not match /dnsaddr multiaddr without explicit /p2p/{key}', (done) => {
+    // https://github.com/ipfs-shipyard/is-ipfs/issues/38
+    const actual = isIPFS.peerMultiaddr('/dnsaddr/bootstrap.libp2p.io')
     expect(actual).to.equal(false)
     done()
   })
