@@ -34,6 +34,7 @@
     "test:node": "aegir test --target node",
     "test:browser": "aegir test --target browser",
     "test": "aegir test",
+    "prepublishOnly": "aegir build",
     "lint": "aegir lint && aegir lint-package-json",
     "release": "aegir release",
     "release-minor": "aegir release --type minor",
