@@ -2,7 +2,7 @@
 
 const multihash = require('multihashes')
 const multibase = require('multibase')
-const Multiaddr = require('multiaddr')
+const { Multiaddr } = require('multiaddr')
 const mafmt = require('mafmt')
 const CID = require('cids')
 const { URL } = require('iso-url')
