@@ -20,7 +20,7 @@ os:
   - osx
   - windows
 
-script: npx aegir run test -t node --cov --bail
+script: npx aegir test -t node --cov --bail
 after_success: npx nyc report --reporter=text-lcov > coverage.lcov && npx codecov
 
 jobs:
