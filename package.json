@@ -1,6 +1,6 @@
 {
   "name": "is-ipfs",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "A set of utilities to help identify IPFS resources on the web",
   "keywords": [
     "js-ipfs",
@@ -68,7 +68,7 @@
     "Alan Shaw <alan.shaw@protocol.ai>",
     "nginnever <ginneversource@gmail.com>",
     "Alex Potsides <alex@achingbrain.net>",
-    "Henrique Dias <hacdias@gmail.com>",
-    "Hugo Dias <mail@hugodias.me>"
+    "Hugo Dias <mail@hugodias.me>",
+    "Henrique Dias <hacdias@gmail.com>"
   ]
 }
