@@ -1,10 +1,10 @@
 'use strict'
 
-const multihash = require('multihashes')
-const multibase = require('multibase')
+const { base58btc } = require('multiformats/bases/base58')
+const Digest = require('multiformats/hashes/digest')
 const { Multiaddr } = require('multiaddr')
 const mafmt = require('mafmt')
-const CID = require('cids')
+const { CID } = require('multiformats/cid')
 const { URL } = require('iso-url')
 const uint8ArrayToString = require('uint8arrays/to-string')
 
@@ -27,7 +27,7 @@ const fqdnWithTld = /^(([a-z0-9]|[a-z0-9][a-z0-9-]*[a-z0-9])\.)+([a-z0-9]|[a-z0-
 function isMultihash (hash) {
   const formatted = convertToString(hash)
   try {
-    multihash.decode(multibase.decode('z' + formatted))
+    Digest.decode(base58btc.decode('z' + formatted))
     return true
   } catch (e) {
     return false
@@ -37,12 +37,12 @@ function isMultihash (hash) {
 /**
  * @param {*} hash
  */
-function isMultibase (hash) {
-  try {
-    return multibase.isEncoded(hash)
-  } catch (e) {
-    return false
+function isBase32EncodedMultihash (hash) {
+  if (typeof hash === 'string') {
+    return hash[0] === 'b'
   }
+
+  return false
 }
 
 /**
@@ -50,8 +50,15 @@ function isMultibase (hash) {
  */
 function isCID (hash) {
   try {
-    new CID(hash) // eslint-disable-line no-new
-    return true
+    if (typeof hash === 'string') {
+      return Boolean(CID.parse(hash))
+    }
+
+    if (hash instanceof Uint8Array) {
+      return Boolean(CID.decode(hash))
+    }
+
+    return Boolean(CID.asCID(hash)) // eslint-disable-line no-new
   } catch (e) {
     return false
   }
@@ -222,7 +229,7 @@ module.exports = {
   /**
    * @param {CID | string | Uint8Array} cid
    */
-  base32cid: (cid) => (isMultibase(cid) === 'base32' && isCID(cid)),
+  base32cid: (cid) => (isBase32EncodedMultihash(cid) && isCID(cid)),
   ipfsSubdomain,
   ipnsSubdomain,
   subdomain,
