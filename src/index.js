@@ -1,6 +1,7 @@
 'use strict'
 
 const { base58btc } = require('multiformats/bases/base58')
+const { base32 } = require('multiformats/bases/base32')
 const Digest = require('multiformats/hashes/digest')
 const { Multiaddr } = require('multiaddr')
 const mafmt = require('mafmt')
@@ -28,21 +29,24 @@ function isMultihash (hash) {
   const formatted = convertToString(hash)
   try {
     Digest.decode(base58btc.decode('z' + formatted))
-    return true
-  } catch (e) {
+  } catch {
     return false
   }
+
+  return true
 }
 
 /**
  * @param {*} hash
  */
 function isBase32EncodedMultihash (hash) {
-  if (typeof hash === 'string') {
-    return hash[0] === 'b'
+  try {
+    base32.decode(hash)
+  } catch {
+    return false
   }
 
-  return false
+  return true
 }
 
 /**
