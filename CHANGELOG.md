@@ -1,3 +1,7 @@
+## [6.0.1](https://github.com/ipfs/is-ipfs/compare/v6.0.0...v6.0.1) (2021-07-07)
+
+
+
 # [6.0.0](https://github.com/ipfs/is-ipfs/compare/v5.0.0...v6.0.0) (2021-07-07)
 
 
