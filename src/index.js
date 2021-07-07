@@ -39,7 +39,7 @@ function isMultihash (hash) {
 /**
  * @param {*} hash
  */
-function isBase32EncodedMultihash (hash) {
+function isBase32EncodedMultibase (hash) {
   try {
     base32.decode(hash)
   } catch {
@@ -233,7 +233,7 @@ module.exports = {
   /**
    * @param {CID | string | Uint8Array} cid
    */
-  base32cid: (cid) => (isBase32EncodedMultihash(cid) && isCID(cid)),
+  base32cid: (cid) => (isBase32EncodedMultibase(cid) && isCID(cid)),
   ipfsSubdomain,
   ipnsSubdomain,
   subdomain,
