@@ -1,3 +1,19 @@
+# [6.0.0](https://github.com/ipfs/is-ipfs/compare/v5.0.0...v6.0.0) (2021-07-07)
+
+
+### chore
+
+* update to new multiformats ([#42](https://github.com/ipfs/is-ipfs/issues/42)) ([22bf9b7](https://github.com/ipfs/is-ipfs/commit/22bf9b7c88b6a9d6d9141f8565552557d9109ee8))
+
+
+### BREAKING CHANGES
+
+* uses the CID class from the new multiformats module
+
+Co-authored-by: Marcin Rataj <lidel@lidel.org>
+
+
+
 # [5.0.0](https://github.com/ipfs/is-ipfs/compare/v4.0.0...v5.0.0) (2021-04-19)
 
 
