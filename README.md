@@ -132,11 +132,11 @@ Detection of IPFS Paths and identifiers in URLs is a two-stage process:
 
 ### `isIPFS.multihash(hash)`
 
-Returns `true` if the provided string is a valid `multihash` or `false` otherwise.
+Returns `true` if the provided string or `Uint8Array`  is a valid `multihash` or `false` otherwise.
 
 ### `isIPFS.cid(hash)`
 
-Returns `true` if the provided string or [`CID`](https://github.com/ipld/js-cid) object represents a valid [CID](https://docs.ipfs.io/guides/concepts/cid/) or `false` otherwise.
+Returns `true` if the provided string, `Uint8Array`  or [`CID`](https://github.com/multiformats/js-multiformats/#readme) object represents a valid [CID](https://docs.ipfs.io/guides/concepts/cid/) or `false` otherwise.
 
 ### `isIPFS.base32cid(hash)`
 
