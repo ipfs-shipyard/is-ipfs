@@ -3,12 +3,12 @@
 
 const { expect } = require('aegir/utils/chai')
 const isIPFS = require('../src/index')
-const CID = require('cids')
+const { CID } = require('multiformats/cid')
 const uint8ArrayFromString = require('uint8arrays/from-string')
 
 describe('ipfs cid', () => {
   it('isIPFS.cid should match a valid CID instance', (done) => {
-    const cid = new CID('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')
+    const cid = CID.parse('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o')
     const actual = isIPFS.cid(cid)
     expect(actual).to.equal(true)
     done()
