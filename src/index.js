@@ -7,7 +7,7 @@ const { Multiaddr } = require('multiaddr')
 const mafmt = require('mafmt')
 const { CID } = require('multiformats/cid')
 const { URL } = require('iso-url')
-const uint8ArrayToString = require('uint8arrays/to-string')
+const { toString: uint8ArrayToString } = require('uint8arrays/to-string')
 
 const pathGatewayPattern = /^https?:\/\/[^/]+\/(ip[fn]s)\/([^/?#]+)/
 const pathPattern = /^\/(ip[fn]s)\/([^/?#]+)/

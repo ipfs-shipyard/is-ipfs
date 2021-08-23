@@ -4,7 +4,7 @@
 const { expect } = require('aegir/utils/chai')
 const { Multiaddr } = require('multiaddr')
 const isIPFS = require('../src/index')
-const uint8ArrayFromString = require('uint8arrays/from-string')
+const { fromString: uint8ArrayFromString } = require('uint8arrays/from-string')
 
 describe('ipfs multiaddr', () => {
   it('isIPFS.multiaddr should match a string with valid ip4 multiaddr', (done) => {

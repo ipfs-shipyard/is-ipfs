@@ -3,7 +3,7 @@
 
 const { expect } = require('aegir/utils/chai')
 const isIPFS = require('../src/index')
-const uint8ArrayFromString = require('uint8arrays/from-string')
+const { fromString: uint8ArrayFromString } = require('uint8arrays/from-string')
 
 describe('ipfs url', () => {
   it('isIPFS.ipfsUrl should match an ipfs url', (done) => {
