@@ -12,6 +12,12 @@ describe('ipfs url', () => {
     done()
   })
 
+  it('isIPFS.ipfsUrl should match an IANA-schema compliant ipfs uri', (done) => {
+    const actual = isIPFS.ipfsUrl('ipfs://QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm')
+    expect(actual).to.equal(true)
+    done()
+  })
+
   it('isIPFS.ipfsUrl should match a complex ipfs url', (done) => {
     const actual = isIPFS.ipfsUrl('http://ipfs.alexandria.media/ipfs/QmeWz9YZEeNFXQhHg4PnR5ZiNr5isttgi5n1tc1eD5EfGU/content/index.html?arg=val#hash')
     expect(actual).to.equal(true)
@@ -72,8 +78,20 @@ describe('ipfs url', () => {
     done()
   })
 
+  it('isIPFS.ipnsUrl should not match an IANA-schema compliant ipfs uri', (done) => {
+    const actual = isIPFS.ipnsUrl('ipfs://QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm')
+    expect(actual).to.equal(false)
+    done()
+  })
+
   it('isIPFS.url should match an ipfs url', (done) => {
     const actual = isIPFS.url('http://ipfs.io/ipfs/QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm')
+    expect(actual).to.equal(true)
+    done()
+  })
+
+  it('isIPFS.url should match an IANA-schema compliant ipfs uri', (done) => {
+    const actual = isIPFS.url('ipfs://QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm')
     expect(actual).to.equal(true)
     done()
   })

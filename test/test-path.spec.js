@@ -108,6 +108,12 @@ describe('ipfs path', () => {
     done()
   })
 
+  it('isIPFS.urlOrPath should match an IANA-schema compliant ipfs url', (done) => {
+    const actual = isIPFS.urlOrPath('ipfs://QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm')
+    expect(actual).to.equal(true)
+    done()
+  })
+
   it('isIPFS.urlOrPath should match ipns url', (done) => {
     const actual = isIPFS.urlOrPath('http://ipfs.io/ipns/foo.bar.com')
     expect(actual).to.equal(true)
