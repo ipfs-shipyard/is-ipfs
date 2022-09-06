@@ -22,6 +22,9 @@ const subdomainProtocolMatch = 2
 // Fully qualified domain name (FQDN) that has an explicit .tld suffix
 const fqdnWithTld = /^(([a-z0-9]|[a-z0-9][a-z0-9-]*[a-z0-9])\.)+([a-z0-9]|[a-z0-9][a-z0-9-]*[a-z0-9])$/
 
+// URI IANA-scheme
+const uriSchemePattern = /^(ipfs):\/\/([^/?#]+)/
+
 /**
  * @param {*} hash
  */
@@ -210,7 +213,7 @@ const subdomain = (url) => ipfsSubdomain(url) || ipnsSubdomain(url)
 /**
  * @param {string | Uint8Array} url
  */
-const ipfsUrl = (url) => isIpfs(url, pathGatewayPattern) || ipfsSubdomain(url)
+const ipfsUrl = (url) => isIpfs(url, pathGatewayPattern) || ipfsSubdomain(url) || isIpfs(url, uriSchemePattern)
 /**
  * @param {string | Uint8Array} url
  */
