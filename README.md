@@ -7,10 +7,7 @@
 
 ## Table of contents <!-- omit in toc -->
 
-- - [Install](#install)
-  - [Lead Maintainer](#lead-maintainer)
-    - [Browser: Browserify, Webpack, other bundlers](#browser-browserify-webpack-other-bundlers)
-    - [In the Browser through `<script>` tag](#in-the-browser-through-script-tag)
+- [Install](#install)
 - [Usage](#usage)
 - [API](#api)
   - [Content Identifiers](#content-identifiers)
@@ -34,8 +31,8 @@
   - [Multiaddrs](#multiaddrs)
     - [`isIPFS.multiaddr(addr)`](#isipfsmultiaddraddr)
     - [`isIPFS.peerMultiaddr(addr)`](#isipfspeermultiaddraddr)
-  - [License](#license)
-  - [Contribute](#contribute)
+- [License](#license)
+- [Contribute](#contribute)
 
 ## Install
 
@@ -43,29 +40,7 @@
 $ npm i is-ipfs
 ```
 
-```bash
-$ npm install --save is-ipfs
-```
-
-### Browser: Browserify, Webpack, other bundlers
-
-The code published to npm that gets loaded on require is in fact an ES5 transpiled version with the right shims added. This means that you can require it and use with your favorite bundler without having to adjust asset management process.
-
-```js
-import * as isIPFS from 'is-ipfs'
-```
-
-### In the Browser through `<script>` tag
-
-Loading this module through a script tag will make the `IsIpfs` obj available in the global namespace.
-
-```html
-<script src="https://unpkg.com/is-ipfs/dist/index.min.js"></script>
-<!-- OR -->
-<script src="https://unpkg.com/is-ipfs/dist/index.js"></script>
-```
-
-# Usage
+## Usage
 
 ```javascript
 import * as isIPFS from 'is-ipfs'
@@ -149,7 +124,7 @@ isIPFS.peerMultiaddr('/dnsaddr/bootstrap.libp2p.io/p2p/QmNnooDu7bfjPFoTZYxMNLWUQ
 isIPFS.peerMultiaddr('/ip4/127.0.0.1/udp/1234') // false (key missing)
 ```
 
-# API
+## API
 
 A suite of util methods that provides efficient validation.
 
@@ -158,71 +133,71 @@ Detection of IPFS Paths and identifiers in URLs is a two-stage process:
 1. `pathPattern`/`pathGatewayPattern`/`subdomainGatewayPattern` regex is applied to quickly identify potential candidates
 2. proper CID validation is applied to remove false-positives
 
-## Content Identifiers
+### Content Identifiers
 
-### `isIPFS.multihash(hash)`
+#### `isIPFS.multihash(hash)`
 
 Returns `true` if the provided string or `Uint8Array`  is a valid `multihash` or `false` otherwise.
 
-### `isIPFS.cid(hash)`
+#### `isIPFS.cid(hash)`
 
 Returns `true` if the provided string, `Uint8Array`  or [`CID`](https://github.com/multiformats/js-multiformats/#readme) object represents a valid [CID](https://docs.ipfs.io/guides/concepts/cid/) or `false` otherwise.
 
-### `isIPFS.base32cid(hash)`
+#### `isIPFS.base32cid(hash)`
 
 Returns `true` if the provided string is a valid `CID` in Base32 encoding or `false` otherwise.
 
-## URLs
+### URLs
 
-### `isIPFS.url(url)`
+#### `isIPFS.url(url)`
 
 Returns `true` if the provided string is a valid IPFS or IPNS url or `false` otherwise.
 
-### `isIPFS.ipfsUrl(url)`
+#### `isIPFS.ipfsUrl(url)`
 
 Returns `true` if the provided string is a valid IPFS url or `false` otherwise.
 
-### `isIPFS.ipnsUrl(url)`
+#### `isIPFS.ipnsUrl(url)`
 
 Returns `true` if the provided string is a valid IPNS url or `false` otherwise.
 
-## Paths
+### Paths
 
 Standalone validation of IPFS Paths: `/ip(f|n)s/<cid>/..`
 
-### `isIPFS.path(path)`
+#### `isIPFS.path(path)`
 
 Returns `true` if the provided string is a valid IPFS or IPNS path or `false` otherwise.
 
-### `isIPFS.urlOrPath(path)`
+#### `isIPFS.urlOrPath(path)`
 
 Returns `true` if the provided string is a valid IPFS or IPNS url or path or `false` otherwise.
 
-### `isIPFS.ipfsPath(path)`
+#### `isIPFS.ipfsPath(path)`
 
 Returns `true` if the provided string is a valid IPFS path or `false` otherwise.
 
-### `isIPFS.ipnsPath(path)`
+#### `isIPFS.ipnsPath(path)`
 
 Returns `true` if the provided string is a valid IPNS path or `false` otherwise.
 
-### `isIPFS.cidPath(path)`
+#### `isIPFS.cidPath(path)`
 
 Returns `true` if the provided string is a valid "CID path" (IPFS path without `/ipfs/` prefix) or `false` otherwise.
 
-## Subdomains
+### Subdomains
 
 Validated subdomain convention: `cidv1b32.ip(f|n)s.domain.tld`
 
-### `isIPFS.subdomain(url)`
+#### `isIPFS.subdomain(url)`
 
 Returns `true` if the provided `url` string includes a valid IPFS, looks like IPNS/DNSLink subdomain or `false` otherwise.
 
-### `isIPFS.ipfsSubdomain(url)`
+#### `isIPFS.ipfsSubdomain(url)`
 
 Returns `true` if the provided `url` string includes a valid IPFS subdomain (case-insensitive CIDv1) or `false` otherwise.
 
-### `isIPFS.ipnsSubdomain(url)`
+#### `isIPFS.ipnsSubdomain(url)`
 
 Returns `true` if the provided `url` string looks like a valid IPNS subdomain
 (CIDv1 with `libp2p-key` multicodec or something that looks like a FQDN, for example `en.wikipedia-on-ipfs.org.ipns.localhost:8080`) or `false`
@@ -235,17 +210,17 @@ return false-positives:
 - To ensure IPNS record  exists, make a call to `/api/v0/name/resolve?arg=<ipnsid>`
 - To ensure DNSLink exists, make a call to `/api/v0/dns?arg=<fqdn>`
 
-## Multiaddrs
+### Multiaddrs
 
 Below methods provide basic detection of [multiaddr](https://github.com/multiformats/multiaddr)s: composable and future-proof network addresses.
 
 Complex validation of multiaddr can be built using `isIPFS.multiaddr` and  [`mafmt`](https://github.com/multiformats/js-mafmt) library.
 
-### `isIPFS.multiaddr(addr)`
+#### `isIPFS.multiaddr(addr)`
 
 Returns `true` if the provided `string`, [`Multiaddr`](https://github.com/multiformats/js-multiaddr) or `Uint8Array` represents a valid multiaddr or `false` otherwise.
 
-### `isIPFS.peerMultiaddr(addr)`
+#### `isIPFS.peerMultiaddr(addr)`
 
 Returns `true` if the provided `string`, [`Multiaddr`](https://github.com/multiformats/js-multiaddr) or `Uint8Array` represents a valid libp2p peer multiaddr (matching [`P2P` format from `mafmt`](https://github.com/multiformats/js-mafmt#api)) or `false` otherwise.
 
