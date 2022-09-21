@@ -1,3 +1,10 @@
+## [7.0.1](https://github.com/ipfs-shipyard/is-ipfs/compare/v7.0.0...v7.0.1) (2022-09-21)
+
+
+### Documentation
+
+* update readme examples to be esm ([#55](https://github.com/ipfs-shipyard/is-ipfs/issues/55)) ([e0d1353](https://github.com/ipfs-shipyard/is-ipfs/commit/e0d13534ec18d4290aa4293669c469a56bd7d8b6))
+
 ## [7.0.0](https://github.com/ipfs-shipyard/is-ipfs/compare/v6.0.2...v7.0.0) (2022-09-21)
 
 
