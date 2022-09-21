@@ -43,10 +43,6 @@
 $ npm i is-ipfs
 ```
 
-## Lead Maintainer
-
-[Marcin Rataj](https://github.com/lidel)
-
 ```bash
 $ npm install --save is-ipfs
 ```
@@ -56,7 +52,7 @@ $ npm install --save is-ipfs
 The code published to npm that gets loaded on require is in fact an ES5 transpiled version with the right shims added. This means that you can require it and use with your favorite bundler without having to adjust asset management process.
 
 ```js
-const isIPFS from 'is-ipfs')
+import * as isIPFS from 'is-ipfs'
 ```
 
 ### In the Browser through `<script>` tag
@@ -72,7 +68,7 @@ Loading this module through a script tag will make the `IsIpfs` obj available in
 # Usage
 
 ```javascript
-const isIPFS from 'is-ipfs')
+import * as isIPFS from 'is-ipfs'
 
 isIPFS.multihash('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
 isIPFS.multihash('noop') // false
