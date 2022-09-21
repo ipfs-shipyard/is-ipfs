@@ -1,9 +1,8 @@
 /* eslint-env mocha */
-'use strict'
 
-const { expect } = require('aegir/utils/chai')
-const isIPFS = require('../src/index')
-const { fromString: uint8ArrayFromString } = require('uint8arrays/from-string')
+import { expect } from 'aegir/chai'
+import * as isIPFS from '../src/index.js'
+import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 
 describe('ipfs url', () => {
   it('isIPFS.ipfsUrl should match an ipfs url', (done) => {
