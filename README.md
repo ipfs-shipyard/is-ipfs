@@ -1,18 +1,51 @@
-is-ipfs 🕵️
-====
+# is-ipfs <!-- omit in toc -->
 
-[![](https://img.shields.io/github/release/ipfs/is-ipfs.svg)](https://github.com/ipfs/is-ipfs/releases/latest)
-[![](https://img.shields.io/badge/freenode-%23ipfs-blue.svg?style=flat-square)](https://webchat.freenode.net/?channels=%23ipfs)
+[![codecov](https://img.shields.io/codecov/c/github/ipfs-shipyard/is-ipfs.svg?style=flat-square)](https://codecov.io/gh/ipfs-shipyard/is-ipfs)
+[![CI](https://img.shields.io/github/workflow/status/ipfs-shipyard/is-ipfs/test%20&%20maybe%20release/master?style=flat-square)](https://github.com/ipfs-shipyard/is-ipfs/actions/workflows/js-test-and-release.yml)
 
-> A set of utilities to help identify [IPFS](https://ipfs.io/) resources
+> A set of utilities to help identify IPFS resources on the web
+
+## Table of contents <!-- omit in toc -->
+
+- - [Install](#install)
+  - [Lead Maintainer](#lead-maintainer)
+    - [Browser: Browserify, Webpack, other bundlers](#browser-browserify-webpack-other-bundlers)
+    - [In the Browser through `<script>` tag](#in-the-browser-through-script-tag)
+- [Usage](#usage)
+- [API](#api)
+  - [Content Identifiers](#content-identifiers)
+    - [`isIPFS.multihash(hash)`](#isipfsmultihashhash)
+    - [`isIPFS.cid(hash)`](#isipfscidhash)
+    - [`isIPFS.base32cid(hash)`](#isipfsbase32cidhash)
+  - [URLs](#urls)
+    - [`isIPFS.url(url)`](#isipfsurlurl)
+    - [`isIPFS.ipfsUrl(url)`](#isipfsipfsurlurl)
+    - [`isIPFS.ipnsUrl(url)`](#isipfsipnsurlurl)
+  - [Paths](#paths)
+    - [`isIPFS.path(path)`](#isipfspathpath)
+    - [`isIPFS.urlOrPath(path)`](#isipfsurlorpathpath)
+    - [`isIPFS.ipfsPath(path)`](#isipfsipfspathpath)
+    - [`isIPFS.ipnsPath(path)`](#isipfsipnspathpath)
+    - [`isIPFS.cidPath(path)`](#isipfscidpathpath)
+  - [Subdomains](#subdomains)
+    - [`isIPFS.subdomain(url)`](#isipfssubdomainurl)
+    - [`isIPFS.ipfsSubdomain(url)`](#isipfsipfssubdomainurl)
+    - [`isIPFS.ipnsSubdomain(url)`](#isipfsipnssubdomainurl)
+  - [Multiaddrs](#multiaddrs)
+    - [`isIPFS.multiaddr(addr)`](#isipfsmultiaddraddr)
+    - [`isIPFS.peerMultiaddr(addr)`](#isipfspeermultiaddraddr)
+  - [License](#license)
+  - [Contribute](#contribute)
+
+## Install
+
+```console
+$ npm i is-ipfs
+```
 
 ## Lead Maintainer
 
 [Marcin Rataj](https://github.com/lidel)
-
-# Install
-
-### In Node.js through npm
 
 ```bash
 $ npm install --save is-ipfs
@@ -23,13 +56,12 @@ $ npm install --save is-ipfs
 The code published to npm that gets loaded on require is in fact an ES5 transpiled version with the right shims added. This means that you can require it and use with your favorite bundler without having to adjust asset management process.
 
 ```js
-const isIPFS = require('is-ipfs')
+const isIPFS from 'is-ipfs')
 ```
-
 
 ### In the Browser through `<script>` tag
 
-Loading this module through a script tag will make the ```IsIpfs``` obj available in the global namespace.
+Loading this module through a script tag will make the `IsIpfs` obj available in the global namespace.
 
 ```html
 <script src="https://unpkg.com/is-ipfs/dist/index.min.js"></script>
@@ -38,8 +70,9 @@ Loading this module through a script tag will make the ```IsIpfs``` obj availabl
 ```
 
 # Usage
+
 ```javascript
-const isIPFS = require('is-ipfs')
+const isIPFS from 'is-ipfs')
 
 isIPFS.multihash('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
 isIPFS.multihash('noop') // false
@@ -125,8 +158,9 @@ isIPFS.peerMultiaddr('/ip4/127.0.0.1/udp/1234') // false (key missing)
 A suite of util methods that provides efficient validation.
 
 Detection of IPFS Paths and identifiers in URLs is a two-stage process:
-1.  `pathPattern`/`pathGatewayPattern`/`subdomainGatewayPattern` regex is applied to quickly identify potential candidates
-2.  proper CID validation is applied to remove false-positives
+
+1. `pathPattern`/`pathGatewayPattern`/`subdomainGatewayPattern` regex is applied to quickly identify potential candidates
+2. proper CID validation is applied to remove false-positives
 
 ## Content Identifiers
 
@@ -180,7 +214,6 @@ Returns `true` if the provided string is a valid IPNS path or `false` otherwise.
 
 Returns `true` if the provided string is a valid "CID path" (IPFS path without `/ipfs/` prefix) or `false` otherwise.
 
-
 ## Subdomains
 
 Validated subdomain convention: `cidv1b32.ip(f|n)s.domain.tld`
@@ -206,7 +239,6 @@ return false-positives:
 - To ensure IPNS record  exists, make a call to `/api/v0/name/resolve?arg=<ipnsid>`
 - To ensure DNSLink exists, make a call to `/api/v0/dns?arg=<fqdn>`
 
-
 ## Multiaddrs
 
 Below methods provide basic detection of [multiaddr](https://github.com/multiformats/multiaddr)s: composable and future-proof network addresses.
@@ -221,6 +253,13 @@ Returns `true` if the provided `string`, [`Multiaddr`](https://github.com/multif
 
 Returns `true` if the provided `string`, [`Multiaddr`](https://github.com/multiformats/js-multiaddr) or `Uint8Array` represents a valid libp2p peer multiaddr (matching [`P2P` format from `mafmt`](https://github.com/multiformats/js-mafmt#api)) or `false` otherwise.
 
-# License
+## License
 
-MIT
+Licensed under either of
+
+- Apache 2.0, ([LICENSE-APACHE](LICENSE-APACHE) / <http://www.apache.org/licenses/LICENSE-2.0>)
+- MIT ([LICENSE-MIT](LICENSE-MIT) / <http://opensource.org/licenses/MIT>)
+
+## Contribute
+
+Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in the work by you, as defined in the Apache-2.0 license, shall be dual licensed as above, without any additional terms or conditions.

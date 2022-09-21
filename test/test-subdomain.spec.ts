@@ -1,9 +1,8 @@
 /* eslint-env mocha */
-'use strict'
 
-const isIPFS = require('../src/index')
-const { expect } = require('aegir/utils/chai')
-const { fromString: uint8ArrayFromString } = require('uint8arrays/from-string')
+import * as isIPFS from '../src/index.js'
+import { expect } from 'aegir/chai'
+import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 
 describe('ipfs subdomain', () => {
   it('isIPFS.ipfsSubdomain should match a cidv1b32', (done) => {
