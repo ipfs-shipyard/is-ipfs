@@ -1,3 +1,14 @@
+## [7.0.0](https://github.com/ipfs-shipyard/is-ipfs/compare/v6.0.2...v7.0.0) (2022-09-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* this module is now ESM only
+
+### Features
+
+* convert to typescript ([#53](https://github.com/ipfs-shipyard/is-ipfs/issues/53)) ([bc9cd3e](https://github.com/ipfs-shipyard/is-ipfs/commit/bc9cd3ecb875aa23a5d3dd1612822fe09ef8b382))
+
 ## [6.0.2](https://github.com/ipfs/is-ipfs/compare/v6.0.1...v6.0.2) (2021-08-23)
 
 
@@ -302,6 +313,3 @@ Signed-off-by: Marcin Rataj <lidel@lidel.org>
 
 <a name="0.0.2"></a>
 ## 0.0.2 (2016-02-02)
-
-
-
