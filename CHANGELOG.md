@@ -1,3 +1,11 @@
+## [7.0.3](https://github.com/ipfs-shipyard/is-ipfs/compare/v7.0.2...v7.0.3) (2022-10-18)
+
+
+### Dependencies
+
+* bump multiformats from 9.9.0 to 10.0.1 ([#60](https://github.com/ipfs-shipyard/is-ipfs/issues/60)) ([ff0933b](https://github.com/ipfs-shipyard/is-ipfs/commit/ff0933beb4325ef1303813634a2ebdf3a08ec350))
+* bump uint8arrays from 3.1.1 to 4.0.2 ([#59](https://github.com/ipfs-shipyard/is-ipfs/issues/59)) ([5e9af3d](https://github.com/ipfs-shipyard/is-ipfs/commit/5e9af3de48dda65d0213872e591596143ccd4386))
+
 ## [7.0.2](https://github.com/ipfs-shipyard/is-ipfs/compare/v7.0.1...v7.0.2) (2022-09-21)
 
 
