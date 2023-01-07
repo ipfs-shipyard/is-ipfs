@@ -1,3 +1,14 @@
+## [8.0.0](https://github.com/ipfs-shipyard/is-ipfs/compare/v7.0.3...v8.0.0) (2023-01-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* bump multiformats from 10.0.3 to 11.0.0 (#67)
+
+### Dependencies
+
+* bump multiformats from 10.0.3 to 11.0.0 ([#67](https://github.com/ipfs-shipyard/is-ipfs/issues/67)) ([680dcd4](https://github.com/ipfs-shipyard/is-ipfs/commit/680dcd4ecbb32a1b5c26814a00baf79c0e9ef496))
+
 ## [7.0.3](https://github.com/ipfs-shipyard/is-ipfs/compare/v7.0.2...v7.0.3) (2022-10-18)
 
 
