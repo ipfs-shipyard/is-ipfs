@@ -1,13 +1,14 @@
 # is-ipfs <!-- omit in toc -->
 
 [![codecov](https://img.shields.io/codecov/c/github/ipfs-shipyard/is-ipfs.svg?style=flat-square)](https://codecov.io/gh/ipfs-shipyard/is-ipfs)
-[![CI](https://img.shields.io/github/workflow/status/ipfs-shipyard/is-ipfs/test%20&%20maybe%20release/master?style=flat-square)](https://github.com/ipfs-shipyard/is-ipfs/actions/workflows/js-test-and-release.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/ipfs-shipyard/is-ipfs/js-test-and-release.yml?branch=master\&style=flat-square)](https://github.com/ipfs-shipyard/is-ipfs/actions/workflows/js-test-and-release.yml?query=branch%3Amaster)
 
 > A set of utilities to help identify IPFS resources on the web
 
 ## Table of contents <!-- omit in toc -->
 
 - [Install](#install)
+  - [Browser `<script>` tag](#browser-script-tag)
 - [Usage](#usage)
 - [API](#api)
   - [Content Identifiers](#content-identifiers)
@@ -31,13 +32,22 @@
   - [Multiaddrs](#multiaddrs)
     - [`isIPFS.multiaddr(addr)`](#isipfsmultiaddraddr)
     - [`isIPFS.peerMultiaddr(addr)`](#isipfspeermultiaddraddr)
+- [API Docs](#api-docs)
 - [License](#license)
-- [Contribute](#contribute)
+- [Contribution](#contribution)
 
 ## Install
 
 ```console
 $ npm i is-ipfs
+```
+
+### Browser `<script>` tag
+
+Loading this module through a script tag will make it's exports available as `IsIpfs` in the global namespace.
+
+```html
+<script src="https://unpkg.com/is-ipfs/dist/index.min.js"></script>
 ```
 
 ## Usage
@@ -224,6 +234,10 @@ Returns `true` if the provided `string`, [`Multiaddr`](https://github.com/multif
 
 Returns `true` if the provided `string`, [`Multiaddr`](https://github.com/multiformats/js-multiaddr) or `Uint8Array` represents a valid libp2p peer multiaddr (matching [`P2P` format from `mafmt`](https://github.com/multiformats/js-mafmt#api)) or `false` otherwise.
 
+## API Docs
+
+- <https://ipfs-shipyard.github.io/is-ipfs>
+
 ## License
 
 Licensed under either of
@@ -231,6 +245,6 @@ Licensed under either of
 - Apache 2.0, ([LICENSE-APACHE](LICENSE-APACHE) / <http://www.apache.org/licenses/LICENSE-2.0>)
 - MIT ([LICENSE-MIT](LICENSE-MIT) / <http://opensource.org/licenses/MIT>)
 
-## Contribute
+## Contribution
 
 Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in the work by you, as defined in the Apache-2.0 license, shall be dual licensed as above, without any additional terms or conditions.

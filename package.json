@@ -27,7 +27,7 @@
   "types": "./dist/src/index.d.ts",
   "files": [
     "src",
-    "dist/src",
+    "dist",
     "!dist/test",
     "!**/*.tsbuildinfo"
   ],
@@ -141,7 +141,8 @@
     "test:firefox-webworker": "aegir test -t webworker -- --browser firefox",
     "test:node": "aegir test -t node",
     "test:electron-main": "aegir test -t electron-main",
-    "release": "aegir release"
+    "release": "aegir release",
+    "docs": "aegir docs"
   },
   "dependencies": {
     "@multiformats/mafmt": "^11.0.3",
@@ -151,7 +152,7 @@
     "uint8arrays": "^4.0.2"
   },
   "devDependencies": {
-    "aegir": "^37.5.3"
+    "aegir": "^37.10.1"
   },
   "browser": {
     "fs": false
