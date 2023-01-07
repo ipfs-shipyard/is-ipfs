@@ -1,3 +1,10 @@
+## [8.0.1](https://github.com/ipfs-shipyard/is-ipfs/compare/v8.0.0...v8.0.1) (2023-01-07)
+
+
+### Documentation
+
+* publish api docs ([#68](https://github.com/ipfs-shipyard/is-ipfs/issues/68)) ([310dbf6](https://github.com/ipfs-shipyard/is-ipfs/commit/310dbf6870e64172c2e5bc5e610bb0514e59f3c9))
+
 ## [8.0.0](https://github.com/ipfs-shipyard/is-ipfs/compare/v7.0.3...v8.0.0) (2023-01-07)
 
 

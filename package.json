@@ -1,6 +1,6 @@
 {
   "name": "is-ipfs",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "description": "A set of utilities to help identify IPFS resources on the web",
   "author": "Francisco Dias <francisco@baiodias.com> (http://franciscodias.net/)",
   "license": "Apache-2.0 OR MIT",
