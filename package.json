@@ -152,7 +152,7 @@
     "uint8arrays": "^4.0.2"
   },
   "devDependencies": {
-    "aegir": "^37.10.1"
+    "aegir": "^38.1.8"
   },
   "browser": {
     "fs": false
