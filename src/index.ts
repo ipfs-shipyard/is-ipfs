@@ -117,7 +117,7 @@ const subdomainProtocolMatch = 2
 const fqdnWithTld = /^(([a-z0-9]|[a-z0-9][a-z0-9-]*[a-z0-9])\.)+([a-z0-9]|[a-z0-9][a-z0-9-]*[a-z0-9])$/
 
 // URI IANA-scheme
-const uriSchemePattern = /^(ipfs):\/\/([^/?#]+)/
+const uriSchemePattern = /^(ip[fn]s):\/\/([^/?#]+)/
 
 function isMultihash (hash: Uint8Array | string): boolean {
   const formatted = convertToString(hash)
@@ -329,7 +329,7 @@ export const ipfsUrl = (url: string | Uint8Array): boolean => isIpfs(url, pathGa
  * Returns `true` if the provided string is a valid IPNS url or `false`
  * otherwise.
  */
-export const ipnsUrl = (url: string | Uint8Array): boolean => isIpns(url, pathGatewayPattern) || ipnsSubdomain(url)
+export const ipnsUrl = (url: string | Uint8Array): boolean => isIpns(url, pathGatewayPattern) || ipnsSubdomain(url) || isIpns(url, uriSchemePattern)
 
 /**
  * Returns `true` if the provided string is a valid IPFS or IPNS url or `false`

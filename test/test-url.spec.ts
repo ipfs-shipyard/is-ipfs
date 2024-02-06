@@ -119,3 +119,17 @@ describe('ipfs url', () => {
     done()
   })
 })
+
+describe('ipns url', () => {
+  it('isIPFS.ipnsUrl should match an IANA-schema compliant ipns uri', () => {
+    expect(isIPFS.ipnsUrl('ipns://QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm')).to.be.true()
+  })
+
+  it('isIPFS.ipnsUrl should not match an IANA-schema compliant ipfs uri', () => {
+    expect(isIPFS.ipnsUrl('ipfs://QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm')).to.be.false()
+  })
+
+  it('isIPFS.url should match an IANA-schema compliant ipns uri', () => {
+    expect(isIPFS.url('ipns://QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm')).to.be.true()
+  })
+})
