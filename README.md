@@ -5,54 +5,18 @@
 
 > A set of utilities to help identify IPFS resources on the web
 
-## Table of contents <!-- omit in toc -->
+# About
 
-- [Install](#install)
-  - [Browser `<script>` tag](#browser-script-tag)
-- [Usage](#usage)
-- [API](#api)
-  - [Content Identifiers](#content-identifiers)
-    - [`isIPFS.multihash(hash)`](#isipfsmultihashhash)
-    - [`isIPFS.cid(hash)`](#isipfscidhash)
-    - [`isIPFS.base32cid(hash)`](#isipfsbase32cidhash)
-  - [URLs](#urls)
-    - [`isIPFS.url(url)`](#isipfsurlurl)
-    - [`isIPFS.ipfsUrl(url)`](#isipfsipfsurlurl)
-    - [`isIPFS.ipnsUrl(url)`](#isipfsipnsurlurl)
-  - [Paths](#paths)
-    - [`isIPFS.path(path)`](#isipfspathpath)
-    - [`isIPFS.urlOrPath(path)`](#isipfsurlorpathpath)
-    - [`isIPFS.ipfsPath(path)`](#isipfsipfspathpath)
-    - [`isIPFS.ipnsPath(path)`](#isipfsipnspathpath)
-    - [`isIPFS.cidPath(path)`](#isipfscidpathpath)
-  - [Subdomains](#subdomains)
-    - [`isIPFS.subdomain(url)`](#isipfssubdomainurl)
-    - [`isIPFS.ipfsSubdomain(url)`](#isipfsipfssubdomainurl)
-    - [`isIPFS.ipnsSubdomain(url)`](#isipfsipnssubdomainurl)
-  - [Multiaddrs](#multiaddrs)
-    - [`isIPFS.multiaddr(addr)`](#isipfsmultiaddraddr)
-    - [`isIPFS.peerMultiaddr(addr)`](#isipfspeermultiaddraddr)
-- [API Docs](#api-docs)
-- [License](#license)
-- [Contribution](#contribution)
+A suite of util methods that provides efficient validation.
 
-## Install
+Detection of IPFS Paths and identifiers in URLs is a two-stage process:
 
-```console
-$ npm i is-ipfs
-```
+1. `pathPattern`/`pathGatewayPattern`/`subdomainGatewayPattern` regex is applied to quickly identify potential candidates
+2. proper CID validation is applied to remove false-positives
 
-### Browser `<script>` tag
+## Example
 
-Loading this module through a script tag will make it's exports available as `IsIpfs` in the global namespace.
-
-```html
-<script src="https://unpkg.com/is-ipfs/dist/index.min.js"></script>
-```
-
-## Usage
-
-```javascript
+```TypeScript
 import * as isIPFS from 'is-ipfs'
 
 isIPFS.multihash('QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
@@ -134,117 +98,31 @@ isIPFS.peerMultiaddr('/dnsaddr/bootstrap.libp2p.io/p2p/QmNnooDu7bfjPFoTZYxMNLWUQ
 isIPFS.peerMultiaddr('/ip4/127.0.0.1/udp/1234') // false (key missing)
 ```
 
-## API
+# Install
 
-A suite of util methods that provides efficient validation.
+```console
+$ npm i is-ipfs
+```
 
-Detection of IPFS Paths and identifiers in URLs is a two-stage process:
+## Browser `<script>` tag
 
-1. `pathPattern`/`pathGatewayPattern`/`subdomainGatewayPattern` regex is applied to quickly identify potential candidates
-2. proper CID validation is applied to remove false-positives
+Loading this module through a script tag will make it's exports available as `IsIpfs` in the global namespace.
 
-### Content Identifiers
+```html
+<script src="https://unpkg.com/is-ipfs/dist/index.min.js"></script>
+```
 
-#### `isIPFS.multihash(hash)`
-
-Returns `true` if the provided string or `Uint8Array`  is a valid `multihash` or `false` otherwise.
-
-#### `isIPFS.cid(hash)`
-
-Returns `true` if the provided string, `Uint8Array`  or [`CID`](https://github.com/multiformats/js-multiformats/#readme) object represents a valid [CID](https://docs.ipfs.io/guides/concepts/cid/) or `false` otherwise.
-
-#### `isIPFS.base32cid(hash)`
-
-Returns `true` if the provided string is a valid `CID` in Base32 encoding or `false` otherwise.
-
-### URLs
-
-#### `isIPFS.url(url)`
-
-Returns `true` if the provided string is a valid IPFS or IPNS url or `false` otherwise.
-
-#### `isIPFS.ipfsUrl(url)`
-
-Returns `true` if the provided string is a valid IPFS url or `false` otherwise.
-
-#### `isIPFS.ipnsUrl(url)`
-
-Returns `true` if the provided string is a valid IPNS url or `false` otherwise.
-
-### Paths
-
-Standalone validation of IPFS Paths: `/ip(f|n)s/<cid>/..`
-
-#### `isIPFS.path(path)`
-
-Returns `true` if the provided string is a valid IPFS or IPNS path or `false` otherwise.
-
-#### `isIPFS.urlOrPath(path)`
-
-Returns `true` if the provided string is a valid IPFS or IPNS url or path or `false` otherwise.
-
-#### `isIPFS.ipfsPath(path)`
-
-Returns `true` if the provided string is a valid IPFS path or `false` otherwise.
-
-#### `isIPFS.ipnsPath(path)`
-
-Returns `true` if the provided string is a valid IPNS path or `false` otherwise.
-
-#### `isIPFS.cidPath(path)`
-
-Returns `true` if the provided string is a valid "CID path" (IPFS path without `/ipfs/` prefix) or `false` otherwise.
-
-### Subdomains
-
-Validated subdomain convention: `cidv1b32.ip(f|n)s.domain.tld`
-
-#### `isIPFS.subdomain(url)`
-
-Returns `true` if the provided `url` string includes a valid IPFS, looks like IPNS/DNSLink subdomain or `false` otherwise.
-
-#### `isIPFS.ipfsSubdomain(url)`
-
-Returns `true` if the provided `url` string includes a valid IPFS subdomain (case-insensitive CIDv1) or `false` otherwise.
-
-#### `isIPFS.ipnsSubdomain(url)`
-
-Returns `true` if the provided `url` string looks like a valid IPNS subdomain
-(CIDv1 with `libp2p-key` multicodec or something that looks like a FQDN, for example `en.wikipedia-on-ipfs.org.ipns.localhost:8080`) or `false`
-otherwise.
-
-**Note:** `ipnsSubdomain` method works in offline mode: it does not perform
-actual IPNS record lookup over DHT or other content routing method. It may
-return false-positives:
-
-- To ensure IPNS record  exists, make a call to `/api/v0/name/resolve?arg=<ipnsid>`
-- To ensure DNSLink exists, make a call to `/api/v0/dns?arg=<fqdn>`
-
-### Multiaddrs
-
-Below methods provide basic detection of [multiaddr](https://github.com/multiformats/multiaddr)s: composable and future-proof network addresses.
-
-Complex validation of multiaddr can be built using `isIPFS.multiaddr` and  [`mafmt`](https://github.com/multiformats/js-mafmt) library.
-
-#### `isIPFS.multiaddr(addr)`
-
-Returns `true` if the provided `string`, [`Multiaddr`](https://github.com/multiformats/js-multiaddr) or `Uint8Array` represents a valid multiaddr or `false` otherwise.
-
-#### `isIPFS.peerMultiaddr(addr)`
-
-Returns `true` if the provided `string`, [`Multiaddr`](https://github.com/multiformats/js-multiaddr) or `Uint8Array` represents a valid libp2p peer multiaddr (matching [`P2P` format from `mafmt`](https://github.com/multiformats/js-mafmt#api)) or `false` otherwise.
-
-## API Docs
+# API Docs
 
 - <https://ipfs-shipyard.github.io/is-ipfs>
 
-## License
+# License
 
 Licensed under either of
 
 - Apache 2.0, ([LICENSE-APACHE](LICENSE-APACHE) / <http://www.apache.org/licenses/LICENSE-2.0>)
 - MIT ([LICENSE-MIT](LICENSE-MIT) / <http://opensource.org/licenses/MIT>)
 
-## Contribution
+# Contribution
 
 Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in the work by you, as defined in the Apache-2.0 license, shall be dual licensed as above, without any additional terms or conditions.

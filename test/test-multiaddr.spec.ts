@@ -1,9 +1,9 @@
 /* eslint-env mocha */
 
-import { expect } from 'aegir/chai'
 import { multiaddr } from '@multiformats/multiaddr'
-import * as isIPFS from '../src/index.js'
+import { expect } from 'aegir/chai'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
+import * as isIPFS from '../src/index.js'
 
 describe('ipfs multiaddr', () => {
   it('isIPFS.multiaddr should match a string with valid ip4 multiaddr', (done) => {

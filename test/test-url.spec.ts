@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 
 import { expect } from 'aegir/chai'
-import * as isIPFS from '../src/index.js'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
+import * as isIPFS from '../src/index.js'
 
 describe('ipfs url', () => {
   it('isIPFS.ipfsUrl should match an ipfs url', (done) => {
