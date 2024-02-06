@@ -1,9 +1,8 @@
 /* eslint-env mocha */
-'use strict'
 
-const isIPFS = require('../src/index')
-const { expect } = require('aegir/utils/chai')
-const { fromString: uint8ArrayFromString } = require('uint8arrays/from-string')
+import { expect } from 'aegir/chai'
+import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
+import * as isIPFS from '../src/index.js'
 
 describe('ipfs path', () => {
   it('isIPFS.ipfsPath should match an ipfs path', (done) => {
@@ -154,7 +153,7 @@ describe('ipfs path', () => {
   })
 
   it('isIPFS.cidPath should not match a non string', () => {
-    // @ts-ignore data type is invalid
+    // @ts-expect-error data type is invalid
     const actual = isIPFS.cidPath({ toString: () => 'QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm/path/to/file' })
     expect(actual).to.equal(false)
   })

@@ -1,3 +1,83 @@
+## [8.0.4](https://github.com/ipfs-shipyard/is-ipfs/compare/v8.0.3...v8.0.4) (2024-02-06)
+
+
+### Dependencies
+
+* bump multiformats from 11.0.2 to 13.0.1 ([#92](https://github.com/ipfs-shipyard/is-ipfs/issues/92)) ([552d1e6](https://github.com/ipfs-shipyard/is-ipfs/commit/552d1e6f89107776451e158b52e3e901c96be999))
+* bump uint8arrays from 4.0.10 to 5.0.1 ([#93](https://github.com/ipfs-shipyard/is-ipfs/issues/93)) ([3cb3722](https://github.com/ipfs-shipyard/is-ipfs/commit/3cb3722972d8613234826d6848a878030b262e89))
+
+## [8.0.3](https://github.com/ipfs-shipyard/is-ipfs/compare/v8.0.2...v8.0.3) (2024-02-06)
+
+
+### Dependencies
+
+* **dev:** bump aegir from 37.12.1 to 42.2.3 ([#90](https://github.com/ipfs-shipyard/is-ipfs/issues/90)) ([555e75f](https://github.com/ipfs-shipyard/is-ipfs/commit/555e75fdfafa094fd94fb2c6336f74c9b809facc))
+
+## [8.0.2](https://github.com/ipfs-shipyard/is-ipfs/compare/v8.0.1...v8.0.2) (2024-02-06)
+
+
+### Trivial Changes
+
+* add or force update .github/workflows/js-test-and-release.yml ([#87](https://github.com/ipfs-shipyard/is-ipfs/issues/87)) ([a0c32d5](https://github.com/ipfs-shipyard/is-ipfs/commit/a0c32d5da7c586c373384d707a4f159621081c75))
+* delete templates [skip ci] ([#86](https://github.com/ipfs-shipyard/is-ipfs/issues/86)) ([6bc0a79](https://github.com/ipfs-shipyard/is-ipfs/commit/6bc0a7943073b8d06f74569e9130148783c10fbe))
+
+
+### Dependencies
+
+* bump @multiformats/mafmt from 11.1.2 to 12.1.6 ([#91](https://github.com/ipfs-shipyard/is-ipfs/issues/91)) ([9be42f1](https://github.com/ipfs-shipyard/is-ipfs/commit/9be42f1c23c4861f545110b624c952b741f40ecf))
+* bump @multiformats/multiaddr from 11.6.1 to 12.1.14 ([#89](https://github.com/ipfs-shipyard/is-ipfs/issues/89)) ([6b1a651](https://github.com/ipfs-shipyard/is-ipfs/commit/6b1a65187f02ce523ff41370edec748fa736fa56))
+
+## [8.0.1](https://github.com/ipfs-shipyard/is-ipfs/compare/v8.0.0...v8.0.1) (2023-01-07)
+
+
+### Documentation
+
+* publish api docs ([#68](https://github.com/ipfs-shipyard/is-ipfs/issues/68)) ([310dbf6](https://github.com/ipfs-shipyard/is-ipfs/commit/310dbf6870e64172c2e5bc5e610bb0514e59f3c9))
+
+## [8.0.0](https://github.com/ipfs-shipyard/is-ipfs/compare/v7.0.3...v8.0.0) (2023-01-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* bump multiformats from 10.0.3 to 11.0.0 (#67)
+
+### Dependencies
+
+* bump multiformats from 10.0.3 to 11.0.0 ([#67](https://github.com/ipfs-shipyard/is-ipfs/issues/67)) ([680dcd4](https://github.com/ipfs-shipyard/is-ipfs/commit/680dcd4ecbb32a1b5c26814a00baf79c0e9ef496))
+
+## [7.0.3](https://github.com/ipfs-shipyard/is-ipfs/compare/v7.0.2...v7.0.3) (2022-10-18)
+
+
+### Dependencies
+
+* bump multiformats from 9.9.0 to 10.0.1 ([#60](https://github.com/ipfs-shipyard/is-ipfs/issues/60)) ([ff0933b](https://github.com/ipfs-shipyard/is-ipfs/commit/ff0933beb4325ef1303813634a2ebdf3a08ec350))
+* bump uint8arrays from 3.1.1 to 4.0.2 ([#59](https://github.com/ipfs-shipyard/is-ipfs/issues/59)) ([5e9af3d](https://github.com/ipfs-shipyard/is-ipfs/commit/5e9af3de48dda65d0213872e591596143ccd4386))
+
+## [7.0.2](https://github.com/ipfs-shipyard/is-ipfs/compare/v7.0.1...v7.0.2) (2022-09-21)
+
+
+### Documentation
+
+* update readme toc ([#56](https://github.com/ipfs-shipyard/is-ipfs/issues/56)) ([fb97e30](https://github.com/ipfs-shipyard/is-ipfs/commit/fb97e30a09d76e38512c48ff36857242bb5f8260))
+
+## [7.0.1](https://github.com/ipfs-shipyard/is-ipfs/compare/v7.0.0...v7.0.1) (2022-09-21)
+
+
+### Documentation
+
+* update readme examples to be esm ([#55](https://github.com/ipfs-shipyard/is-ipfs/issues/55)) ([e0d1353](https://github.com/ipfs-shipyard/is-ipfs/commit/e0d13534ec18d4290aa4293669c469a56bd7d8b6))
+
+## [7.0.0](https://github.com/ipfs-shipyard/is-ipfs/compare/v6.0.2...v7.0.0) (2022-09-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* this module is now ESM only
+
+### Features
+
+* convert to typescript ([#53](https://github.com/ipfs-shipyard/is-ipfs/issues/53)) ([bc9cd3e](https://github.com/ipfs-shipyard/is-ipfs/commit/bc9cd3ecb875aa23a5d3dd1612822fe09ef8b382))
+
 ## [6.0.2](https://github.com/ipfs/is-ipfs/compare/v6.0.1...v6.0.2) (2021-08-23)
 
 
@@ -302,6 +382,3 @@ Signed-off-by: Marcin Rataj <lidel@lidel.org>
 
 <a name="0.0.2"></a>
 ## 0.0.2 (2016-02-02)
-
-
-

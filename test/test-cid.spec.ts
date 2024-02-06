@@ -1,10 +1,9 @@
 /* eslint-env mocha */
-'use strict'
 
-const { expect } = require('aegir/utils/chai')
-const isIPFS = require('../src/index')
-const { CID } = require('multiformats/cid')
-const { fromString: uint8ArrayFromString } = require('uint8arrays/from-string')
+import { expect } from 'aegir/chai'
+import { CID } from 'multiformats/cid'
+import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
+import * as isIPFS from '../src/index.js'
 
 describe('ipfs cid', () => {
   it('isIPFS.cid should match a valid CID instance', (done) => {
@@ -63,6 +62,7 @@ describe('ipfs cid', () => {
   })
 
   it('isIPFS.cid should not match an invalid CID data type', (done) => {
+    // @ts-expect-error invalid input
     const actual = isIPFS.cid(4)
     expect(actual).to.equal(false)
     done()
@@ -101,7 +101,7 @@ describe('ipfs base32cid', () => {
   })
 
   it('isIPFS.base32cid should not match an invalid CID data type', (done) => {
-    // @ts-ignore data type is invalid
+    // @ts-expect-error data type is invalid
     const actual = isIPFS.base32cid(4)
     expect(actual).to.equal(false)
     done()

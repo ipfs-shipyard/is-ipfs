@@ -1,10 +1,9 @@
 /* eslint-env mocha */
-'use strict'
 
-const { expect } = require('aegir/utils/chai')
-const { Multiaddr } = require('multiaddr')
-const isIPFS = require('../src/index')
-const { fromString: uint8ArrayFromString } = require('uint8arrays/from-string')
+import { multiaddr } from '@multiformats/multiaddr'
+import { expect } from 'aegir/chai'
+import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
+import * as isIPFS from '../src/index.js'
 
 describe('ipfs multiaddr', () => {
   it('isIPFS.multiaddr should match a string with valid ip4 multiaddr', (done) => {
@@ -32,14 +31,14 @@ describe('ipfs multiaddr', () => {
   })
 
   it('isIPFS.multiaddr should match a valid Multiaddr instance', (done) => {
-    const ma = new Multiaddr('/ip6/::1/udp/1234/http')
+    const ma = multiaddr('/ip6/::1/udp/1234/http')
     const actual = isIPFS.multiaddr(ma)
     expect(actual).to.equal(true)
     done()
   })
 
   it('isIPFS.multiaddr should match a Uint8Array with multiaddr', (done) => {
-    const ma = new Multiaddr('/ip6/::1/udp/1234/http')
+    const ma = multiaddr('/ip6/::1/udp/1234/http')
     const actual = isIPFS.multiaddr(ma.bytes)
     expect(actual).to.equal(true)
     done()
@@ -70,6 +69,7 @@ describe('ipfs multiaddr', () => {
   })
 
   it('isIPFS.multiaddr should not match an invalid multiaddr data type', (done) => {
+    // @ts-expect-error invalid input
     const actual = isIPFS.multiaddr(4)
     expect(actual).to.equal(false)
     done()
@@ -117,7 +117,7 @@ describe('ipfs peerMultiaddr', () => {
 
   it('isIPFS.peerMultiaddr should match a valid Multiaddr instance', (done) => {
     for (const addr of validPeerMultiaddrs) {
-      const ma = new Multiaddr(addr)
+      const ma = multiaddr(addr)
       const actual = isIPFS.peerMultiaddr(ma)
       expect(actual, `isIPFS.peerMultiaddr(${addr})`).to.equal(true)
     }
@@ -126,7 +126,7 @@ describe('ipfs peerMultiaddr', () => {
 
   it('isIPFS.peerMultiaddr should match a Uint8Array with multiaddr', (done) => {
     for (const addr of validPeerMultiaddrs) {
-      const ma = new Multiaddr(addr)
+      const ma = multiaddr(addr)
       const actual = isIPFS.peerMultiaddr(ma.bytes)
       expect(actual, `isIPFS.peerMultiaddr(${addr})`).to.equal(true)
     }
@@ -165,7 +165,7 @@ describe('ipfs peerMultiaddr', () => {
   })
 
   it('isIPFS.peerMultiaddr should not match an invalid multiaddr data type', (done) => {
-    // @ts-ignore data type is invalid
+    // @ts-expect-error data type is invalid
     const actual = isIPFS.peerMultiaddr(4)
     expect(actual).to.equal(false)
     done()

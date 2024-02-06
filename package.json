@@ -1,73 +1,161 @@
 {
   "name": "is-ipfs",
-  "version": "6.0.2",
+  "version": "8.0.4",
   "description": "A set of utilities to help identify IPFS resources on the web",
-  "keywords": [
-    "js-ipfs",
-    "ipns",
-    "gateway",
-    "dnslink",
-    "ipfs"
-  ],
-  "homepage": "https://github.com/ipfs/is-ipfs",
-  "bugs": {
-    "url": "https://github.com/ipfs/is-ipfs/issues"
-  },
-  "license": "MIT",
   "author": "Francisco Dias <francisco@baiodias.com> (http://franciscodias.net/)",
-  "leadMaintainer": "Marcin Rataj <lidel@lidel.org>",
-  "files": [
-    "src",
-    "dist"
-  ],
-  "types": "./dist/src/index.d.ts",
-  "main": "src/index.js",
-  "browser": {
-    "fs": false
-  },
+  "license": "Apache-2.0 OR MIT",
+  "homepage": "https://github.com/ipfs-shipyard/is-ipfs#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ipfs/is-ipfs.git"
+    "url": "git+https://github.com/ipfs-shipyard/is-ipfs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ipfs-shipyard/is-ipfs/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "keywords": [
+    "dnslink",
+    "gateway",
+    "ipfs",
+    "ipns",
+    "js-ipfs"
+  ],
+  "type": "module",
+  "types": "./dist/src/index.d.ts",
+  "files": [
+    "src",
+    "dist",
+    "!dist/test",
+    "!**/*.tsbuildinfo"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    }
+  },
+  "eslintConfig": {
+    "extends": "ipfs",
+    "parserOptions": {
+      "project": true,
+      "sourceType": "module"
+    }
+  },
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "preset": "conventionalcommits",
+          "releaseRules": [
+            {
+              "breaking": true,
+              "release": "major"
+            },
+            {
+              "revert": true,
+              "release": "patch"
+            },
+            {
+              "type": "feat",
+              "release": "minor"
+            },
+            {
+              "type": "fix",
+              "release": "patch"
+            },
+            {
+              "type": "docs",
+              "release": "patch"
+            },
+            {
+              "type": "test",
+              "release": "patch"
+            },
+            {
+              "type": "deps",
+              "release": "patch"
+            },
+            {
+              "scope": "no-release",
+              "release": false
+            }
+          ]
+        }
+      ],
+      [
+        "@semantic-release/release-notes-generator",
+        {
+          "preset": "conventionalcommits",
+          "presetConfig": {
+            "types": [
+              {
+                "type": "feat",
+                "section": "Features"
+              },
+              {
+                "type": "fix",
+                "section": "Bug Fixes"
+              },
+              {
+                "type": "chore",
+                "section": "Trivial Changes"
+              },
+              {
+                "type": "docs",
+                "section": "Documentation"
+              },
+              {
+                "type": "deps",
+                "section": "Dependencies"
+              },
+              {
+                "type": "test",
+                "section": "Tests"
+              }
+            ]
+          }
+        }
+      ],
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      "@semantic-release/git"
+    ]
   },
   "scripts": {
-    "prepare": "aegir build --no-bundle",
-    "test:node": "aegir test --target node",
-    "test:browser": "aegir test --target browser",
+    "build": "aegir build",
     "test": "aegir test",
-    "prepublishOnly": "aegir build",
-    "lint": "aegir ts -p check && aegir lint-package-json && aegir lint",
+    "test:node": "aegir test -t node --cov",
+    "test:chrome": "aegir test -t browser --cov",
+    "test:chrome-webworker": "aegir test -t webworker",
+    "test:firefox": "aegir test -t browser -- --browser firefox",
+    "test:firefox-webworker": "aegir test -t webworker -- --browser firefox",
+    "test:electron-main": "aegir test -t electron-main",
+    "lint": "aegir lint",
+    "dep-check": "aegir dep-check",
     "release": "aegir release",
-    "release-minor": "aegir release --type minor",
-    "release-major": "aegir release --type major"
+    "docs": "aegir docs"
   },
   "dependencies": {
+    "@multiformats/mafmt": "^12.1.6",
+    "@multiformats/multiaddr": "^12.1.14",
     "iso-url": "^1.1.3",
-    "mafmt": "^10.0.0",
-    "multiaddr": "^10.0.0",
-    "multiformats": "^9.0.0",
-    "uint8arrays": "^3.0.0"
+    "multiformats": "^13.0.1",
+    "uint8arrays": "^5.0.1"
   },
   "devDependencies": {
-    "aegir": "^35.0.2",
-    "pre-commit": "^1.2.2",
-    "util": "^0.12.4"
+    "aegir": "^42.2.3"
   },
   "engines": {
-    "node": ">=14.0.0",
-    "npm": ">=6.0.0"
+    "node": ">=16.0.0",
+    "npm": ">=7.0.0"
   },
-  "pre-commit": [
-    "test",
-    "lint"
-  ],
-  "contributors": [
-    "Marcin Rataj <lidel@lidel.org>",
-    "Francisco Baio Dias <xicombd@gmail.com>",
-    "David Dias <daviddias.p@gmail.com>",
-    "Alan Shaw <alan.shaw@protocol.ai>",
-    "Alex Potsides <alex@achingbrain.net>",
-    "nginnever <ginneversource@gmail.com>",
-    "Hugo Dias <mail@hugodias.me>",
-    "Henrique Dias <hacdias@gmail.com>"
-  ]
+  "sideEffects": false
 }
