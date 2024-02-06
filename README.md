@@ -1,7 +1,7 @@
 # is-ipfs <!-- omit in toc -->
 
 [![codecov](https://img.shields.io/codecov/c/github/ipfs-shipyard/is-ipfs.svg?style=flat-square)](https://codecov.io/gh/ipfs-shipyard/is-ipfs)
-[![CI](https://img.shields.io/github/actions/workflow/status/ipfs-shipyard/is-ipfs/js-test-and-release.yml?branch=master\&style=flat-square)](https://github.com/ipfs-shipyard/is-ipfs/actions/workflows/js-test-and-release.yml?query=branch%3Amaster)
+[![CI](https://img.shields.io/github/actions/workflow/status/ipfs-shipyard/is-ipfs/js-test-and-release.yml?branch=main\&style=flat-square)](https://github.com/ipfs-shipyard/is-ipfs/actions/workflows/js-test-and-release.yml?query=branch%3Amain)
 
 > A set of utilities to help identify IPFS resources on the web
 
