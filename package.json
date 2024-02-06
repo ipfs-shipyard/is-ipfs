@@ -145,7 +145,7 @@
     "docs": "aegir docs"
   },
   "dependencies": {
-    "@multiformats/mafmt": "^11.0.3",
+    "@multiformats/mafmt": "^12.1.6",
     "@multiformats/multiaddr": "^11.0.0",
     "iso-url": "^1.1.3",
     "multiformats": "^11.0.0",
