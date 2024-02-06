@@ -12,6 +12,10 @@
   "bugs": {
     "url": "https://github.com/ipfs-shipyard/is-ipfs/issues"
   },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "keywords": [
     "dnslink",
     "gateway",
@@ -19,10 +23,6 @@
     "ipns",
     "js-ipfs"
   ],
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=7.0.0"
-  },
   "type": "module",
   "types": "./dist/src/index.d.ts",
   "files": [
@@ -40,6 +40,7 @@
   "eslintConfig": {
     "extends": "ipfs",
     "parserOptions": {
+      "project": true,
       "sourceType": "module"
     }
   },
@@ -129,18 +130,16 @@
     ]
   },
   "scripts": {
-    "clean": "aegir clean",
-    "lint": "aegir lint",
-    "dep-check": "aegir dep-check",
-    "generate": "protons src/pb/peer.proto src/pb/tags.proto",
     "build": "aegir build",
     "test": "aegir test",
-    "test:chrome": "aegir test -t browser",
+    "test:node": "aegir test -t node --cov",
+    "test:chrome": "aegir test -t browser --cov",
     "test:chrome-webworker": "aegir test -t webworker",
     "test:firefox": "aegir test -t browser -- --browser firefox",
     "test:firefox-webworker": "aegir test -t webworker -- --browser firefox",
-    "test:node": "aegir test -t node",
     "test:electron-main": "aegir test -t electron-main",
+    "lint": "aegir lint",
+    "dep-check": "aegir dep-check",
     "release": "aegir release",
     "docs": "aegir docs"
   },
@@ -154,7 +153,9 @@
   "devDependencies": {
     "aegir": "^42.2.3"
   },
-  "browser": {
-    "fs": false
-  }
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=7.0.0"
+  },
+  "sideEffects": false
 }

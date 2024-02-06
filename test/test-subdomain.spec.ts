@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 
-import * as isIPFS from '../src/index.js'
 import { expect } from 'aegir/chai'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
+import * as isIPFS from '../src/index.js'
 
 describe('ipfs subdomain', () => {
   it('isIPFS.ipfsSubdomain should match a cidv1b32', (done) => {
