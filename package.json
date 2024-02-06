@@ -1,6 +1,6 @@
 {
   "name": "is-ipfs",
-  "version": "8.0.2",
+  "version": "8.0.3",
   "description": "A set of utilities to help identify IPFS resources on the web",
   "author": "Francisco Dias <francisco@baiodias.com> (http://franciscodias.net/)",
   "license": "Apache-2.0 OR MIT",
@@ -148,7 +148,7 @@
     "@multiformats/multiaddr": "^12.1.14",
     "iso-url": "^1.1.3",
     "multiformats": "^13.0.1",
-    "uint8arrays": "^4.0.2"
+    "uint8arrays": "^5.0.1"
   },
   "devDependencies": {
     "aegir": "^42.2.3"
