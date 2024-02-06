@@ -1,3 +1,10 @@
+## [8.0.3](https://github.com/ipfs-shipyard/is-ipfs/compare/v8.0.2...v8.0.3) (2024-02-06)
+
+
+### Dependencies
+
+* **dev:** bump aegir from 37.12.1 to 42.2.3 ([#90](https://github.com/ipfs-shipyard/is-ipfs/issues/90)) ([555e75f](https://github.com/ipfs-shipyard/is-ipfs/commit/555e75fdfafa094fd94fb2c6336f74c9b809facc))
+
 ## [8.0.2](https://github.com/ipfs-shipyard/is-ipfs/compare/v8.0.1...v8.0.2) (2024-02-06)
 
 
