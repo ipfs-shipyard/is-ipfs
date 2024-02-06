@@ -1,3 +1,11 @@
+## [8.0.4](https://github.com/ipfs-shipyard/is-ipfs/compare/v8.0.3...v8.0.4) (2024-02-06)
+
+
+### Dependencies
+
+* bump multiformats from 11.0.2 to 13.0.1 ([#92](https://github.com/ipfs-shipyard/is-ipfs/issues/92)) ([552d1e6](https://github.com/ipfs-shipyard/is-ipfs/commit/552d1e6f89107776451e158b52e3e901c96be999))
+* bump uint8arrays from 4.0.10 to 5.0.1 ([#93](https://github.com/ipfs-shipyard/is-ipfs/issues/93)) ([3cb3722](https://github.com/ipfs-shipyard/is-ipfs/commit/3cb3722972d8613234826d6848a878030b262e89))
+
 ## [8.0.3](https://github.com/ipfs-shipyard/is-ipfs/compare/v8.0.2...v8.0.3) (2024-02-06)
 
 
