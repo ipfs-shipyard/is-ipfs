@@ -107,6 +107,12 @@ describe('ipfs path', () => {
     done()
   })
 
+  it('isIPFS.urlOrPath should match an IANA-schema compliant ipfs url', (done) => {
+    const actual = isIPFS.urlOrPath('ipfs://QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm')
+    expect(actual).to.equal(true)
+    done()
+  })
+
   it('isIPFS.urlOrPath should match ipns url', (done) => {
     const actual = isIPFS.urlOrPath('http://ipfs.io/ipns/foo.bar.com')
     expect(actual).to.equal(true)
@@ -153,7 +159,12 @@ describe('ipfs path', () => {
   })
 
   it('isIPFS.cidPath should not match an IPFS path', () => {
-    const actual = isIPFS.cidPath('/ipfs/QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm')
-    expect(actual).to.equal(false)
+    expect(isIPFS.cidPath('/ipfs/QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm')).to.be.false()
+  })
+})
+
+describe('ipns path', () => {
+  it('isIPFS.urlOrPath should match an IANA-schema compliant ipns url', () => {
+    expect(isIPFS.urlOrPath('ipns://QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm')).to.be.true()
   })
 })
