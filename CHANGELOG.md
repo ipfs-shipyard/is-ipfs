@@ -1,3 +1,17 @@
+## [8.0.2](https://github.com/ipfs-shipyard/is-ipfs/compare/v8.0.1...v8.0.2) (2024-02-06)
+
+
+### Trivial Changes
+
+* add or force update .github/workflows/js-test-and-release.yml ([#87](https://github.com/ipfs-shipyard/is-ipfs/issues/87)) ([a0c32d5](https://github.com/ipfs-shipyard/is-ipfs/commit/a0c32d5da7c586c373384d707a4f159621081c75))
+* delete templates [skip ci] ([#86](https://github.com/ipfs-shipyard/is-ipfs/issues/86)) ([6bc0a79](https://github.com/ipfs-shipyard/is-ipfs/commit/6bc0a7943073b8d06f74569e9130148783c10fbe))
+
+
+### Dependencies
+
+* bump @multiformats/mafmt from 11.1.2 to 12.1.6 ([#91](https://github.com/ipfs-shipyard/is-ipfs/issues/91)) ([9be42f1](https://github.com/ipfs-shipyard/is-ipfs/commit/9be42f1c23c4861f545110b624c952b741f40ecf))
+* bump @multiformats/multiaddr from 11.6.1 to 12.1.14 ([#89](https://github.com/ipfs-shipyard/is-ipfs/issues/89)) ([6b1a651](https://github.com/ipfs-shipyard/is-ipfs/commit/6b1a65187f02ce523ff41370edec748fa736fa56))
+
 ## [8.0.1](https://github.com/ipfs-shipyard/is-ipfs/compare/v8.0.0...v8.0.1) (2023-01-07)
 
 
