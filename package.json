@@ -151,7 +151,7 @@
     "uint8arrays": "^5.0.1"
   },
   "devDependencies": {
-    "aegir": "^42.2.3"
+    "aegir": "^44.1.1"
   },
   "engines": {
     "node": ">=16.0.0",
