@@ -46,15 +46,19 @@ isIPFS.path('/ipfs/js-ipfs/blob/master/README.md') // false
 isIPFS.urlOrPath('https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
 isIPFS.urlOrPath('https://ipfs.io/ipns/github.com') // true
 isIPFS.urlOrPath('/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
+isIPFS.urlOrPath('ipfs://QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
 isIPFS.urlOrPath('/ipns/github.com') // true
+isIPFS.urlOrPath('ipns://github.com') // true
 isIPFS.urlOrPath('https://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.ipfs.dweb.link') // true
 isIPFS.urlOrPath('https://google.com') // false
 
 isIPFS.ipfsUrl('https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
 isIPFS.ipfsUrl('https://ipfs.io/ipfs/invalid-hash') // false
+isIPFS.ipfsUrl('ipfs://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
 
 isIPFS.ipnsUrl('https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // false
 isIPFS.ipnsUrl('https://ipfs.io/ipns/github.com') // true
+isIPFS.ipnsUrl('ipns://ipfs.io/ipns/github.com') // true
 
 isIPFS.ipfsPath('/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
 isIPFS.ipfsPath('/ipfs/invalid-hash') // false

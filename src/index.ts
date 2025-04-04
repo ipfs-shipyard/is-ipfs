@@ -40,15 +40,19 @@
  * isIPFS.urlOrPath('https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
  * isIPFS.urlOrPath('https://ipfs.io/ipns/github.com') // true
  * isIPFS.urlOrPath('/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
+ * isIPFS.urlOrPath('ipfs://QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
  * isIPFS.urlOrPath('/ipns/github.com') // true
+ * isIPFS.urlOrPath('ipns://github.com') // true
  * isIPFS.urlOrPath('https://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.ipfs.dweb.link') // true
  * isIPFS.urlOrPath('https://google.com') // false
  *
  * isIPFS.ipfsUrl('https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
  * isIPFS.ipfsUrl('https://ipfs.io/ipfs/invalid-hash') // false
+ * isIPFS.ipfsUrl('ipfs://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
  *
  * isIPFS.ipnsUrl('https://ipfs.io/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // false
  * isIPFS.ipnsUrl('https://ipfs.io/ipns/github.com') // true
+ * isIPFS.ipnsUrl('ipns://ipfs.io/ipns/github.com') // true
  *
  * isIPFS.ipfsPath('/ipfs/QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o') // true
  * isIPFS.ipfsPath('/ipfs/invalid-hash') // false
@@ -115,6 +119,9 @@ const subdomainProtocolMatch = 2
 
 // Fully qualified domain name (FQDN) that has an explicit .tld suffix
 const fqdnWithTld = /^(([a-z0-9]|[a-z0-9][a-z0-9-]*[a-z0-9])\.)+([a-z0-9]|[a-z0-9][a-z0-9-]*[a-z0-9])$/
+
+// URI IANA-scheme
+const uriSchemePattern = /^(ip[fn]s):\/\/([^/?#]+)/
 
 function isMultihash (hash: Uint8Array | string): boolean {
   const formatted = convertToString(hash)
@@ -320,13 +327,13 @@ export const subdomain = (url: string | Uint8Array): boolean => ipfsSubdomain(ur
  * Returns `true` if the provided string is a valid IPFS url or `false`
  * otherwise.
  */
-export const ipfsUrl = (url: string | Uint8Array): boolean => isIpfs(url, pathGatewayPattern) || ipfsSubdomain(url)
+export const ipfsUrl = (url: string | Uint8Array): boolean => isIpfs(url, pathGatewayPattern) || ipfsSubdomain(url) || isIpfs(url, uriSchemePattern)
 
 /**
  * Returns `true` if the provided string is a valid IPNS url or `false`
  * otherwise.
  */
-export const ipnsUrl = (url: string | Uint8Array): boolean => isIpns(url, pathGatewayPattern) || ipnsSubdomain(url)
+export const ipnsUrl = (url: string | Uint8Array): boolean => isIpns(url, pathGatewayPattern) || ipnsSubdomain(url) || isIpns(url, uriSchemePattern)
 
 /**
  * Returns `true` if the provided string is a valid IPFS or IPNS url or `false`
